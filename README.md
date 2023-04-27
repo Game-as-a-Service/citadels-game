@@ -1,7 +1,8 @@
 ( * : 為團隊需自行修改部分 )
-# *Gaas-repo-template ( 換成自己遊戲名稱 )
+# 富饒之城
 
 # Intro your game
+   ![image](https://user-images.githubusercontent.com/39298006/234902429-bc961cc1-a0c6-4115-81e7-4e409d19ad36.png)
 
 
 # My Practice Stack
