@@ -6,10 +6,10 @@
 
 #  Practice Stack
 - 描述一下你們使用的軟體方法論 :
-   Event Storming
-   BDD (Example Mapping)
-   ATDD / TDD
-   Clean Architecture
+   - Event Storming
+   - BDD (Example Mapping)
+   - ATDD / TDD
+   - Clean Architecture
 
 ### Tech Stack
 - 描述一下你們使用的技術、框架、語言 :
