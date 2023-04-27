@@ -2,9 +2,14 @@
    
    ![image](https://user-images.githubusercontent.com/39298006/234902429-bc961cc1-a0c6-4115-81e7-4e409d19ad36.png)
 
-# My Practice Stack
+
+
+#  Practice Stack
 - 描述一下你們使用的軟體方法論 :
-   1. *...
+   Event Storming
+   BDD (Example Mapping)
+   ATDD / TDD
+   Clean Architecture
 
 ### Tech Stack
 - 描述一下你們使用的技術、框架、語言 :
