@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>tw.waterballsa.gaas.saboteurGame</groupId>
+        <groupId>tw.waterballsa.gaas.citadelsGame</groupId>
         <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -26,7 +26,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>tw.waterballsa.gaas.saboteurGame</groupId>
+            <groupId>tw.waterballsa.gaas.citadelsGame</groupId>
             <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
