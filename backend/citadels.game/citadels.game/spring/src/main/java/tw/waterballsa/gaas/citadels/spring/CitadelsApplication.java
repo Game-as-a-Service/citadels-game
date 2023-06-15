@@ -8,5 +8,4 @@ public class CitadelsApplication {
     public static void main(String[] args) {
         SpringApplication.run(AvalonApplication.class, args);
     }
-
 }
