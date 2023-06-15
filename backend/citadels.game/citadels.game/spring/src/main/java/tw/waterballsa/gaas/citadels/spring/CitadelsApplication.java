@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "tw.waterballsa.gaas.citadels")
 public class CitadelsApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(AvalonApplication.class, args);
     }
