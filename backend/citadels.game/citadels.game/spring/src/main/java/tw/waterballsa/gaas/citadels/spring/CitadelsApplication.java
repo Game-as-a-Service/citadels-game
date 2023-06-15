@@ -1,4 +1,4 @@
-package tw.waterballsa.gaas.avalon.spring;
+package tw.waterballsa.gaas.citadels.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
