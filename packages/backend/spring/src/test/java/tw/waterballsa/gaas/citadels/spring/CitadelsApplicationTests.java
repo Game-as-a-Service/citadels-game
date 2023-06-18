@@ -1,53 +1,29 @@
 package tw.waterballsa.gaas.citadels.spring;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.containers.wait.strategy.Wait;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@Testcontainers
+@AutoConfigureMockMvc
 class CitadelsApplicationTests {
-    @Configuration
-    static class Config {
-        @Container
-        final static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:4.4.22-focal"))
-                .withExposedPorts(27017)
-                .waitingFor(Wait.forLogMessage(".*waiting for connections on port.*\\n", 3));
-
-        @Bean
-        public MongoClient mongoClient() {
-            mongoDBContainer.start();
-            String host = "localhost";
-            int port = mongoDBContainer.getMappedPort(27017);
-            System.out.println("mongoDBContainer MappedPort::" + port);
-            String connectionString = String.format("mongodb://%s:%d", host, port);
-            MongoClientSettings settings = MongoClientSettings.builder()
-                    .applyConnectionString(new ConnectionString(connectionString))
-                    .build();
-            return MongoClients.create(settings);
-        }
-    }
 
     @Autowired
-    MongoClient mongoClient;
+    MockMvc mockMvc;
 
     @Test
-    void checkConnectToMongodb() {
-        var dbs = mongoClient.listDatabaseNames();
-        dbs.forEach(name -> System.out.println("show mongo dbs: " + name));
-        Assertions.assertNotNull(dbs.first());
+    void getHelloWorld() throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/hello-world"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("hello world"))
+                .andReturn();
     }
 
 }
