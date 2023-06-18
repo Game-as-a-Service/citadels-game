@@ -1,0 +1,13 @@
+node_modules
+build
+
+# others
+README.md
+webpack.config.js
+package.json
+package-lock.json
+postcss.config.js
+.git
+.vscode
+.eslintrc.json
+.eslintignore
