@@ -1,0 +1,45 @@
+{
+  "env": {
+      "browser": true,
+      "es2020": true
+  },
+  "extends": [
+      "plugin:react/recommended",
+      "standard",
+      "prettier",
+      "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 11,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react",
+      "prettier"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+      "react/react-in-jsx-scope": "off",
+      "no-case-declarations": "off",
+      "no-extend-native": "off",
+      "no-prototype-builtins": "off",
+      "no-useless-escape": "off",
+      "space-before-function-paren": ["error",  {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
+      "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
+      "prefer-promise-reject-errors": ["error", {"allowEmptyReject": true}],
+      "prettier/prettier": [ "warn", {"endOfLine": "auto"}],
+      "no-unused-vars": "off"
+  },
+  "globals": {
+      "PropTypes": "readonly",
+      "ReactDom": "readonly",
+      "React": "readonly"
+  }
+}

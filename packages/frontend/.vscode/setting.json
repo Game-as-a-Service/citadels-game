@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFromatter": "esbenp.prettier-vscode",
+  "[css]": {
+    "editor.formatOnSave": false
+  },
+  "recommendations": ["esbenp.prettier-vscode"]
+}
