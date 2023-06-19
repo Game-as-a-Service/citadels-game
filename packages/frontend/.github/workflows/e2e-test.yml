@@ -1,0 +1,20 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - Irisloverain-patch-1  # 要運行測試的分支
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # 使用 Ubuntu 環境
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # 檢查代碼庫
+
+      - name: Install dependencies
+        run: npm ci  # 安裝相依套件
+
+      - name: Run Cypress tests
+        run: npm run cypress:open  # 執行 Cypress 測試
