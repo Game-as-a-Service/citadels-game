@@ -11,10 +11,10 @@ name: Java CI with Maven
 on:
   push:
     paths:
-      - 'package/backend/**'
+      - '/package/backend/**'
   pull_request:
     paths:
-      - 'package/backend/**'
+      - '/package/backend/**'
 
 jobs:
   test:
