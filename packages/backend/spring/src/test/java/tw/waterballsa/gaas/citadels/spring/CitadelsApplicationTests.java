@@ -22,7 +22,7 @@ class CitadelsApplicationTests {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/hello-world"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("hello worl"))
+                .andExpect(content().string("hello world"))
                 .andReturn();
     }
 
