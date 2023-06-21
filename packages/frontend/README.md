@@ -11,5 +11,3 @@ npm run dev
 ## Vscode Setting
 Extensions:
 - Prettier - Code formatter (esbenp.prettier-vscode)
-
-123 456
