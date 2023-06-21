@@ -13,8 +13,8 @@ on:
   #   branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  paths:
-    - '**.java'
+    paths:
+      - '**.java'
 
 jobs:
   build:
