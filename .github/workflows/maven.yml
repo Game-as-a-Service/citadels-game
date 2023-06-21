@@ -9,12 +9,10 @@
 name: Java CI with Maven
 
 on:
-  push:
-    paths:
-      - '/package/backend/**'
   pull_request:
+    types: [opened, edited, reopened]
     paths:
-      - '/package/backend/**'
+      - '/packages/backend/**'
 
 jobs:
   test:
@@ -31,5 +29,5 @@ jobs:
 
       - name: Run integration tests
         run: |
-          cd package/backend/
-          mvnw test
+          cd /packages/backend/
+          mvn test
