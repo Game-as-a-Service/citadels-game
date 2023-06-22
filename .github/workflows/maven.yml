@@ -9,12 +9,14 @@
 name: Java CI with Maven
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  pull_request:
+  push:
     branches: [ "main" ]
     paths: 
       - 'packages/backend/**'
+  # pull_request:
+  #   branches: [ "main" ]
+  #   paths: 
+  #     - 'packages/backend/**'
 jobs:
   build:
 
