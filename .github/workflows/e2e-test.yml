@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - Irisloverain-patch-1  # 要運行測試的分支
+    paths:
+      - Irisloverain-patch-1
 
 jobs:
   test:
