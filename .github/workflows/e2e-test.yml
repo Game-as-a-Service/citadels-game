@@ -17,6 +17,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci  # 安裝相依套件
+        working-directory: packages/frontend/
 
       - name: Run Cypress tests
-        run: npm run cypress:open  # 執行 Cypress 測試
+        run: | 
+          npm run dev
+          npm run cypress:open  # 執行 Cypress 測試
+        working-directory: packages/frontend/
