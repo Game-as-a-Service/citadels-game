@@ -1,11 +1,10 @@
 name: E2E Tests
 
 on:
-  push:
-    branches:
-      - Irisloverain-patch-1  # 要運行測試的分支
-    paths:
-      - 'packages/frontend/**' # 要運行測試的路徑
+  pull_request:
+    branches: [ "main" ]
+    paths: 
+      - 'packages/frontend/**'
 
 jobs:
   test:
