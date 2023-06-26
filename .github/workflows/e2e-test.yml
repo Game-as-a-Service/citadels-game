@@ -21,5 +21,5 @@ jobs:
       - name: Run Cypress tests
         run: | 
           npm run dev
-          npm run cypress:open  # 執行 Cypress 測試
+          npm run cypress:open  # 執行 Cypress 
         working-directory: packages/frontend/
