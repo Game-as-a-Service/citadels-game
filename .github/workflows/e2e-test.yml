@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Cypress tests
         run: | 
-          npm run dev
+          npm run dev &
           sleep 5  # 等待開發服務器啟動
           npm run cypress:run  # 執行 Cypress test
         working-directory: packages/frontend/
