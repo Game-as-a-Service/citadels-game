@@ -2,6 +2,8 @@ name: Java CICD
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "yu128430-patch-1" ]
 
 jobs:
   build:
