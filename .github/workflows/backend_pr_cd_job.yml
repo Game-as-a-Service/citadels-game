@@ -16,6 +16,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
       - name: Build with Maven
         working-directory: packages/backend/
         run: mvn package -DskipTests
@@ -32,4 +33,19 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USERNAME }}
-          TARGET: ${{ secrets.TARGET_DIR }}...
+          TARGET: ${{ secrets.TARGET_DIR }}/frontend
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+                  cd /webApp 
+                  sudo docker rmi springImage
+                  sudo docker stop springDemo
+                  sudo docker rm springDemo
+                  sudo docker build -t springImage .
+                  sudo docker run --name springDemo -d -p 8080:8080 springImage
