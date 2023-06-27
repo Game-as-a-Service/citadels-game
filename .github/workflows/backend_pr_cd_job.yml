@@ -1,0 +1,53 @@
+name: Java CICD
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "yu128430-patch-1" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        working-directory: packages/backend/
+        run: mvn package -DskipTests
+
+      - name: Move JAR and Dockerfile to workspace
+        run: |
+          mv packages/backend/spring/target/citadels-backend-0.0.1-SNAPSHOT.jar $GITHUB_WORKSPACE/citadels-backend-0.0.1-SNAPSHOT.jar
+          mv packages/backend/spring/Dockerfile $GITHUB_WORKSPACE/Dockerfile
+          rm -rf packages docs README.md    
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.TARGET_DIR }}/backend
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+                  cd /webApp 
+                  sudo docker rmi springImage
+                  sudo docker stop springDemo
+                  sudo docker rm springDemo
+                  sudo docker build -t springImage .
+                  sudo docker run --name springDemo -d -p 8080:8080 springImage
