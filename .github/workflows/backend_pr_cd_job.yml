@@ -33,7 +33,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USERNAME }}
-          TARGET: ${{ secrets.TARGET_DIR }}/frontend
+          TARGET: ${{ secrets.TARGET_DIR }}/backend
 
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
