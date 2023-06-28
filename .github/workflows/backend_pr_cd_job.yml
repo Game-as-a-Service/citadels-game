@@ -3,7 +3,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "yu128430-patch-1" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -45,7 +45,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-                  cd /webApp 
+                  cd /webApp/backend 
                   sudo docker rmi springImage
                   sudo docker stop springDemo
                   sudo docker rm springDemo
