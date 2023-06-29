@@ -2,8 +2,6 @@ name: Java CICD
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -50,4 +48,4 @@ jobs:
             sudo docker stop citadels-backend
             sudo docker rm citadels-backend
             sudo docker build -t citadels-backend-image .
-            sudo docker run --name citadels-backend -d -p 8080:8080 citadels-backend-image
+            sudo docker run --name citadels-backend -d -p 8080:8080 citadels-backend-image 
