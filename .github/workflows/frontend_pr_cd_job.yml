@@ -33,7 +33,7 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         REMOTE_HOST: ${{ secrets.HOST }}
         REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}
+        TARGET: ${{ secrets.TARGET_DIR }}/frontend
   
     - name: Executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
@@ -43,7 +43,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-                cd /webApp/frontend/frontend
+                cd /webApp/frontend
                 sudo docker stop react-container
                 sudo docker rm react-container
                 sudo docker rmi react-image
