@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>tw.waterballsa.gaas.citadels</groupId>
-	<artifactId>spring</artifactId>
+	<artifactId>citadels-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring</name>
+	<name>citadels-backend</name>
 	<description>gaas citadels game web</description>
 
 	<properties>
