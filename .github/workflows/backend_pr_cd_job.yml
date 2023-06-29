@@ -45,9 +45,9 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-                  cd /webApp/backend 
-                  sudo docker rmi springImage
-                  sudo docker stop springDemo
-                  sudo docker rm springDemo
-                  sudo docker build -t springImage .
-                  sudo docker run --name springDemo -d -p 8080:8080 springImage
+            cd /webApp/backend 
+            sudo docker rmi citadels-backend-image
+            sudo docker stop citadels-backend
+            sudo docker rm citadels-backend
+            sudo docker build -t citadels-backend-image .
+            sudo docker run --name citadels-backend -d -p 8080:8080 citadels-backend-image
