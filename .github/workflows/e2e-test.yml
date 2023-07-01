@@ -1,25 +1,27 @@
 name: E2E Tests
 
-on: [push]:
-    branches: test_Cypress
-    paths: 
+on:
+  push:
+    branches:
+      - test_Cypress
+    paths:
       - 'packages/frontend/**'
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest  # 使用 Ubuntu 環境
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm install  # 安裝相依套件
+        run: npm install
         working-directory: packages/frontend/
 
-      - name: Cypress Run  
-        run: | 
+      - name: Cypress Run
+        run: |
           npm run dev &
-          sleep 5  # 等待開發服務器啟動
-          npm run cypress:run  # 執行 Cypress test
+          sleep 5
+          npm run cypress:run
         working-directory: packages/frontend/
