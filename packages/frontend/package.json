@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
     "dev": "webpack-dev-server --hot --progress --mode development",
     "format": "prettier . --write --ignore-unknown",
     "cypress:open": "cypress open",
