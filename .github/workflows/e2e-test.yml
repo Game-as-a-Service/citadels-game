@@ -1,7 +1,6 @@
 name: E2E Tests
 
-on:
-  [push]:
+on: [push]:
     branches: test_Cypress
     paths: 
       - 'packages/frontend/**'
