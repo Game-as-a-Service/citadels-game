@@ -4,7 +4,7 @@ name: E2E Tests
 on:
   pull_request:
     branches:
-      - test_Cypress
+      - main
     paths:
       - 'packages/frontend/**'
 
