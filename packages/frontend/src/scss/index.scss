@@ -1,1 +1,237 @@
 @import '../../node_modules/normalize-scss/sass/normalize.scss';
+/*引入字體*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/*定義顏色*/
+/*g means gradient */
+$g-blue:linear-gradient(45deg, #7E66C5, #567ECC);
+$g-yellow: linear-gradient(45deg, #F8F148, #FCD139);
+$blue:#5891FF;
+$cyan:#8FDBE0;
+$light-blue:#ECF4F9;
+$trans-white:#FCFCFC;
+$white : #ffffff;
+$purple :#514673;
+
+/*定義字型*/
+/*f-文字大小(pt)-顏色-weight*/
+.f-40-w{
+    color: #ffffff;
+    font-size: clamp(1.5rem, 2.5rem, 3rem);
+    font-family: Inter;
+    font-weight: 600;
+}
+.f-24-b{
+    color: #514673;
+    font-size: clamp(1rem, 1.5rem, 2rem);
+    font-family: Inter;
+    font-weight: 600;
+}
+.f-20-b{
+    color: #514673;
+    font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+    font-family: Inter;
+    font-weight: 600;
+}
+@mixin f-40-w{
+    color:$white;
+    font-size: clamp(1.5rem, 2.5rem, 3rem);
+    font-family: Inter;
+    font-weight: 600;
+}
+@mixin f-24-b{
+    color:$purple;
+    font-size: clamp(1rem, 1.5rem, 2rem);
+    font-family: Inter;
+    font-weight: 600;
+}
+@mixin f-20-b{
+    color:$purple;
+    font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+    font-family: Inter;
+    font-weight: 600;
+}
+
+/*定義常用編排*/
+
+@mixin flex-center-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@mixin flex-center-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 拔除input樣式 */
+input[type='number']::-webkit-outer-spin-button,
+myAuth input[type='number']::-webkit-inner-spin-button {
+-webkit-appearance: none;
+border: 0;
+}
+
+input {
+border-top-style: hidden;
+border-right-style: hidden;
+border-left-style: hidden;
+border-bottom-style: hidden;
+}
+
+input:focus {
+outline: none !important;
+}
+
+body{
+    background-image: linear-gradient(45deg, #7E66C5, #567ECC);
+}
+
+/*登入頁*/
+.login{
+    height: 100vh;
+    display: flex;
+    @include flex-center-column;
+    gap: 20px;
+
+    &_borad{
+        width: min(18rem, 28rem);
+        height: 27rem;
+        padding-right: clamp(15px, 10%, 60px);
+        padding-left: clamp(15px, 10%, 60px);
+        background-color: #FCFCFCAB;
+        display: flex;
+        @include flex-center-column;
+        gap: 10px;
+        border-radius: 50px;
+    }
+    &_button{
+        width: min(180px, 218px);
+        height: 4.1875rem;
+        background-color: #5891FF;
+        box-shadow: 2px 4px 22px 0px rgba(13, 47, 97, 0.25);
+        color: white;    
+        border: 0px;
+        border-radius: 30px;
+        padding: 1rem 3rem;
+        font-size: clamp(0.5rem, 1.3rem, 1.5rem);
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover{
+            background-color: $cyan
+        }
+    }
+    &_imgwrap{
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background-color: rgb(249, 202, 141);
+    }
+    &_input{
+        width: min(256px, 320px);
+        height: 54px;
+        border: 0px;
+        border-radius: 300px;
+        @include f-24-b
+    }
+}
+
+/*遊戲主畫面*/
+.game{
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    background-image: $blue;
+}
+.nav{
+    width: 100%;
+    height: 65px;
+    background-color: #F3ECDB;
+    @include flex-center-row;
+}
+.player_info{
+    width: min(360px, 370px);
+    height: 150px;
+    background-color: #ECF4F9;
+    border-radius: 20px;
+    @include flex-center-row;
+    gap: 20px;
+}
+.player_avatar{
+    width: 72px;
+    height: 72px;
+    background-color: aquamarine;
+    border-radius: 50%;
+}
+.card_icon{
+    width: 18.5px;
+    height: 28px;
+    background-color: #8897BC;
+    border-radius: 3px;
+}
+.card_num{
+   color: #02102b;
+}
+.money_icon{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background-color: yellow; 
+}
+.area{
+    width:74px;
+    height: 112px;
+    border-radius: 15px;
+    background-color: rgb(238, 238, 178); 
+}
+.seemore{
+    display: flex;
+    flex-direction: column;
+}
+
+.my_game{
+    width: 100%;
+    min-height: 219px;
+    background-color: #ECF4F9;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.my_character{
+    width: 84px;
+    height: 136px;
+    background-color: #D98D8D;
+    border-radius: 20px;
+}
+.my_card_group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.my_card{
+    width: 88px;
+    height: 133px;
+    background-color: #FDFF8C;
+    border-radius: 20px;
+}
+.my_money_icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+    background-color: yellow; 
+}
+.my_money{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+

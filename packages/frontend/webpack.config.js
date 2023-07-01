@@ -100,8 +100,10 @@ module.exports = function () {
       port: 3001,
       hot: true,
       static: {
-        directory: path.resolve(__dirname, 'build')
-      }
+        directory: path.resolve(__dirname, 'build'),
+        publicPath: '/',
+      },
+      historyApiFallback: true,
     }
   }
 }
