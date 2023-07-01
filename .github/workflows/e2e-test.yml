@@ -2,7 +2,7 @@ name: E2E Tests
 
 #測1
 on:
-  push:
+  pull_request:
     branches:
       - test_Cypress
     paths:
