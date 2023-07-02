@@ -1,0 +1,90 @@
+/*遊戲主畫面*/
+.game {
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  background-image: $blue;
+  .nav {
+    width: 100%;
+    height: 65px;
+    background-color: #f3ecdb;
+    @include flex-center-row;
+  }
+  .player_info {
+    width: min(360px, 370px);
+    height: 150px;
+    background-color: #ecf4f9;
+    border-radius: 20px;
+    @include flex-center-row;
+    gap: 20px;
+  }
+  .player_avatar {
+    width: 72px;
+    height: 72px;
+    background-color: aquamarine;
+    border-radius: 50%;
+  }
+  .card_icon {
+    width: 18.5px;
+    height: 28px;
+    background-color: #8897bc;
+    border-radius: 3px;
+  }
+  .card_num {
+    color: #02102b;
+  }
+  .money_icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+  }
+  .area {
+    width: 74px;
+    height: 112px;
+    border-radius: 15px;
+    background-color: rgb(238, 238, 178);
+  }
+  .seemore {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .my_game {
+    width: 100%;
+    min-height: 219px;
+    background-color: #ecf4f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .my_character {
+    width: 84px;
+    height: 136px;
+    background-color: #d98d8d;
+    border-radius: 20px;
+  }
+  .my_card_group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .my_card {
+    width: 88px;
+    height: 133px;
+    background-color: #fdff8c;
+    border-radius: 20px;
+  }
+  .my_money_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: yellow;
+  }
+  .my_money {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
