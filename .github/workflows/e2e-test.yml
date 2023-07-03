@@ -1,0 +1,28 @@
+name: E2E Tests
+
+#測1
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'packages/frontend/**'
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: packages/frontend/
+
+      - name: Cypress Run
+        run: |
+          npm run dev &
+          sleep 5
+          npm run cypress:run
+        working-directory: packages/frontend/
