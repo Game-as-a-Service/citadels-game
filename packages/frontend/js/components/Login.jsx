@@ -14,6 +14,7 @@ const Login = () => {
             請輸入你的名字：
           </label>
           <input
+            id='name'
             type='text'
             name='name'
             placeholder='輸入名字'
