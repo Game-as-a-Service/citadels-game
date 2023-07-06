@@ -17,7 +17,7 @@ public class HelloControllerTest {
     public void TestHelloEndPoint() throws Exception {
          mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("hello world"));
+                .andExpect(MockMvcResultMatchers.content().string("hello world!"));
     }
 
 }
