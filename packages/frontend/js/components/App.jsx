@@ -1,5 +1,12 @@
+import getAPI from '../api/getAPI'
+
 const App = () => {
-  return <div>Hello World!</div>
+  const { data } = getAPI()
+  return (
+    <>
+      <div>title:{data.test}</div>
+    </>
+  )
 }
 
 export default App
