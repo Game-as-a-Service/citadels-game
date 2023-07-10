@@ -4,7 +4,7 @@ const App = () => {
   const { data } = getAPI()
   return (
     <>
-      <div>title:{data.test}</div>
+      <div>title:{data.msg}</div>
     </>
   )
 }
