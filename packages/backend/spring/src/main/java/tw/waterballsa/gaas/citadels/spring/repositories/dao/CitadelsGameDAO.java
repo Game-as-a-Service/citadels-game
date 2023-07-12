@@ -1,4 +1,7 @@
 package tw.waterballsa.gaas.citadels.spring.repositories.dao;
 
-public interface CitadelsGameDAO {
+import org.springframework.data.mongodb.repository.MongoRepository;
+import tw.waterballsa.gaas.citadels.spring.repositories.data.CitadelsGameData;
+
+public interface CitadelsGameDAO extends MongoRepository<CitadelsGameData, String> {
 }

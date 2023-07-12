@@ -15,6 +15,8 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
+import tw.waterballsa.gaas.citadels.domain.Player;
 
 @SpringBootTest
 @Testcontainers
@@ -49,5 +51,7 @@ class CitadelsApplicationTests {
         dbs.forEach(name -> System.out.println("show mongo dbs: " + name));
         Assertions.assertNotNull(dbs.first());
     }
+
+
 
 }
