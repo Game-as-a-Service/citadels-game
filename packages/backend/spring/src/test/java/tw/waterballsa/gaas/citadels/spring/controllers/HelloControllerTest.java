@@ -1,28 +1,19 @@
 package tw.waterballsa.gaas.citadels.spring.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-
+import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.junit.jupiter.api.Test;
+import tw.waterballsa.gaas.citadels.spring.CitadelsApplicationTest;
 
-
-@WebMvcTest(HelloController.class)
-public class HelloControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
+public class HelloControllerTest extends CitadelsApplicationTest {
 
     @Test
     public void TestHelloEndPoint() throws Exception {
-
         mockMvc.perform(MockMvcRequestBuilders.get("/hello")
-                        .contentType(MediaType.APPLICATION_JSON)
-                )
-               .andExpect(MockMvcResultMatchers.status().isOk())
-               .andExpect(MockMvcResultMatchers.jsonPath("$.msg").value("hello"));
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.msg").value("hello"));
     }
 
 }
