@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      port: 27017
+      uri: ${mongodb.uri}

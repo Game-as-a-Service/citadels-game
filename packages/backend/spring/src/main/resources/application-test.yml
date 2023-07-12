@@ -1,0 +1,7 @@
+spring:
+  mongodb:
+    embedded:
+      version: 4.0.2
+  data:
+    mongodb:
+      uri: mongodb://root:password@localhost:27017/test?authSource=admin
