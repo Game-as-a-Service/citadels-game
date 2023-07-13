@@ -1,3 +1,4 @@
+import 'normalize.css'
 import '../src/scss/index.scss'
 import { Provider } from 'react-redux'
 import store from './redux/store'
