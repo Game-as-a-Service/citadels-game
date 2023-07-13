@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>tw.waterballsa.gaas.citadels</groupId>
-	<artifactId>spring</artifactId>
+	<artifactId>citadels-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring</name>
+	<name>citadels-backend</name>
 	<description>gaas citadels game web</description>
 
 	<properties>
@@ -53,6 +53,17 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>tw.waterballsa.gaas.citadels</groupId>
 			<artifactId>app</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -62,6 +73,7 @@
 			<artifactId>domain</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

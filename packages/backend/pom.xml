@@ -21,6 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.12</lombok.version>
         <javax.inject.version>1</javax.inject.version>
+        <org.mockito.version>3.11.0</org.mockito.version>
     </properties>
 
 </project>
