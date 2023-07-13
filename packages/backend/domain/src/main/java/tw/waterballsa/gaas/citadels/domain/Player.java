@@ -1,5 +1,6 @@
 package tw.waterballsa.gaas.citadels.domain;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Player {
@@ -10,11 +11,9 @@ public class Player {
     private int coins;
     private Character identity;
 
-    // todo 創建地區卡牌 entity
     private List<AreaCard> handCards;
     private List<AreaCard> buildings;
 
-    // todo 創建遊戲 entity
     private Game game;
 
     // Getter and Setter methods
