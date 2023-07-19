@@ -1,4 +1,4 @@
-name: Java CICD
+name: Java CD
 on:
   push:
     branches: [ "main" ]
