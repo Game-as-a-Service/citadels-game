@@ -1,0 +1,50 @@
+/*登入頁*/
+.login {
+  height: 100vh;
+  display: flex;
+  @include flex-center-column;
+  gap: 20px;
+
+  &_borad {
+    // width: min(18rem, 28rem);
+    height: 27rem;
+    padding-right: clamp(15px, 10%, 60px);
+    padding-left: clamp(15px, 10%, 60px);
+    background-color: #fcfcfcab;
+    display: flex;
+    @include flex-center-column;
+    gap: 10px;
+    border-radius: 50px;
+  }
+  &_button {
+    width: min(180px, 218px);
+    height: 4.1875rem;
+    background-color: #5891ff;
+    box-shadow: 2px 4px 22px 0px rgba(13, 47, 97, 0.25);
+    color: white;
+    border: 0px;
+    border-radius: 30px;
+    padding: 1rem 3rem;
+    font-size: clamp(0.5rem, 1.3rem, 1.5rem);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      background-color: $cyan;
+    }
+  }
+  &_imgwrap {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: rgb(249, 202, 141);
+  }
+  &_input {
+    width: min(256px, 320px);
+    height: 54px;
+    border: 0px;
+    border-radius: 300px;
+    padding: 0 20px;
+    @include f-24-b;
+  }
+}

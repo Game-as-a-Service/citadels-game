@@ -1,0 +1,95 @@
+/*引入字體*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+/*定義顏色*/
+/*g means gradient */
+$g-blue: linear-gradient(45deg, #7e66c5, #567ecc);
+$g-yellow: linear-gradient(45deg, #f8f148, #fcd139);
+$blue: #5891ff;
+$cyan: #8fdbe0;
+$light-blue: #ecf4f9;
+$trans-white: #fcfcfc;
+$white: #ffffff;
+$purple: #514673;
+
+/*定義字型*/
+/*f-文字大小(pt)-顏色-weight*/
+.f-40-w {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 2.5rem, 3rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+.f-24-b {
+  color: #514673;
+  font-size: clamp(1rem, 1.5rem, 2rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+.f-20-b {
+  color: #514673;
+  font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+@mixin f-40-w {
+  color: $white;
+  font-size: clamp(1.5rem, 2.5rem, 3rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+@mixin f-24-b {
+  color: $purple;
+  font-size: clamp(1rem, 1.5rem, 2rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+@mixin f-20-b {
+  color: $purple;
+  font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+
+/*定義常用編排*/
+
+@mixin flex-center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 拔除input樣式 */
+input[type='number']::-webkit-outer-spin-button,
+myAuth input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  border: 0;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+body {
+  background-image: linear-gradient(45deg, #7e66c5, #567ecc);
+}
