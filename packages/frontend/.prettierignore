@@ -11,3 +11,4 @@ postcss.config.js
 .vscode
 .eslintrc.json
 .eslintignore
+cypress
