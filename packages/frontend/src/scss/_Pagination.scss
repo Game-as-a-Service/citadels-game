@@ -1,0 +1,59 @@
+.pagination {
+  @include flex-center-row;
+  gap: 9px;
+  .prev-btn,
+  .next-btn {
+    cursor: pointer;
+    background-color: $cyan;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    position: relative;
+    &::after,
+    &::before {
+      content: '';
+      display: inline-block;
+      background-image: $g-blue;
+      position: absolute;
+      width: 11px;
+      height: 2px;
+      border-radius: 5px;
+      left: 12px;
+      top: 15px;
+      transform: rotate(320deg);
+    }
+    &::before {
+      transform: rotate(220deg);
+      top: 21px;
+    }
+  }
+  .next-btn {
+    &::after {
+      transform: rotate(220deg);
+      left: unset;
+      right: 12px;
+    }
+    &::before {
+      transform: rotate(135deg);
+      left: unset;
+      right: 12px;
+    }
+  }
+  .page-btn {
+    cursor: pointer;
+    color: $blue;
+    width: 38px;
+    height: 38px;
+    background-color: $light-blue;
+    border-radius: 50%;
+    @include flex-center-row;
+    font-size: 20px;
+    &.active {
+      background-color: #dfda5d;
+      cursor: auto;
+    }
+  }
+  .ellipsis {
+    color: #fff;
+  }
+}
