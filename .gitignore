@@ -256,4 +256,9 @@ sketch
 .history
 .ionide
 
+#cypress
+/packages/frontend/cypress/videos/
+/packages/frontend/cypress/screenshots/
+
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,git,java,react,maven,eclipse
