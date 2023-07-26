@@ -25,6 +25,7 @@ jobs:
         run: |
           mv packages/backend/spring/target/citadels-backend-0.0.1-SNAPSHOT.jar $GITHUB_WORKSPACE/citadels-backend-0.0.1-SNAPSHOT.jar
           mv packages/backend/spring/Dockerfile $GITHUB_WORKSPACE/Dockerfile
+          mv packages/backend/spring/docker-compose.yml $GITHUB_WORKSPACE/docker-compose.yml
           rm -rf packages docs README.md    
 
       - name: Deploy to Server
