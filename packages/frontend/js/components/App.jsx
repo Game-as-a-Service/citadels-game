@@ -8,7 +8,7 @@ const App = () => {
   const { data } = getAPI()
   return (
     <>
-      <div>title:{data.msg}</div>
+      {/* <div>title:{data.msg}</div> */}
       <Routes>
         <Route path='/' element={<Navigate to='/rooms' />} />
         <Route path='/rooms' element={<RoomList />} />
