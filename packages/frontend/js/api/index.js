@@ -2,7 +2,7 @@ import axiosInstance from '../common/axiosInstance'
 
 const url =
   process.env.NODE_ENV === 'development'
-    ? 'https://be2f8ec7-1684-4893-862f-1be25a174c3b.mock.pstmn.io'
+    ? 'https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io'
     : ''
 const axios = axiosInstance(url)
 
