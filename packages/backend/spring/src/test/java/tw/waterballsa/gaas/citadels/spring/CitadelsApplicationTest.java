@@ -1,5 +1,6 @@
 package tw.waterballsa.gaas.citadels.spring;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import tw.waterballsa.gaas.citadels.app.repositories.CitadelsGameRepository;
 import tw.waterballsa.gaas.citadels.spring.repositories.dao.CitadelsGameDAO;
 import tw.waterballsa.gaas.citadels.spring.repositories.data.CitadelsGameData;
 
@@ -18,6 +20,10 @@ public abstract class CitadelsApplicationTest {
     protected MockMvc mockMvc;
     @Autowired
     protected CitadelsGameDAO citadelsGameDAO;
+    @Autowired
+    protected ObjectMapper objectMapper;
+    @Autowired
+    protected CitadelsGameRepository citadelsGameRepository;
 
     @Test
     public void testMongoDB() {
