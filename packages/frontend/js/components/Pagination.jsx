@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * Render pagination
@@ -18,6 +18,7 @@ const Pagination = ({
   className = ''
 }) => {
   const [currentPage, setCurrentPage] = useState(current)
+
   const renderPrevTabs = () => {
     const pages = []
     let count = 0
