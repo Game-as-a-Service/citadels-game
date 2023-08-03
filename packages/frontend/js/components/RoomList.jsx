@@ -1,19 +1,47 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Pagination from './Pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRoomList } from '../redux/slice/roomSlice'
 
 const RoomList = () => {
   const dispatch = useDispatch()
-  const { data = [] } = useSelector((state) => state.room)
+  const { data, loading } = useSelector((state) => state.room)
+  const { rooms, totalRoom } = data || {}
   const isOdd = (totalAmout) => totalAmout % 2 !== 0
+  // pagination
+  const [pagination, setPagination] = useState({
+    totalPage: 1,
+    current: 1,
+    pageSize: 6
+  })
+  const { totalPage, current, pageSize } = pagination
   useEffect(() => {
-    let init = true
-    if (init) dispatch(getRoomList())
-    return () => {
-      init = false
+    if (totalRoom > 0) {
+      const totalPage = Math.ceil(totalRoom / pageSize)
+      setPagination((prev) => ({ ...prev, totalPage }))
     }
+  }, [totalRoom])
+  const getData = () => {
+    dispatch(getRoomList())
+  }
+  const onPrevClick = () => {
+    setPagination((prev) => ({ ...prev, current: current - 1 }))
+  }
+  const onNextClick = () => {
+    setPagination((prev) => ({ ...prev, current: current + 1 }))
+  }
+  // data
+  const [dataSource, setDataSource] = useState([])
+  useEffect(() => {
+    getData()
   }, [])
+  useEffect(() => {
+    if (rooms) {
+      const end = pageSize * current
+      const start = end - pageSize
+      setDataSource(rooms.slice(start, end))
+    }
+  }, [current, rooms])
   return (
     <div className='room-list'>
       <div className='navbar'>
@@ -27,8 +55,8 @@ const RoomList = () => {
         </div>
       </div>
       <div className='row__list list'>
-        {!data && <div>loading ...</div>}
-        {data?.map((room, index) => (
+        {loading && <div>loading ...</div>}
+        {dataSource?.map((room, index) => (
           <div className='list__card' key={index}>
             <div className='avatar'></div>
             <div className='host'>
@@ -41,10 +69,18 @@ const RoomList = () => {
             </div>
           </div>
         ))}
-        {isOdd(data?.length) && <div className='list__card bg--trans'></div>}
+        {isOdd(dataSource?.length) && (
+          <div className='list__card bg--trans'></div>
+        )}
       </div>
       <div className='row__list'>
-        <Pagination className='row__pagination' current={10} totalPage={20} />
+        <Pagination
+          className='row__pagination'
+          current={current}
+          totalPage={totalPage}
+          onPrevClick={onPrevClick}
+          onNextClick={onNextClick}
+        />
       </div>
     </div>
   )

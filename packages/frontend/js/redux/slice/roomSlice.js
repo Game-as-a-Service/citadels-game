@@ -6,7 +6,6 @@ export const getRoomList = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await api.getRoomList(payload)
-      console.log(res)
       if (res.status === 'OK') {
         return res
       } else {
@@ -21,7 +20,8 @@ export const getRoomList = createAsyncThunk(
 const roomSlice = createSlice({
   name: 'room',
   initialState: {
-    data: null
+    data: null,
+    loading: false
   },
   reducers: {
     clearData: (state, action) => {
@@ -29,10 +29,20 @@ const roomSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getRoomList.fulfilled, (state, action) => {
-      state.data = action.payload.rooms
-      return state
-    })
+    builder
+      .addCase(getRoomList.pending, (state, action) => {
+        state.loading = true
+        return state
+      })
+      .addCase(getRoomList.fulfilled, (state, action) => {
+        state.data = action.payload
+        state.loading = false
+        return state
+      })
+      .addCase(getRoomList.rejected, (state, action) => {
+        state.loading = false
+        return state
+      })
   }
 })
 
