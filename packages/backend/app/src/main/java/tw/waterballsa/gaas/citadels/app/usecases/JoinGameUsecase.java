@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import tw.waterballsa.gaas.citadels.app.repositories.CitadelsGameRepository;
 import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 import tw.waterballsa.gaas.citadels.domain.Player;
+import tw.waterballsa.gaas.citadels.exceptions.PlatformException;
 
 import javax.inject.Named;
 
@@ -18,6 +19,9 @@ public class JoinGameUsecase {
     public void execute(Request request) {
         CitadelsGame game = findById(request.getGameId());
         Player player = new Player(request.getPlayerId(), request.getPlayerName());
+        if(game.isFull()) {
+            throw new PlatformException("GAME IS FULL");
+        }
         game.newPlayer(player);
         citadelsGameRepository.save(game);
     }
@@ -37,10 +41,5 @@ public class JoinGameUsecase {
             this.playerName = playerName;
             this.playerId = playerId;
         }
-    }
-
-    @Data
-    public static class Response {
-
     }
 }
