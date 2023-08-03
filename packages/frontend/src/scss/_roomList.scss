@@ -1,0 +1,119 @@
+.room-list {
+  .navbar {
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    &__role {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      .avatar {
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        background-color: white;
+        display: inline-block;
+      }
+      .name {
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+    &__btn {
+      position: relative;
+      .cross-btn {
+        background-color: $cyan;
+        width: 53px;
+        height: 53px;
+        border-radius: 50%;
+        position: absolute;
+        left: -18px;
+        top: -13px;
+        &::before,
+        &::after {
+          content: '';
+          display: inline-block;
+          width: 25px;
+          height: 5px;
+          border-radius: 10px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #567ecc;
+        }
+        &::after {
+          width: 5px;
+          height: 25px;
+        }
+      }
+      .text {
+        border-radius: 20px;
+        background-color: $blue;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 5px 17px 5px 44px;
+        cursor: pointer;
+      }
+    }
+  }
+  .list__card {
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    gap: 21px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    width: 525px;
+    background-color: rgba(252, 252, 252, 0.67);
+    height: 171px;
+    border-radius: 30px;
+    filter: drop-shadow(0px 4px 4px rgba(64, 109, 175, 0.25));
+    flex: 1 40%;
+    div .title {
+      color: #737787;
+    }
+    div .detail {
+      color: #414555;
+    }
+    .avatar {
+      border-radius: 50%;
+      width: 52px;
+      height: 52px;
+      background-color: white;
+      display: inline-block;
+    }
+    .host {
+      flex: 2;
+    }
+    .players {
+      flex: 2;
+    }
+  }
+  .row {
+    &__list {
+      @include flex-center-row;
+      gap: 28px;
+      flex-wrap: wrap;
+      &.list {
+        max-width: 1078px;
+        margin: 0 auto;
+      }
+    }
+    &__pagination {
+      margin: 20px 0;
+    }
+  }
+}
+
+.createRoom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

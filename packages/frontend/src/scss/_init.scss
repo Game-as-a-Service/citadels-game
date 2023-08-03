@@ -10,6 +10,7 @@
 /*g means gradient */
 $g-blue: linear-gradient(45deg, #7e66c5, #567ecc);
 $g-yellow: linear-gradient(45deg, #f8f148, #fcd139);
+$g-gray: linear-gradient(217deg, #cbcabc 0%, #aca99e 100%);
 $blue: #5891ff;
 $cyan: #8fdbe0;
 $light-blue: #ecf4f9;
@@ -37,6 +38,13 @@ $purple: #514673;
   font-family: Inter;
   font-weight: 600;
 }
+@mixin f-20-w {
+  color: $white;
+  font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+
 @mixin f-40-w {
   color: $white;
   font-size: clamp(1.5rem, 2.5rem, 3rem);
@@ -72,6 +80,18 @@ $purple: #514673;
   align-items: center;
 }
 
+/*定義rwd斷點*/
+@mixin md {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
 /* 拔除input樣式 */
 input[type='number']::-webkit-outer-spin-button,
 myAuth input[type='number']::-webkit-inner-spin-button {
@@ -90,6 +110,76 @@ input:focus {
   outline: none !important;
 }
 
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
 body {
   background-image: linear-gradient(45deg, #7e66c5, #567ecc);
+  background-repeat: no-repeat;
+  // height: 100vh;
+}
+
+.bg {
+  &--trans {
+    background-color: transparent !important;
+  }
+}
+
+/*輸入欄樣式*/
+.main_input {
+  width: min(256px, 320px);
+  height: 54px;
+  border: 0px;
+  border-radius: 300px;
+  padding: 0 20px;
+  @include f-24-b;
+}
+
+/*彈跳視窗*/
+.custom-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background-color: rgba(86, 87, 123, 0.8);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-modal-content {
+  width: auto;
+  height: min(300px, 500px);
+  background-color: $light-blue;
+  border-radius: 20px;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*可共用按鈕*/
+.cancel-btn {
+  width: min(100px, 200px);
+  height: 40px;
+  border-radius: 30px;
+  background-image: $g-gray;
+  border: none;
+  @include f-20-w;
+  cursor: pointer;
+}
+
+.blue-btn {
+  width: min(160px, 300px);
+  height: 40px;
+  border-radius: 30px;
+  background-image: $g-blue;
+  border: none;
+  @include f-20-w;
+  cursor: pointer;
 }
