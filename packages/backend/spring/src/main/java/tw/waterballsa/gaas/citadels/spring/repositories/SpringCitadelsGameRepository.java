@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import tw.waterballsa.gaas.citadels.app.repositories.CitadelsGameRepository;
 import tw.waterballsa.gaas.citadels.domain.Game;
 import tw.waterballsa.gaas.citadels.spring.repositories.dao.CitadelsGameDAO;
-import tw.waterballsa.gaas.citadels.spring.repositories.data.CitadelsGameData;
+import tw.waterballsa.gaas.citadels.spring.repositories.data.GameData;
 
 @Component
 public class SpringCitadelsGameRepository implements CitadelsGameRepository {
@@ -16,12 +16,12 @@ public class SpringCitadelsGameRepository implements CitadelsGameRepository {
 
     @Override
     public boolean existsByName(String name) {
-        return citadelsGameDAO.existsByName(name);
+        return false;
     }
 
     @Override
     public Game save(Game game) {
-        return citadelsGameDAO.save(CitadelsGameData.toData(game)).toEntity();
+        return citadelsGameDAO.save(GameData.toData(game)).toEntity();
     }
 
     @Override

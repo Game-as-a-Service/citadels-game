@@ -2,50 +2,42 @@ package tw.waterballsa.gaas.citadels.spring.controllers;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.ResultActions;
+import tw.waterballsa.gaas.citadels.app.usecases.CreateGameUseCase;
 import tw.waterballsa.gaas.citadels.domain.Game;
-import tw.waterballsa.gaas.citadels.spring.CitadelsApplicationTest;
-import tw.waterballsa.gaas.citadels.spring.view.GameView;
+import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
+import tw.waterballsa.gaas.citadels.spring.repositories.data.GameData;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tw.waterballsa.gaas.citadels.spring.view.GameView.toViewModel;
 
-public class GameControllerTest extends CitadelsApplicationTest {
-    private static final String GAME_ROOM_NAME = "gameRoom";
-    private static final String GAME_PATH = "/api/games";
+public class GameControllerTest extends CitadelsSpringBootTest {
+    private static final String API_PREFIX = "/api/citadels";
 
     @Test
-    public void WhenCreateGameWithRoomNameAndHolderName_ShouldCreateSuccessfully() throws Exception {
-//        GameView game = createGameAndGet();
-        Game snowman = citadelsGameRepository.save(Game.builder()
-                                                    .roomName("123")
-                                                    .holderName("snowman").build());
-        System.out.println(snowman.getId());
-        System.out.println(snowman.getRoomName());
-//        assertEquals(GAME_ROOM_NAME,game.roomName);
-//        assertTrue(citadelsGameRepository.existsByName(GAME_ROOM_NAME));
+    public void whenPlayerACreatGame_ShouldCreateSuccessfullyAndBecameGameHolder() throws Exception {
+        CreateGameUseCase.Request createGameRequest = new CreateGameUseCase.Request("RoomA", "playerA");
+        Game gameView = getBody(createGame(createGameRequest), Game.class);
+        Optional<GameData> gameData = citadelsGameDAO.findById(gameView.getId());
+
+        assertTrue(gameData.isPresent());
+        GameData game = gameData.get();
+        assertEquals(gameView.getGameName(),game.getGameName());
+        assertEquals(gameView.getHolderName(),game.getHolderName());
+
     }
 
-    private GameView createGameAndGet() {
-        return toViewModel(Game.builder().build());
-    }
-
-    private void createGame(String gameName, String holderName) throws Exception {
-//        CreateGameUseCase.Request request = new CreateGameUseCase.Request(gameName,holderName);
-//        mockMvc.perform(post(GAME_PATH)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(toJson(request))
-//                        .andExpect(status().isOk()));
-    }
-
-    private void getGame(int gameId) throws Exception {
-        mockMvc.perform(get("/gameId"))
-                .andExpect(status().isOk());
-    }
 
     @SneakyThrows
-    public String toJson(Object obj) {
-        return objectMapper.writeValueAsString(obj);
-    }
-
+    private ResultActions createGame(CreateGameUseCase.Request createGameRequest) {
+        return mockMvc.perform(post(API_PREFIX + "/game")
+                        .contentType(APPLICATION_JSON)
+                        .content(toJson(createGameRequest)))
+                                .andExpect(status().isOk());
+        }
 }

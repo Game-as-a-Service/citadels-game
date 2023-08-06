@@ -1,15 +1,21 @@
 package tw.waterballsa.gaas.citadels.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Game {
     private String id;
-    private String roomName;
+    private String gameName;
     private String holderName;
+    private LocalDateTime createTime;
+    private String status;
+    private String message;
+    private List<Player> players;
 
 }
