@@ -17,7 +17,7 @@ public class PlatformExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(PlatformException.class)
     public ErrorResponse badRequest(PlatformException exception) {
-        return new ErrorResponse(exception.getMessage());
+        return new ErrorResponse(Status.FAIL, exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
@@ -28,6 +28,12 @@ public class PlatformExceptionHandler {
     @Data
     @AllArgsConstructor
     public static class ErrorResponse {
-        private String status;
+        private Status status;
+        private String msg;
+    }
+
+    enum Status {
+        OK,
+        FAIL
     }
 }
