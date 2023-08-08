@@ -8,6 +8,8 @@ import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 import tw.waterballsa.gaas.citadels.domain.Player;
 
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,16 +19,17 @@ public class JoinGameUsecase {
 
     private final CitadelsGameRepository citadelsGameRepository;
 
-    public void execute(Request request) {
-        CitadelsGame game = findGameById(request.getGameId());
+    public void execute(Request request, Presenter presenter) {
+        CitadelsGame game = findGame(request);
         Player player = new Player(request.getPlayerName(), request.getPlayerImage());
         game.joinGame(player);
         citadelsGameRepository.save(game);
+        presenter.present(game);
     }
 
-    private CitadelsGame findGameById(String gameId) {
-        Optional<CitadelsGame> game = citadelsGameRepository.findById(gameId);
-        CitadelsGame actualGame = game.orElseThrow(() -> new NullPointerException("CAN NOT FIND GAME"));
+    private CitadelsGame findGame(Request request) {
+        Optional<CitadelsGame> game = citadelsGameRepository.findById(request.getGameId());
+        CitadelsGame actualGame = game.orElseThrow(() -> new NullPointerException("CAN NOT FIND GAME, ID=" + request.getGameId()));
         return actualGame;
     }
 
@@ -36,5 +39,9 @@ public class JoinGameUsecase {
         private String gameId;
         private String playerName;
         private String playerImage;
+    }
+
+    public interface Presenter {
+        void present(CitadelsGame game);
     }
 }
