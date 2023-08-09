@@ -8,15 +8,10 @@ import tw.waterballsa.gaas.citadels.spring.repositories.data.GameData;
 
 @Component
 public class SpringCitadelsGameRepository implements CitadelsGameRepository {
-    private CitadelsGameDAO citadelsGameDAO;
+    private final CitadelsGameDAO citadelsGameDAO;
 
     public SpringCitadelsGameRepository(CitadelsGameDAO citadelsGameDAO) {
         this.citadelsGameDAO = citadelsGameDAO;
-    }
-
-    @Override
-    public boolean existsByName(String name) {
-        return false;
     }
 
     @Override
@@ -24,8 +19,4 @@ public class SpringCitadelsGameRepository implements CitadelsGameRepository {
         return citadelsGameDAO.save(GameData.toData(game)).toEntity();
     }
 
-    @Override
-    public void deleteAll() {
-        citadelsGameDAO.deleteAll();
-    }
 }

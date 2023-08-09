@@ -3,26 +3,24 @@ package tw.waterballsa.gaas.citadels.spring.repositories.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import tw.waterballsa.gaas.citadels.domain.Player;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
 @Document
 @AllArgsConstructor
-@NoArgsConstructor
 public class PlayerData {
     @Id
     private String id;
     private String playerName;
+    private String playerImage;
 
     public static PlayerData toData(Player player) {
-        return new PlayerData(player.getId(), player.getName());
+        return new PlayerData(player.getPlayerId(), player.getPlayerName(), player.getPlayerImage());
     }
 
     public static List<PlayerData> toDatas(List<Player> players) {
@@ -31,7 +29,7 @@ public class PlayerData {
     }
 
     public static Player toDomain(PlayerData playerData) {
-        return  new Player(playerData.id,playerData.playerName);
+        return new Player(playerData.getId(),playerData.getPlayerName(), playerData.getPlayerImage());
     }
 
     public static List<Player> toDomains(List<PlayerData> players) {

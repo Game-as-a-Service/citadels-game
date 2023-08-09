@@ -4,8 +4,9 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.ResultActions;
 import tw.waterballsa.gaas.citadels.app.usecases.CreateGameUseCase;
-import tw.waterballsa.gaas.citadels.domain.Game;
 import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
+import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.GameView;
+import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.RoomView;
 import tw.waterballsa.gaas.citadels.spring.repositories.data.GameData;
 
 import java.util.Optional;
@@ -20,16 +21,16 @@ public class GameControllerTest extends CitadelsSpringBootTest {
     private static final String API_PREFIX = "/api/citadels";
 
     @Test
-    public void whenPlayerACreatGame_ShouldCreateSuccessfullyAndBecameGameHolder() throws Exception {
-        CreateGameUseCase.Request createGameRequest = new CreateGameUseCase.Request("RoomA", "playerA");
-        Game gameView = getBody(createGame(createGameRequest), Game.class);
-        Optional<GameData> gameData = citadelsGameDAO.findById(gameView.getId());
+    public void whenPlayerACreatGame_ShouldCreateSuccessfullyAndBecameGameHolder() {
+        CitadelsGameController.CreateGameRequest createGameRequest = new CitadelsGameController.CreateGameRequest("RoomA", "playerA","playerA.png");
+        GameView gameView = getBody(createGame(createGameRequest.toRequest()), GameView.class);
+        Optional<GameData> gameData = citadelsGameDAO.findById(gameView.getRoomView().getGameId());
 
         assertTrue(gameData.isPresent());
         GameData game = gameData.get();
-        assertEquals(gameView.getGameName(),game.getGameName());
-        assertEquals(gameView.getHolderName(),game.getHolderName());
-
+        RoomView roomView = gameView.getRoomView();
+        assertEquals(roomView.getGameName(),game.getGameName());
+        assertEquals(roomView.getHolderName(),game.getHolderName());
     }
 
 
