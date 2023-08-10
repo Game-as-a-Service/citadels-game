@@ -189,8 +189,8 @@ body {
   align-items: center;
   gap: 20px;
 }
-.error-text{
-  @include f-20-b 
+.error-text {
+  @include f-20-b;
 }
 
 /*可共用按鈕*/
@@ -203,7 +203,6 @@ body {
   @include f-20-w;
   cursor: pointer;
   padding-top: 3px;
-
 }
 
 .blue-btn {
