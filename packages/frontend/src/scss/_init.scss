@@ -172,6 +172,8 @@ body {
   border: none;
   @include f-20-w;
   cursor: pointer;
+  padding-top: 3px;
+
 }
 
 .blue-btn {
@@ -182,4 +184,5 @@ body {
   border: none;
   @include f-20-w;
   cursor: pointer;
+  padding-top: 3px;
 }
