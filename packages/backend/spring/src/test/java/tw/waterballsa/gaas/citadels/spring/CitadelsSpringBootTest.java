@@ -2,7 +2,6 @@ package tw.waterballsa.gaas.citadels.spring;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,9 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import tw.waterballsa.gaas.citadels.app.repositories.CitadelsGameRepository;
-import tw.waterballsa.gaas.citadels.spring.repositories.dao.CitadelsGameDAO;
-import tw.waterballsa.gaas.citadels.spring.repositories.data.GameData;
+import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -21,11 +18,11 @@ public abstract class CitadelsSpringBootTest {
     @Autowired
     protected MockMvc mockMvc;
     @Autowired
-    protected CitadelsGameDAO citadelsGameDAO;
+    protected tw.waterballsa.gaas.citadels.spring.repositories.dao.RoomDAO RoomDAO;
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
-    protected CitadelsGameRepository citadelsGameRepository;
+    protected RoomRepository citadelsGameRepository;
 
     @Test
     public void testMongoDB() {

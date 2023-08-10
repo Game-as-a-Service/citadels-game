@@ -13,15 +13,15 @@ import static java.lang.String.valueOf;
 @AllArgsConstructor
 @Setter
 @Getter
-public class Player {
-    private final String playerId;
-    private final String playerName;
-    private final String playerImage;
+public class User {
+    private final String id;
+    private final String name;
+    private final String imageName;
 
-    public Player(String playerName, String playerImage) {
-        this.playerId = generateUniqueId();
-        this.playerName = playerName;
-        this.playerImage = playerImage;
+    public User(String useName, String useImage) {
+        this.id = generateUniqueId();
+        this.name = useName;
+        this.imageName = useImage;
     }
 
     private String generateUniqueId() {
