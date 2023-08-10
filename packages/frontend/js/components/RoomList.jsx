@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getRoomList } from '../redux/slice/roomSlice'
 import { createRoom } from '../api'
 import Modal from './Modal'
+import ErrorModal from './ErrorModal'
 
 const RoomList = () => {
   const dispatch = useDispatch()
@@ -37,6 +38,9 @@ const RoomList = () => {
     })
   }
   const navigate = useNavigate()
+  const [isErrorVisible, setIsErrorVisible] = useState(false)
+  const [errorText, setErrorText] = useState('')
+
   const handleSubmitRoomName = (event) => {
     event.preventDefault()
     createRoom()
@@ -48,7 +52,8 @@ const RoomList = () => {
       })
       .catch((err) => {
         console.log(err)
-        // TODO : showAnotherModal
+        setIsErrorVisible(true)
+        setErrorText('連線發生錯誤')
       })
   }
   const modalContent = (
@@ -128,6 +133,11 @@ const RoomList = () => {
         <Pagination className='row__pagination' current={10} totalPage={20} />
       </div>
       <Modal isModalOpen={isModalOpen} modalContent={modalContent}></Modal>
+      <ErrorModal
+        isErrorVisible={isErrorVisible}
+        onClose={() => setIsErrorVisible(false)}
+        errorText={errorText}
+      ></ErrorModal>
     </div>
   )
 }
