@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Pagination from './Pagination'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRoomList, createRoom } from '../redux/slice/roomSlice'
+import { getRoomList } from '../redux/slice/roomSlice'
+import { createRoom } from '../api'
 import Modal from './Modal'
 
 const RoomList = () => {
@@ -34,11 +36,20 @@ const RoomList = () => {
       [e.target.name]: e.target.value
     })
   }
-
+  const navigate = useNavigate()
   const handleSubmitRoomName = (event) => {
     event.preventDefault()
-    console.log('roomName', newRoom)
-    dispatch(createRoom(newRoom))
+    createRoom()
+      .then((res) => {
+        if (res.status === 'OPEN') {
+          navigate('/game')
+          // TODO : 加入URLParamter
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        // TODO : showAnotherModal
+      })
   }
   const modalContent = (
     <form className='createRoom'>
