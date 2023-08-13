@@ -27,8 +27,9 @@ const RoomList = () => {
   }
 
   const [newRoom, setNewRoom] = useState({
-    playerName: '',
-    roomName: ''
+    roomName: '',
+    userName: '陳XX',
+    userImage: 'imageName1'
   })
 
   const handleRoomNameChange = (e) => {
@@ -43,10 +44,12 @@ const RoomList = () => {
 
   const handleSubmitRoomName = (event) => {
     event.preventDefault()
-    createRoom()
+    console.log('click')
+    createRoom(newRoom)
       .then((res) => {
-        if (res.status === 'OPEN') {
+        if (res.status === 'OK') {
           navigate('/game')
+          console.log(res)
           // TODO : 加入URLParamter
         }
       })
@@ -63,7 +66,7 @@ const RoomList = () => {
           房間名稱：
         </label>
         <input
-          id='naroomNameme'
+          id='roomName'
           type='text'
           name='roomName'
           value={newRoom.roomName}
