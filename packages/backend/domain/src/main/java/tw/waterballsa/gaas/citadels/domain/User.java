@@ -16,11 +16,10 @@ public class User {
     private final String name;
     private final String imageName;
 
-    public User(String useName, String useImage) {
+    public User(String name, String useImage) {
         this.id = randomUUID().toString();
-        this.name = useName;
+        this.name = name;
         this.imageName = useImage;
     }
-
 
 }
