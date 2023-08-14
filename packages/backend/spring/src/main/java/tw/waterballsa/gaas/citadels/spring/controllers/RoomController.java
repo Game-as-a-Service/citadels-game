@@ -1,7 +1,6 @@
 package tw.waterballsa.gaas.citadels.spring.controllers;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,13 +24,12 @@ public class RoomController {
     private final CreateRoomUseCase createRoomUseCase;
 
     @PostMapping("/game")
-    public ResponseEntity<?> createGame(@RequestBody CreateRoomRequest request) {
+    public ResponseEntity<CreateRoomView> createGame(@RequestBody CreateRoomRequest request) {
         CreateRoomPresenter presenter = new CreateRoomPresenter();
         createRoomUseCase.execute(request.toRequest(), presenter);
         return status(OK).body(presenter.getCreateRoomView());
     }
 
-    @RequiredArgsConstructor
     class CreateRoomPresenter implements CreateRoomUseCase.Presenter {
         private Room room;
 

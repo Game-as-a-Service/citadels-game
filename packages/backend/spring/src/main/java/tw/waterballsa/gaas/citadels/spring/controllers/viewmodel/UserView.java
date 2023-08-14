@@ -12,6 +12,6 @@ public class UserView {
     private String userImage;
 
     public static UserView toViewModel(User holder) {
-        return new UserView(holder.getId(),holder.getName(),holder.getImageName());
+        return new UserView(holder.getId(), holder.getName(), holder.getImageName());
     }
 }

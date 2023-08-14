@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import tw.waterballsa.gaas.citadels.domain.User;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,20 +27,20 @@ public class UserData {
     }
 
     public static List<UserData> toDatas(List<User> users) {
-        return users.stream().map(UserData::toData)
-                               .collect(Collectors.toList());
+        return users.stream().map(UserData::toData).collect(Collectors.toList());
     }
 
     public static User toDomain(UserData userData) {
-        return new User(userData.getId(),userData.getName(), userData.getImageName());
+        return new User(userData.getId(), userData.getName(), userData.getImageName());
     }
 
-    public static Map<String,User> toDomains(List<UserData> users) {
-        Map<String,User> maps = new LinkedHashMap<>();
-        users.forEach(userData -> maps.put(userData.getId(),toDomain(userData)));
-        return maps;
+    public static Map<String, User> toDomains(UserData... usersData) {
+        return toDomains(Arrays.asList(usersData));
+    }
 
-//        return users.stream().map(UserData::toDomain)
-//                                .collect(Collectors.toList());
+    public static Map<String, User> toDomains(List<UserData> usersData) {
+        Map<String, User> users = new LinkedHashMap<>();
+        usersData.forEach(userData -> users.put(userData.getId(), toDomain(userData)));
+        return users;
     }
 }

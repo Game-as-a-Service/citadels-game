@@ -5,9 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-
-import static java.lang.String.valueOf;
+import static java.util.UUID.randomUUID;
 
 @Builder
 @AllArgsConstructor
@@ -19,12 +17,10 @@ public class User {
     private final String imageName;
 
     public User(String useName, String useImage) {
-        this.id = generateUniqueId();
+        this.id = randomUUID().toString();
         this.name = useName;
         this.imageName = useImage;
     }
 
-    private String generateUniqueId() {
-        return valueOf(UUID.randomUUID());
-    }
+
 }

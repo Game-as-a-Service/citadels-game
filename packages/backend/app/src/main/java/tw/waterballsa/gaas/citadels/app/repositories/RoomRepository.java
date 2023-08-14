@@ -4,6 +4,6 @@ import tw.waterballsa.gaas.citadels.domain.Room;
 
 public interface RoomRepository {
 
-    Room save(Room room);
+    Room createRoom(Room room);
 
 }

@@ -13,7 +13,6 @@ import tw.waterballsa.gaas.citadels.domain.User;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.util.List.of;
 import static tw.waterballsa.gaas.citadels.spring.repositories.data.UserData.toDomains;
 
 @Data
@@ -31,9 +30,9 @@ public class RoomData {
     private List<UserData> users;
 
     public static RoomData toData(Room room) {
-        User holder = room.getUsers().get(room.getHolderId());
+        User holder = room.findHolder();
         return RoomData.builder().name(room.getName())
-                .users(UserData.toDatas(of(holder)))
+                .users(UserData.toDatas(room.getUsers()))
                 .status(room.getStatus())
                 .holderId(holder.getId())
                 .createTime(room.getCreateTime())
@@ -41,13 +40,7 @@ public class RoomData {
     }
 
     public Room toDomain() {
-        return Room.builder().id(id)
-                .name(name)
-                .holderId(holderId)
-                .status(status)
-                .createTime(createTime)
-                .users(toDomains(users))
-                .build();
+        return new Room(id, name, holderId, status, createTime, toDomains(users));
     }
 
 }

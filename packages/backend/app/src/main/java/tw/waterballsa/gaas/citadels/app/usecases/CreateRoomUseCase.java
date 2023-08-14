@@ -14,14 +14,14 @@ import javax.inject.Named;
 @Named
 @RequiredArgsConstructor
 public class CreateRoomUseCase {
-    private final RoomRepository RoomRepository;
+    private final RoomRepository roomRepository;
 
     public void execute(Request request, Presenter presenter){
         Room room = createRoom(request);
-        presenter.setRoom(RoomRepository.save(room));
+        presenter.setRoom(roomRepository.createRoom(room));
     }
 
-    private static Room createRoom(Request request) {
+    private Room createRoom(Request request) {
         User holder = new User(request.getUserName(), request.getUserImage());
         return new Room(request.roomName, holder);
     }

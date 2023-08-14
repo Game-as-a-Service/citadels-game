@@ -13,17 +13,18 @@ import static java.util.List.of;
 @Data
 @AllArgsConstructor
 public class RoomView {
-     String roomId;
-     String roomName;
-     String holderId;
-     String holderName;
-     List<UserView> users;
-     Room.Status status;
-     String totalUsers;
+    private String roomId;
+    private String roomName;
+    private String holderId;
+    private String holderName;
+    private List<UserView> users;
+    private Room.Status status;
+    private String totalUsers;
 
     public static RoomView toViewModel(Room room) {
-        User holder = room.getUsers().get(room.getHolderId());
-        List<UserView> plainViews = of(UserView.toViewModel(holder));
-        return new RoomView(room.getId(),room.getName(), holder.getId(),holder.getName(), plainViews,room.getStatus(), valueOf(room.getUsers().size()));
+        User holder = room.findHolder();
+        List<UserView> usersView = of(UserView.toViewModel(holder));
+        return new RoomView(room.getId(), room.getName(), holder.getId(), holder.getName(), usersView, room.getStatus(), valueOf(room.getUsers().size()));
     }
+
 }

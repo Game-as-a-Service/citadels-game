@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class CreateRoomView {
-    public String createTime;
-    public String status;
-    public String msg;
-    public RoomView room;
+    private String createTime;
+    private String status;
+    private String msg;
+    private RoomView room;
 
-    public static CreateRoomView toViewModel(Room room){
+    public static CreateRoomView toViewModel(Room room) {
         RoomView roomView = RoomView.toViewModel(room);
-        return new CreateRoomView(LocalDateTime.now().toString(),"OK","", roomView);
+        return new CreateRoomView(LocalDateTime.now().toString(), "OK", "", roomView);
     }
 }
