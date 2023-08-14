@@ -1,4 +1,9 @@
+import { useParams } from 'react-router-dom'
+
 const Game = () => {
+  const { roomId } = useParams() // 獲取路徑參數 roomId
+  console.log(roomId)
+
   return (
     <>
       <nav className='nav'>
