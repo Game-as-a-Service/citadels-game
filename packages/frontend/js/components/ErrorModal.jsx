@@ -6,7 +6,7 @@ const ErrorModal = (props) => {
   return (
     <>
       {isErrorVisible && (
-        <div className='error-modal '>
+        <div className='error-modal'>
           <div className='error-modal-content'>
             <span className='error-text'>{errorText}</span>
             <button className='cancel-btn' onClick={onClose}>
