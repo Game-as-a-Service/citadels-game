@@ -28,14 +28,21 @@ const RoomList = () => {
 
   const [newRoom, setNewRoom] = useState({
     roomName: '',
-    userName: '陳XX',
-    userImage: 'imageName1'
+    userName: '',
+    userImage: ''
   })
-
+  const [userName, setUserName] = useState(localStorage.getItem('userName'))
+  const [userImage, setUserImage] = useState(localStorage.getItem('userImage'))
+  localStorage.setItem('userName', '陳XX') // 正式版要刪除
+  localStorage.setItem('userImage', 'userImage') // 正式版要刪除
   const handleRoomNameChange = (e) => {
     setNewRoom({
       ...newRoom,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      // eslint-disable-next-line object-shorthand
+      userName: userName,
+      // eslint-disable-next-line object-shorthand
+      userImage: userImage
     })
   }
   const navigate = useNavigate()
@@ -48,8 +55,8 @@ const RoomList = () => {
     createRoom(newRoom)
       .then((res) => {
         if (res.status === 'OK') {
-          navigate('/game')
-          console.log(res)
+          const roomID = res.room.roomId
+          navigate(`/game/${roomID}`)
           // TODO : 加入URLParamter
         }
       })
