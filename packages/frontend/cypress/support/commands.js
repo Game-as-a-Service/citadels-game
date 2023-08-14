@@ -23,8 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-// commands.js or another custom command file
-// commands.js or another custom command file
+
+//POST成功API
 Cypress.Commands.add('setupIntercept', () => {
   cy.intercept(
     'POST',
@@ -57,4 +57,18 @@ Cypress.Commands.add('setupIntercept', () => {
       })
     }
   ).as('createRoomRequest')
+})
+
+//POST失敗API
+Cypress.Commands.add('setupInterceptWithError', () => {
+  cy.intercept(
+    'POST',
+    'https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io/createroom',
+    (req) => {
+      req.reply({
+        statusCode: 500, // Simulate a server error
+        body: 'Error occurred'
+      })
+    }
+  ).as('errorRequest')
 })
