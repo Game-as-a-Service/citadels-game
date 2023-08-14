@@ -58,10 +58,13 @@ const RoomList = () => {
         {loading && <div>loading ...</div>}
         {dataSource?.map((room, index) => (
           <div className='list__card' key={index}>
-            <div className='avatar'></div>
             <div className='host'>
-              <div className='title'>房主</div>
-              <div className='detail'>{room.holderName}</div>
+              <div className='avatar'></div>
+              <div className='name'>{room.holderName}</div>
+            </div>
+            <div className='room-name'>
+              <div className='title'>房間名稱</div>
+              <div className='detail'>{room.gameName}</div>
             </div>
             <div className='players'>
               <div className='title'>人數</div>
