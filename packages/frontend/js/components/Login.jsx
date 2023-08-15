@@ -15,12 +15,12 @@ const Login = () => {
 
   // 更換圖片
   const portraits = [
-    <dev key='1'>
+    <div key='1'>
       <Portrait1 />
-    </dev>,
-    <dev key='2'>
+    </div>,
+    <div key='2'>
       <Portrait2 />
-    </dev>
+    </div>
   ]
   const [portraitChangeCount, setPortraitChangeCount] = useState(0)
   const [portraitIndex, setPortraitIndex] = useState(0)
@@ -50,9 +50,9 @@ const Login = () => {
         <div className='login_borad' onSubmit={handleLogin}>
           <div className='login_imgwrap'>{portraits[portraitIndex]}</div>
           <div className='f-20-b'>
-            <dev onClick={changeImage}>
+            <div className='login_change' onClick={changeImage}>
               換一個 <RecycleSvg />
-            </dev>
+            </div>
           </div>
           <label htmlFor='name' className='f-24-b'>
             輸入你的名字：
