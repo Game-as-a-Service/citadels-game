@@ -1,16 +1,13 @@
 package tw.waterballsa.gaas.citadels.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 import static java.util.UUID.randomUUID;
 
-@Builder
-@AllArgsConstructor
-@Setter
+
 @Getter
+@AllArgsConstructor
 public class User {
     private final String id;
     private final String name;

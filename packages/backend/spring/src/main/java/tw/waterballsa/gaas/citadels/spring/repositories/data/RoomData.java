@@ -32,7 +32,7 @@ public class RoomData {
     public static RoomData toData(Room room) {
         User holder = room.findHolder();
         return RoomData.builder().name(room.getName())
-                .users(UserData.toDatas(room.getUsers()))
+                .users(UserData.toData(room.getUsers()))
                 .status(room.getStatus())
                 .holderId(holder.getId())
                 .createTime(room.getCreateTime())

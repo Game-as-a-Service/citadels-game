@@ -26,7 +26,7 @@ public class UserData {
         return new UserData(user.getId(), user.getName(), user.getImageName());
     }
 
-    public static List<UserData> toDatas(List<User> users) {
+    public static List<UserData> toData(List<User> users) {
         return users.stream().map(UserData::toData).collect(Collectors.toList());
     }
 

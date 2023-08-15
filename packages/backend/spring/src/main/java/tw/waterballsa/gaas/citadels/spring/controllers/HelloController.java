@@ -9,12 +9,10 @@ import java.util.Map;
 
 @RestController
 public class HelloController {
-
     @GetMapping("/hello")
     public ResponseEntity<Map<String, String>> getHelloWorld() {
         Map<String, String> response = new HashMap<>();
         response.put("msg", "hello");
         return ResponseEntity.ok(response);
     }
-
 }
