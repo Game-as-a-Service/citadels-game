@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import tw.waterballsa.gaas.citadels.spring.CitadelsApplicationTest;
+import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
 
-public class HelloControllerTest extends CitadelsApplicationTest {
+public class HelloControllerTest extends CitadelsSpringBootTest {
 
     @Test
     public void TestHelloEndPoint() throws Exception {
