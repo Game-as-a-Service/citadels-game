@@ -39,10 +39,8 @@ const RoomList = () => {
     setNewRoom({
       ...newRoom,
       [e.target.name]: e.target.value,
-      // eslint-disable-next-line object-shorthand
-      userName: userName,
-      // eslint-disable-next-line object-shorthand
-      userImage: userImage
+      userName,
+      userImage
     })
   }
   const navigate = useNavigate()
@@ -66,44 +64,6 @@ const RoomList = () => {
         setErrorText('連線發生錯誤')
       })
   }
-  const modalContent = (
-    <form className='createRoom'>
-      <div>
-        <label htmlFor='roomName' className='f-24-b'>
-          房間名稱：
-        </label>
-        <input
-          id='roomName'
-          type='text'
-          name='roomName'
-          value={newRoom.roomName}
-          onChange={(e) => handleRoomNameChange(e)}
-          placeholder='輸入房間名稱'
-          className='main_input'
-        />
-      </div>
-
-      <div className='button_group'>
-        <button
-          className='cancel-btn'
-          onClick={() => {
-            showModal()
-          }}
-        >
-          取消
-        </button>
-        <button
-          className='blue-btn'
-          type='submit'
-          onClick={(event) => {
-            handleSubmitRoomName(event)
-          }}
-        >
-          創建房間
-        </button>
-      </div>
-    </form>
-  )
 
   return (
     <div className='room-list'>
@@ -112,12 +72,7 @@ const RoomList = () => {
           <img className='avatar' />
           <span className='name'>王老先生</span>
         </div>
-        <div
-          className='navbar__btn'
-          onClick={() => {
-            showModal()
-          }}
-        >
+        <div className='navbar__btn' onClick={showModal}>
           <span className='cross-btn'></span>
           <span className='text'>創建房間</span>
         </div>
@@ -142,7 +97,48 @@ const RoomList = () => {
       <div className='row__list'>
         <Pagination className='row__pagination' current={10} totalPage={20} />
       </div>
-      <Modal isModalOpen={isModalOpen} modalContent={modalContent}></Modal>
+      <Modal
+        isModalOpen={true}
+        title={null}
+        footer={
+          <div className='button_group'>
+            <button
+              className='cancel-btn'
+              onClick={() => {
+                showModal()
+              }}
+            >
+              取消
+            </button>
+            <button
+              className='blue-btn'
+              type='submit'
+              onClick={(event) => {
+                handleSubmitRoomName(event)
+              }}
+            >
+              創建房間
+            </button>
+          </div>
+        }
+      >
+        <form>
+          <div>
+            <label htmlFor='roomName' className='f-24-b'>
+              房間名稱：
+            </label>
+            <input
+              id='roomName'
+              type='text'
+              name='roomName'
+              value={newRoom.roomName}
+              onChange={(e) => handleRoomNameChange(e)}
+              placeholder='輸入房間名稱'
+              className='main_input'
+            />
+          </div>
+        </form>
+      </Modal>
       <ErrorModal
         isErrorVisible={isErrorVisible}
         onClose={() => setIsErrorVisible(false)}
