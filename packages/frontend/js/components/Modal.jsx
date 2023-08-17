@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Modal = (props) => {
-  const { isModalOpen, modalContent } = props
+const Modal = ({ isModalOpen, title, footer, children }) => {
   return (
     <>
       {isModalOpen && (
-        <div className='custom-modal'>
-          <div className='custom-modal-content'>{modalContent}</div>
+        <div className='modal-overlay'>
+          <div className='modal-content'>
+            <div className='modal-header'>{title}</div>
+            <div className='modal-body'>{children}</div>
+            <div className='modal-footer'>{footer}</div>
+          </div>
         </div>
       )}
     </>
@@ -16,7 +19,9 @@ const Modal = (props) => {
 
 Modal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  modalContent: PropTypes.node.isRequired
+  title: PropTypes.node.isRequired,
+  footer: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default Modal
