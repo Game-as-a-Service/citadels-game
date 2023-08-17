@@ -12,7 +12,8 @@ module.exports = function () {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: isProduction ? 'js/bundle.[chunkhash].js' : 'js/bundle.js',
-      chunkFilename: isProduction ? 'js/[id].[chunkhash].js' : 'js/[name].js'
+      chunkFilename: isProduction ? 'js/[id].[chunkhash].js' : 'js/[name].js',
+      publicPath: '/'
     },
     module: {
       rules: [
