@@ -20,6 +20,7 @@ public class GameView {
     private List<Player> players;
     private CitadelsGame.Status status;
     private LocalDateTime createTime;
+    private int totalPlayers;
 
     public static GameView toViewModel(CitadelsGame game){
         return new GameView(game.getId(),
@@ -28,6 +29,7 @@ public class GameView {
                 game.getHolder().getName(),
                 game.getPlayers(),
                 game.getStatus(),
-                game.getCreateTime());
+                game.getCreateTime(),
+                game.getPlayers().size());
     }
 }

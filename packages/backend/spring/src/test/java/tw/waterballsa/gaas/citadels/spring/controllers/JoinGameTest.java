@@ -19,7 +19,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
         // init game
         Player A = new Player("A", "imageName1");
         Player B = new Player("B", "imageName1");
-        CitadelsGame game = givenGameStarted("room A", A, B);
+        CitadelsGame game = givenGameStarted("room A", A, A, B);
 
         // join game
         Player C = new Player("C", "imageName2");
@@ -52,7 +52,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
                             "           }" +
                             "       ]," +
                             "       \"status\": \"OPEN\"," +
-                            "       \"totalPlayers\": 2" +
+                            "       \"totalPlayers\": " + game.getPlayers().size() + "" +
                             "       }" +
                             "}"));
 
