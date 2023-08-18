@@ -19,7 +19,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
         // init game
         Player A = new Player("A", "imageName1");
         Player B = new Player("B", "imageName1");
-        CitadelsGame game = givenGameStarted(A, B);
+        CitadelsGame game = givenGameStarted("room A", A, B);
 
         // join game
         Player C = new Player("C", "imageName2");
@@ -33,24 +33,27 @@ public class JoinGameTest extends CitadelsApplicationTest {
 //                            "    \"joinTime\": \"2023-07-04T19:29:54.001Z\"," +
                             "    \"status\": \"OK\"," +
                             "    \"msg\": \"\"," +
-                            "    \"gameId\": \"" + game.getId() + "\"," +
-                            "    \"gameName\": \"一起玩富饒之城\"," +
-                            "    \"holderName\": \"陳XX\"," +
-                            "    \"holderId\": \"player1\"," +
-                            "    \"players\": [" +
-                            "        {" +
-                            "            \"playerId\": \"player1\"," +
-                            "            \"playerName\": \"陳XX\"," +
-                            "            \"playerImage\":\"imageName1\"" +
-                            "        }," +
-                            "        {" +
-                            "            \"playerId\": \"player2\"," +
-                            "            \"playerName\": \"王XX\"," +
-                            "            \"playerImage\":\"imageName1\"" +
-                            "        }" +
-                            "    ]," +
-                            "    \"status\": \"OPEN\"," +
-                            "    \"totalPlayers\": 2" +
+                            "    \"room\": {" +
+                            "       \"createTime\": \"" + game.getCreateTime() + "\"," +
+                            "       \"gameId\": \"" + game.getId() + "\"," +
+                            "       \"gameName\": \"" + game.getName() + "\"," +
+                            "       \"holderId\": \"" + game.getHolder().getId() + "\"," +
+                            "       \"holderName\": \"" + game.getHolder().getName() + "\"," +
+                            "       \"players\": [" +
+                            "           {" +
+                            "               \"playerId\": \"" + A.getId() + "\"," +
+                            "               \"playerName\": \"" + A.getName() + "\"," +
+                            "               \"playerImage\":\"" + A.getImage() + "\"" +
+                            "           }," +
+                            "           {" +
+                            "               \"playerId\": \"" + B.getId() + "\"," +
+                            "               \"playerName\": \"" + B.getName() + "\"," +
+                            "               \"playerImage\":\"" + B.getImage() + "\"" +
+                            "           }" +
+                            "       ]," +
+                            "       \"status\": \"OPEN\"," +
+                            "       \"totalPlayers\": 2" +
+                            "       }" +
                             "}"));
 
         // check result: nums of player & each name, id
@@ -72,7 +75,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
         Player E = new Player("E", "imageName1");
         Player F = new Player("F", "imageName1");
         Player G = new Player("G", "imageName1");
-        CitadelsGame game = givenGameStarted(A, B, C, D, E, F, G);
+        CitadelsGame game = givenGameStarted("room A", A, A, B, C, D, E, F, G);
 
         // join game
         Player H = new Player("H", "imageName1");
@@ -82,7 +85,8 @@ public class JoinGameTest extends CitadelsApplicationTest {
                         .contentType(APPLICATION_JSON)
                         .content(jsonBody))
                         .andExpect(status().isBadRequest())
-                        .andExpect(content().json("{\"status\" :  \"GAME IS FULL\"}"));
+                        .andExpect(content().json("{\"status\" :  \"FAIL\"," +
+                                                   "\"msg\" :  \"GAME IS FULL\"}"));
 
         CitadelsGame actualGame = findById(game.getId());
 
