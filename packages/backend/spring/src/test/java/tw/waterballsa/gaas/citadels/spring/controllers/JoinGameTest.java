@@ -32,7 +32,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
         // check result: nums of player & each name, id
         CitadelsGame actualGame = findById(game.getId());
 
-        assertEquals(actualGame.getPlayers().size(), 3);
+        assertEquals(3, actualGame.getPlayers().size());
         assertTrue(actualGame.getPlayer("A").equals(A));
         assertTrue(actualGame.getPlayer("B").equals(B));
 //        assertTrue(actualGame.getPlayer("C").equals(C));
@@ -52,7 +52,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
 
         // join game
         Player H = new Player("H");
-        String jsonBody = "{\"playerName\" : \"" + H.getName() + "\" }";
+        String jsonBody = "{\"playerName\" : \"" + H.getName() + "\"}";
         mockMvc.perform(post("/games/{gameId}:join", game.getId())
                         .contentType(APPLICATION_JSON)
                         .content(jsonBody))
@@ -61,7 +61,7 @@ public class JoinGameTest extends CitadelsApplicationTest {
 
         CitadelsGame actualGame = findById(game.getId());
 
-        assertEquals(actualGame.getPlayers().size(), 7);
+        assertEquals(7, actualGame.getPlayers().size());
         assertTrue(actualGame.getPlayer("A").equals(A));
         assertTrue(actualGame.getPlayer("B").equals(B));
         assertTrue(actualGame.getPlayer("C").equals(C));

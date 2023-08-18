@@ -1,6 +1,5 @@
 package tw.waterballsa.gaas.citadels.app.usecases;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import tw.waterballsa.gaas.citadels.app.repositories.CitadelsGameRepository;
@@ -23,7 +22,7 @@ public class JoinGameUsecase {
         if(game.isFull()) {
             throw new PlatformException("GAME IS FULL");
         }
-        game.newPlayer(player);
+        game.joinGame(player);
         citadelsGameRepository.save(game);
     }
 
