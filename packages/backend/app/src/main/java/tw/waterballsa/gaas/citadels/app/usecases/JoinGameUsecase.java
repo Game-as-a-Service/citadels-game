@@ -8,6 +8,7 @@ import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 import tw.waterballsa.gaas.citadels.domain.Player;
 
 import javax.inject.Named;
+import java.util.Optional;
 
 
 @Named
@@ -24,8 +25,9 @@ public class JoinGameUsecase {
     }
 
     private CitadelsGame findGameById(String gameId) {
-        CitadelsGame game = citadelsGameRepository.findById(gameId);
-        return game;
+        Optional<CitadelsGame> game = citadelsGameRepository.findById(gameId);
+        CitadelsGame actualGame = game.orElseThrow(() -> new NullPointerException("CAN NOT FIND GAME"));
+        return actualGame;
     }
 
     @Data
