@@ -1,5 +1,6 @@
 package tw.waterballsa.gaas.citadels.app.usecases;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import tw.waterballsa.gaas.citadels.app.repositories.CitadelsGameRepository;
@@ -18,7 +19,7 @@ public class JoinGameUsecase {
 
     public void execute(Request request) {
         CitadelsGame game = findById(request.getGameId());
-        Player player = new Player(request.getPlayerId(), request.getPlayerName());
+        Player player = new Player(request.getPlayerName());
         if(game.isFull()) {
             throw new PlatformException("GAME IS FULL");
         }
@@ -33,13 +34,11 @@ public class JoinGameUsecase {
 
     @Data
     public static class Request {
-        private String playerId;
         private String playerName;
         private String gameId;
-        public Request(String gameId, String playerName, String playerId) {
+        public Request(String gameId, String playerName) {
             this.gameId = gameId;
             this.playerName = playerName;
-            this.playerId = playerId;
         }
     }
 }
