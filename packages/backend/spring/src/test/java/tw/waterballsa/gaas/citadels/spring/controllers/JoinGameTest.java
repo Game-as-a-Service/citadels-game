@@ -17,57 +17,82 @@ public class JoinGameTest extends CitadelsApplicationTest {
     public void playerJoinsGameSuccessfully() throws Exception {
 
         // init game
-        Player A = new Player("A");
-        Player B = new Player("B");
+        Player A = new Player("A", "imageName1");
+        Player B = new Player("B", "imageName1");
         CitadelsGame game = givenGameStarted(A, B);
 
         // join game
-        Player C = new Player("C");
-        String jsonBody = "{\"playerName\" : \"" + C.getName() + "\"}";
+        Player C = new Player("C", "imageName2");
+        String jsonBody = "{\"playerName\"  : \"" + C.getName()  + "\", " +
+                           "\"playerImage\" : \"" + C.getImage() + "\"}";
         mockMvc.perform(post("/games/{gameId}:join", game.getId())
                     .contentType(APPLICATION_JSON)
                     .content(jsonBody))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isOk())
+                    .andExpect(content().json("{" +
+//                            "    \"joinTime\": \"2023-07-04T19:29:54.001Z\"," +
+                            "    \"status\": \"OK\"," +
+                            "    \"msg\": \"\"," +
+                            "    \"gameId\": \"" + game.getId() + "\"," +
+                            "    \"gameName\": \"一起玩富饒之城\"," +
+                            "    \"holderName\": \"陳XX\"," +
+                            "    \"holderId\": \"player1\"," +
+                            "    \"players\": [" +
+                            "        {" +
+                            "            \"playerId\": \"player1\"," +
+                            "            \"playerName\": \"陳XX\"," +
+                            "            \"playerImage\":\"imageName1\"" +
+                            "        }," +
+                            "        {" +
+                            "            \"playerId\": \"player2\"," +
+                            "            \"playerName\": \"王XX\"," +
+                            "            \"playerImage\":\"imageName1\"" +
+                            "        }" +
+                            "    ]," +
+                            "    \"status\": \"OPEN\"," +
+                            "    \"totalPlayers\": 2" +
+                            "}"));
 
         // check result: nums of player & each name, id
         CitadelsGame actualGame = findById(game.getId());
 
         assertEquals(3, actualGame.getPlayers().size());
-        assertTrue(actualGame.getPlayer("A").equals(A));
-        assertTrue(actualGame.getPlayer("B").equals(B));
+        assertTrue(actualGame.findPlayerById(A.getId()).equals(A));
+        assertTrue(actualGame.findPlayerById(B.getId()).equals(B));
 //        assertTrue(actualGame.getPlayer("C").equals(C));
     }
 
     @Test
     public void playerJoinsGameUnsuccessfully() throws Exception {
 
-        Player A = new Player("A");
-        Player B = new Player("B");
-        Player C = new Player("C");
-        Player D = new Player("D");
-        Player E = new Player("E");
-        Player F = new Player("F");
-        Player G = new Player("G");
+        Player A = new Player("A", "imageName1");
+        Player B = new Player("B", "imageName1");
+        Player C = new Player("C", "imageName1");
+        Player D = new Player("D", "imageName1");
+        Player E = new Player("E", "imageName1");
+        Player F = new Player("F", "imageName1");
+        Player G = new Player("G", "imageName1");
         CitadelsGame game = givenGameStarted(A, B, C, D, E, F, G);
 
         // join game
-        Player H = new Player("H");
-        String jsonBody = "{\"playerName\" : \"" + H.getName() + "\"}";
+        Player H = new Player("H", "imageName1");
+        String jsonBody = "{\"playerName\"  : \"" + H.getName()  + "\", " +
+                           "\"playerImage\" : \"" + H.getImage() + "\"}";
         mockMvc.perform(post("/games/{gameId}:join", game.getId())
                         .contentType(APPLICATION_JSON)
                         .content(jsonBody))
                         .andExpect(status().isBadRequest())
-                        .andExpect(content().string("GAME IS FULL"));
+                        .andExpect(content().json("{\"status\" :  \"GAME IS FULL\"}"));
 
         CitadelsGame actualGame = findById(game.getId());
 
         assertEquals(7, actualGame.getPlayers().size());
-        assertTrue(actualGame.getPlayer("A").equals(A));
-        assertTrue(actualGame.getPlayer("B").equals(B));
-        assertTrue(actualGame.getPlayer("C").equals(C));
-        assertTrue(actualGame.getPlayer("D").equals(D));
-        assertTrue(actualGame.getPlayer("E").equals(E));
-        assertTrue(actualGame.getPlayer("F").equals(F));
-        assertTrue(actualGame.getPlayer("G").equals(G));
+        assertTrue(actualGame.findPlayerById(A.getId()).equals(A));
+        assertTrue(actualGame.findPlayerById(B.getId()).equals(B));
+        assertTrue(actualGame.findPlayerById(C.getId()).equals(C));
+        assertTrue(actualGame.findPlayerById(D.getId()).equals(D));
+        assertTrue(actualGame.findPlayerById(E.getId()).equals(E));
+        assertTrue(actualGame.findPlayerById(F.getId()).equals(F));
+        assertTrue(actualGame.findPlayerById(G.getId()).equals(G));
     }
 }
