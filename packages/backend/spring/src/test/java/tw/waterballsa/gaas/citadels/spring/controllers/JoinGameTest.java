@@ -15,8 +15,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-
 //    @Test Saboteur
 //    public void 都好的硬要修() throws Exception {
 //        Player A = defaultPlayer("A");
@@ -76,7 +74,7 @@ public class JoinGameTest {
         // post /games/{gameId}:join
         // body playerId, playerName
         Player C = new Player("789", "C");
-        String jsonBody = "{\"playerId\" : \"" + C.getName() + "\" " +
+        String jsonBody = "{\"playerName\" : \"" + C.getName() + "\", " +
                 "\"playerId\" : \"" + C.getId() + "\" }";
         mockMvc.perform(post("/games/{gameId}:join", game.getId())
                     .contentType(APPLICATION_JSON)
@@ -86,23 +84,45 @@ public class JoinGameTest {
         // check result: nums of player & each name, id
         CitadelsGame actualGame = findById(game.getId());
         assertEquals(actualGame.getPlayers().size(), 3);
-        assertEquals(actualGame.getPlayer("A").getName(), A.getName());
-        assertEquals(actualGame.getPlayer("A").getId(), A.getId());
-
-        assertEquals(actualGame.getPlayer("B").getName(), B.getName());
-        assertEquals(actualGame.getPlayer("B").getId(), B.getId());
-
-        assertEquals(actualGame.getPlayer("C").getName(), C.getName());
-        assertEquals(actualGame.getPlayer("C").getId(), C.getId());
+        assertTrue(actualGame.getPlayer("A").equals(A));
+        assertTrue(actualGame.getPlayer("B").equals(B));
+        assertTrue(actualGame.getPlayer("C").equals(C));
     }
 
 
 
     @Test
-    public void playerJoinsGameUnsuccessfully() {
+    public void playerJoinsGameUnsuccessfully() throws Exception {
         Player A = new Player("123", "A");
         Player B = new Player("456", "B");
-        CitadelsGame game = givenGameStarted(A, B);
         Player C = new Player("789", "C");
+        Player D = new Player("147", "D");
+        Player E = new Player("258", "E");
+        Player F = new Player("369", "F");
+        Player G = new Player("159", "G");
+        CitadelsGame game = givenGameStarted(A, B, C, D, E, F, G);
+
+        // join game
+        // post /games/{gameId}:join
+        // body playerId, playerName
+        Player H = new Player("789", "H");
+        String jsonBody = "{\"playerName\" : \"" + H.getName() + "\", " +
+                "\"playerId\" : \"" + H.getId() + "\" }";
+        System.out.println(game.getId() + "-UnitTest");
+        mockMvc.perform(post("/games/{gameId}:join", game.getId())
+                        .contentType(APPLICATION_JSON)
+                        .content(jsonBody))
+                .andExpect(status().isServiceUnavailable());
+
+        CitadelsGame actualGame = findById(game.getId());
+        assertEquals(actualGame.getPlayers().size(), 7);
+        assertTrue(actualGame.getPlayer("A").equals(A));
+        assertTrue(actualGame.getPlayer("B").equals(B));
+        assertTrue(actualGame.getPlayer("C").equals(C));
+        assertTrue(actualGame.getPlayer("D").equals(D));
+        assertTrue(actualGame.getPlayer("E").equals(E));
+        assertTrue(actualGame.getPlayer("F").equals(F));
+        assertTrue(actualGame.getPlayer("G").equals(G));
+
     }
 }

@@ -16,9 +16,15 @@ public class JoinGameUsecase {
     private final CitadelsGameRepository citadelsGameRepository;
 
     public void execute(Request request) {
-        CitadelsGame game = citadelsGameRepository.findById(request.getGameId());
+        CitadelsGame game = findById(request.getGameId());
         Player player = new Player(request.getPlayerId(), request.getPlayerName());
+        game.newPlayer(player);
         citadelsGameRepository.save(game);
+    }
+
+    private CitadelsGame findById(String gameId) {
+        CitadelsGame game = citadelsGameRepository.findById(gameId);
+        return game;
     }
 
     @Data
@@ -31,5 +37,10 @@ public class JoinGameUsecase {
             this.playerName = playerName;
             this.playerId = playerId;
         }
+    }
+
+    @Data
+    public static class Response {
+
     }
 }
