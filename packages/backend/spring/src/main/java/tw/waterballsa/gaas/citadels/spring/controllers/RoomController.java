@@ -23,14 +23,14 @@ import static tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.CreateRo
 public class RoomController {
     private final CreateRoomUseCase createRoomUseCase;
 
-    @PostMapping("/game")
+    @PostMapping("/room")
     public ResponseEntity<CreateRoomView> createGame(@RequestBody CreateRoomRequest request) {
         CreateRoomPresenter presenter = new CreateRoomPresenter();
         createRoomUseCase.execute(request.toRequest(), presenter);
         return status(OK).body(presenter.getCreateRoomView());
     }
 
-    class CreateRoomPresenter implements CreateRoomUseCase.Presenter {
+    static class CreateRoomPresenter implements CreateRoomUseCase.Presenter {
         private Room room;
 
         @Override
@@ -57,5 +57,4 @@ public class RoomController {
             return new CreateRoomUseCase.Request(roomName, userName, userImage);
         }
     }
-
 }

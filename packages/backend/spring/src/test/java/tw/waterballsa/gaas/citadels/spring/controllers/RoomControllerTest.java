@@ -3,7 +3,6 @@ package tw.waterballsa.gaas.citadels.spring.controllers;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.ResultActions;
-import tw.waterballsa.gaas.citadels.app.usecases.CreateRoomUseCase;
 import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.CreateRoomView;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.RoomView;
@@ -22,25 +21,24 @@ public class RoomControllerTest extends CitadelsSpringBootTest {
     private static final String API_PREFIX = "/api/citadels";
 
     @Test
-    public void whenUserACreatRoom_ShouldCreateSuccessfully() {
-        RoomController.CreateRoomRequest createRoomRequest = new RoomController.CreateRoomRequest("RoomA", "userA","user.png");
-        CreateRoomView createRoomView = getBody(createRoom(createRoomRequest.toRequest()), CreateRoomView.class);
+    public void whenUserACreateRoom_ShouldCreateSuccessfully() {
+        RoomController.CreateRoomRequest createRoomRequest = new RoomController.CreateRoomRequest("RoomA", "userA", "user.png");
+        CreateRoomView createRoomView = getBody(createRoom(createRoomRequest), CreateRoomView.class);
         Optional<RoomData> roomData = RoomDAO.findById(createRoomView.getRoom().getRoomId());
 
         assertTrue(roomData.isPresent());
         RoomData room = roomData.get();
         UserData userData = room.getUsers().get(0);
         RoomView roomView = createRoomView.getRoom();
-        assertEquals(roomView.getRoomName(),room.getName());
-        assertEquals(roomView.getHolderName(),userData.getName());
+        assertEquals(roomView.getRoomName(), room.getName());
+        assertEquals(roomView.getHolderName(), userData.getName());
     }
 
-
     @SneakyThrows
-    private ResultActions createRoom(CreateRoomUseCase.Request createRoomRequest) {
-        return mockMvc.perform(post(API_PREFIX + "/game")
+    private ResultActions createRoom(RoomController.CreateRoomRequest createRoomRequest) {
+        return mockMvc.perform(post(API_PREFIX + "/room")
                         .contentType(APPLICATION_JSON)
                         .content(toJson(createRoomRequest)))
-                                .andExpect(status().isOk());
-        }
+                .andExpect(status().isOk());
+    }
 }
