@@ -22,7 +22,7 @@ public abstract class CitadelsSpringBootTest {
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
-    protected RoomRepository citadelsGameRepository;
+    protected RoomRepository roomRepository;
 
     @Test
     public void testMongoDB() {

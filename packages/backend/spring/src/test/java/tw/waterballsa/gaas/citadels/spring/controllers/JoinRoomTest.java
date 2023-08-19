@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MvcResult;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
-import tw.waterballsa.gaas.citadels.spring.CitadelsApplicationTest;
+import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.JoinRoomView;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.RoomView;
 
@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-public class JoinRoomTest extends CitadelsApplicationTest {
+public class JoinRoomTest extends CitadelsSpringBootTest {
 
     @Test
     public void playerJoinsGameSuccessfully() throws Exception {

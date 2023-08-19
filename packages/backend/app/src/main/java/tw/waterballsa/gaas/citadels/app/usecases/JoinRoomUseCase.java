@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
-public class JoinRoomUsecase {
+public class JoinRoomUseCase {
 
     private final RoomRepository roomRepository;
 

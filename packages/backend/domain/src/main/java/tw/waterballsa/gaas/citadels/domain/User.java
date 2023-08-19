@@ -14,7 +14,7 @@ import static java.util.UUID.randomUUID;
 public class User {
     private String id;
     private String name;
-    private String image;
+    private String imageName;
 
     public User(String name, String image) {
         this(randomUUID().toString(), name, image);
@@ -31,6 +31,6 @@ public class User {
         User user = (User) obj;
         return Objects.equals(id, user.id) &&
                 Objects.equals(name, user.name) &&
-                Objects.equals(image, user.image);
+                Objects.equals(imageName, user.imageName);
     }
 }
