@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.Room.Status;
 import tw.waterballsa.gaas.citadels.domain.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
