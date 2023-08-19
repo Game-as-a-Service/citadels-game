@@ -41,5 +41,4 @@ public class RoomData {
     public Room toDomain() {
         return new Room(id, name, holderId, status, createTime, toDomains(users));
     }
-
 }

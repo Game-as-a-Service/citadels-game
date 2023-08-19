@@ -1,17 +1,18 @@
 package tw.waterballsa.gaas.citadels.domain;
 
 import lombok.AllArgsConstructor;
-import tw.waterballsa.gaas.citadels.exceptions.PlatformException;
-
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
 import java.util.List;
+import java.time.*;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.UUID.randomUUID;
 import static tw.waterballsa.gaas.citadels.domain.Room.Status.OPEN;
 
+@AllArgsConstructor
 public class Room {
     private String id;
     private String name;
@@ -59,7 +60,6 @@ public class Room {
     public String getName() {
         return name;
     }
-
     public Status getStatus() {
         return status;
     }
@@ -68,9 +68,9 @@ public class Room {
         return createTime;
     }
 
-    public void joinGame(User user) {
+    public void joinUser(User user) {
         if(isFull()) {
-            throw new PlatformException("GAME IS FULL");
+            throw new JoinRoomException("GAME IS FULL");
         }
         userIdToUser.put(user.getId(), user);
     }
@@ -85,3 +85,5 @@ public class Room {
         CLOSE
     }
 }
+
+

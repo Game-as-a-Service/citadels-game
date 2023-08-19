@@ -38,32 +38,32 @@ public class JoinRoomTest extends CitadelsApplicationTest {
         // check result: nums of player & each name, id
         Room actualRoom = findRoomById(room.getId());
 
-        // test response body
+        // transfer json to view model
         String content = mvcResult.getResponse().getContentAsString();
         System.out.println(content);
         ObjectMapper objectMapper = new ObjectMapper();
         JoinRoomView joinRoomView = objectMapper.readValue(content, JoinRoomView.class);
 
-        // Question : join time 驗法
-        // 可以驗收到 response 跟 join time 的時間間格不超過多少 ??
+        // test response body
         assertEquals("OK", joinRoomView.getStatus());
         assertEquals("", joinRoomView.getMsg());
 
+        // test room
         RoomView roomView = joinRoomView.getRoomView();
         assertEquals(actualRoom.getCreateTime().toString(), roomView.getCreateTime());
         assertEquals(actualRoom.getId(), roomView.getRoomId());
         assertEquals(actualRoom.getName(), roomView.getRoomName());
-        assertEquals(actualRoom.getHolder().getId(), roomView.getHolderId());
-        assertEquals(actualRoom.getHolder().getName(), roomView.getHolderName());
+        assertEquals(actualRoom.findHolder().getId(), roomView.getHolderId());
+        assertEquals(actualRoom.findHolder().getName(), roomView.getHolderName());
         assertEquals(actualRoom.getStatus().toString(), roomView.getStatus());
-        assertEquals(actualRoom.getUsers().size(), roomView.getTotalUsers());
+        assertEquals(actualRoom.getUserIdToUser().size(), roomView.getTotalUsers());
 
-        assertEquals(3, actualRoom.getUsers().size());
-        assertTrue(actualRoom.findUserById(A.getId()).equals(A));
-        assertTrue(actualRoom.findUserById(B.getId()).equals(B));
-        // 怪怪的
+        // test user
+        assertEquals(3, actualRoom.getUserIdToUser().size());
+        assertEquals(actualRoom.findUserById(A.getId()), A);
+        assertEquals(actualRoom.findUserById(B.getId()), B);
         User actualUserC = findUserByName(actualRoom.getId(), "C");
-        assertTrue(actualRoom.findUserById(actualUserC.getId()).equals(actualUserC));
+        assertEquals(actualRoom.findUserById(actualUserC.getId()), actualUserC);
     }
 
     @Test
@@ -91,13 +91,13 @@ public class JoinRoomTest extends CitadelsApplicationTest {
 
         Room actualGame = findRoomById(room.getId());
 
-        assertEquals(7, actualGame.getUsers().size());
-        assertTrue(actualGame.findUserById(A.getId()).equals(A));
-        assertTrue(actualGame.findUserById(B.getId()).equals(B));
-        assertTrue(actualGame.findUserById(C.getId()).equals(C));
-        assertTrue(actualGame.findUserById(D.getId()).equals(D));
-        assertTrue(actualGame.findUserById(E.getId()).equals(E));
-        assertTrue(actualGame.findUserById(F.getId()).equals(F));
-        assertTrue(actualGame.findUserById(G.getId()).equals(G));
+        assertEquals(7, actualGame.getUserIdToUser().size());
+        assertEquals(actualGame.findUserById(A.getId()), A);
+        assertEquals(actualGame.findUserById(B.getId()), B);
+        assertEquals(actualGame.findUserById(C.getId()), C);
+        assertEquals(actualGame.findUserById(D.getId()), D);
+        assertEquals(actualGame.findUserById(E.getId()), E);
+        assertEquals(actualGame.findUserById(F.getId()), F);
+        assertEquals(actualGame.findUserById(G.getId()), G);
     }
 }

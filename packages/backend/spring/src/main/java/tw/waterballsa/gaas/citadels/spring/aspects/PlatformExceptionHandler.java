@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-import tw.waterballsa.gaas.citadels.exceptions.PlatformException;
+import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
 
 @RestControllerAdvice
 public class PlatformExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(PlatformException.class)
-    public ErrorResponse badRequest(PlatformException exception) {
+    @ExceptionHandler(JoinRoomException.class)
+    public ErrorResponse badRequest(JoinRoomException exception) {
         return new ErrorResponse(Status.FAIL, exception.getMessage());
     }
 

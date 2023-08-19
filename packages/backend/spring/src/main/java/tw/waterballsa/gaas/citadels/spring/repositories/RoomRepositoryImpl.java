@@ -18,14 +18,11 @@ public class RoomRepositoryImpl implements RoomRepository {
     @Override
     public Optional<Room> save(Room room) {
         RoomData data = RoomData.toData(room);
-        roomDAO.save(data);
-        Optional<Room> actualGame = findById(room.getId());
-        return actualGame;
+        return Optional.ofNullable(roomDAO.save(data).toDomain());
     }
 
     @Override
     public Optional<Room> findById(String gameId) {
-        Optional<Room> actualGame = roomDAO.findById(gameId).map(RoomData::toDomain);
-        return actualGame;
+        return roomDAO.findById(gameId).map(RoomData::toDomain);
     }
 }
