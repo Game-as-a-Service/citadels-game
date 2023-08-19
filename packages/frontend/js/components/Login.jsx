@@ -15,10 +15,10 @@ const Login = () => {
 
   // 更換圖片
   const portraits = [
-    <div key='1'>
+    <div key='portrait1.svg'>
       <Portrait1 />
     </div>,
-    <div key='2'>
+    <div key='portrait2.svg'>
       <Portrait2 />
     </div>
   ]
@@ -39,6 +39,7 @@ const Login = () => {
   const handleLogin = () => {
     console.log('userName:', name)
     localStorage.setItem('userName', name)
+    localStorage.setItem('userPortrait', portraits[portraitIndex].key)
     // TODO: game lobby page not completed
     navigate('/rooms')
   }
