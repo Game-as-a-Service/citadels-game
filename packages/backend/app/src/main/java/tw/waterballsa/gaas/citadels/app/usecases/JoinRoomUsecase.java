@@ -21,12 +21,12 @@ public class JoinRoomUsecase {
         Room room = findRoomById(request.getRoomId());
         User user = new User(request.getUserName(), request.getUserImage());
         room.joinUser(user);
-        roomRepository.save(room);
+        roomRepository.createRoom(room);
         presenter.present(room);
     }
 
     private Room findRoomById(String roomId) {
-        Optional<Room> room = roomRepository.findById(roomId);
+        Optional<Room> room = roomRepository.findRoomById(roomId);
         return room.orElseThrow(() -> new NullPointerException("CAN NOT FIND GAME, ID=" + roomId));
     }
 

@@ -16,13 +16,13 @@ public class RoomRepositoryImpl implements RoomRepository {
     private final RoomDAO roomDAO;
 
     @Override
-    public Optional<Room> save(Room room) {
+    public Optional<Room> createRoom(Room room) {
         RoomData data = RoomData.toData(room);
         return Optional.ofNullable(roomDAO.save(data).toDomain());
     }
 
     @Override
-    public Optional<Room> findById(String gameId) {
+    public Optional<Room> findRoomById(String gameId) {
         return roomDAO.findById(gameId).map(RoomData::toDomain);
     }
 }
