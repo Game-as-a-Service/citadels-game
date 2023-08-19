@@ -1,14 +1,12 @@
-<<<<<<<< HEAD:packages/backend/spring/src/main/java/tw/waterballsa/gaas/citadels/spring/controllers/CitadelsGameController.java
-========
 package tw.waterballsa.gaas.citadels.spring.controllers;
 
-import lombok.RequiredArgsConstructor;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.waterballsa.gaas.citadels.app.usecases.JoinRoomUseCase;
 import tw.waterballsa.gaas.citadels.domain.Room;
+import tw.waterballsa.gaas.citadels.domain.User;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.JoinRoomView;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.RoomView;
 import javax.validation.Valid;
@@ -18,17 +16,18 @@ import java.time.LocalDateTime;
 import static org.springframework.http.ResponseEntity.status;
 
 @RestController
-@RequiredArgsConstructor
-public class RoomController {
+@AllArgsConstructor
+@RequestMapping(value = "/api/citadels")
+public class JoinRoomController {
 
     private final JoinRoomUseCase joinRoomUsecase;
 
-    @PostMapping("/games/{roomId}:join")
+    @PostMapping("/rooms/{roomId}:join")
     public ResponseEntity<?> joinRoom(@PathVariable String roomId,
                                       @Valid @RequestBody JoinRoomRequest request) {
         var present = new JoinRoomPresenter();
         joinRoomUsecase.execute(request.toRequest(roomId), present);
-        return status(HttpStatus.OK).body(present.getViewModel());
+        return status(HttpStatus.OK).body(present.getJoinRoomView());
     }
 
     @Value
@@ -48,15 +47,16 @@ public class RoomController {
     class JoinRoomPresenter implements JoinRoomUseCase.Presenter {
 
         private Room room;
+        private User joinedUser;
 
         @Override
-        public void present(Room room) {
+        public void present(Room room, User joinedUser) {
             this.room = room;
+            this.joinedUser = joinedUser;
         }
 
-        public JoinRoomView getViewModel() {
-            return new JoinRoomView(LocalDateTime.now().toString(), "OK", "", RoomView.toViewModel(room));
+        public JoinRoomView getJoinRoomView() {
+            return new JoinRoomView(LocalDateTime.now().toString(), "OK", "", joinedUser.getId(), RoomView.toViewModel(room));
         }
     }
 }
->>>>>>>> ee19b2a (Rename RoomController JoinRoomUseCase):packages/backend/spring/src/main/java/tw/waterballsa/gaas/citadels/spring/controllers/RoomController.java

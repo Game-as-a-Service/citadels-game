@@ -22,7 +22,9 @@ public class RoomRepositoryImpl implements RoomRepository {
     }
 
     @Override
-    public Optional<Room> findRoomById(String gameId) {
-        return roomDAO.findById(gameId).map(RoomData::toDomain);
+    public Optional<Room> findRoomById(String roomId) {
+        Optional<RoomData> roomData = roomDAO.findById(roomId);
+        Optional<Room> room = roomData.map(RoomData::toDomain);
+        return roomDAO.findById(roomId).map(RoomData::toDomain);
     }
 }

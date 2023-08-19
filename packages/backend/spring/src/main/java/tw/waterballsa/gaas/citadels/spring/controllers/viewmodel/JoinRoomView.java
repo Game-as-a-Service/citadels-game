@@ -12,6 +12,7 @@ public class JoinRoomView {
     private String joinTime;
     private String status;
     private String msg;
+    private String joinedUserId;
     @JsonProperty("room")
     private RoomView roomView;
 }

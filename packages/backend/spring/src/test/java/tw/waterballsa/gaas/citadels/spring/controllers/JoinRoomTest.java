@@ -28,8 +28,8 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         // join room
         User C = new User("C", "imageName2");
         String jsonBody = "{\"userName\"  : \"" + C.getName()  + "\", " +
-                           "\"userImage\" : \"" + C.getImage() + "\"}";
-        MvcResult mvcResult = mockMvc.perform(post("/games/{roomId}:join", room.getId())
+                           "\"userImage\" : \"" + C.getImageName() + "\"}";
+        MvcResult mvcResult = mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:join", room.getId())
                         .contentType(APPLICATION_JSON)
                         .content(jsonBody))
                         .andExpect(status().isOk())
@@ -47,6 +47,7 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         // test response body
         assertEquals("OK", joinRoomView.getStatus());
         assertEquals("", joinRoomView.getMsg());
+//        assertEquals(findUserByName(actualRoom.getId(), "C").getI。d(), joinRoomView.getJoinedUserId());
 
         // test room
         RoomView roomView = joinRoomView.getRoomView();
@@ -55,11 +56,11 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         assertEquals(actualRoom.getName(), roomView.getRoomName());
         assertEquals(actualRoom.findHolder().getId(), roomView.getHolderId());
         assertEquals(actualRoom.findHolder().getName(), roomView.getHolderName());
-        assertEquals(actualRoom.getStatus().toString(), roomView.getStatus());
-        assertEquals(actualRoom.getUserIdToUser().size(), roomView.getTotalUsers());
+        assertEquals(actualRoom.getStatus().toString(), roomView.getStatus().toString());
+        assertEquals(actualRoom.getUsers().size(), roomView.getTotalUsers());
 
         // test user
-        assertEquals(3, actualRoom.getUserIdToUser().size());
+        assertEquals(3, actualRoom.getUsers().size());
         assertEquals(actualRoom.findUserById(A.getId()), A);
         assertEquals(actualRoom.findUserById(B.getId()), B);
         User actualUserC = findUserByName(actualRoom.getId(), "C");
@@ -67,7 +68,7 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
     }
 
     @Test
-    public void playerJoinsGameUnsuccessfully() throws Exception {
+    public void playerJoinsRoomUnsuccessfully() throws Exception {
 
         User A = new User("A", "imageName1");
         User B = new User("B", "imageName1");
@@ -81,8 +82,8 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         // join room
         User H = new User("H", "imageName1");
         String jsonBody = "{\"userName\"  : \"" + H.getName()  + "\", " +
-                           "\"userImage\" : \"" + H.getImage() + "\"}";
-        mockMvc.perform(post("/games/{gameId}:join", room.getId())
+                           "\"userImage\" : \"" + H.getImageName() + "\"}";
+        mockMvc.perform(post(API_PREFIX + "/rooms/{gameId}:join", room.getId())
                         .contentType(APPLICATION_JSON)
                         .content(jsonBody))
                         .andExpect(status().isBadRequest())
@@ -91,7 +92,7 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
 
         Room actualGame = findRoomById(room.getId());
 
-        assertEquals(7, actualGame.getUserIdToUser().size());
+        assertEquals(7, actualGame.getUsers().size());
         assertEquals(actualGame.findUserById(A.getId()), A);
         assertEquals(actualGame.findUserById(B.getId()), B);
         assertEquals(actualGame.findUserById(C.getId()), C);

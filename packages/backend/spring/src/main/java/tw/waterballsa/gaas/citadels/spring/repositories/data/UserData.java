@@ -1,12 +1,10 @@
 package tw.waterballsa.gaas.citadels.spring.repositories.data;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import tw.waterballsa.gaas.citadels.domain.User;
-
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;

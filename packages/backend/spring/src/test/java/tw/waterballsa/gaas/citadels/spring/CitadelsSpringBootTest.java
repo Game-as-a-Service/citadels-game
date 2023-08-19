@@ -10,6 +10,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
+import tw.waterballsa.gaas.citadels.domain.Room;
+import tw.waterballsa.gaas.citadels.domain.User;
+import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
+
+import static java.util.Arrays.asList;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -23,6 +28,8 @@ public abstract class CitadelsSpringBootTest {
     protected ObjectMapper objectMapper;
     @Autowired
     protected RoomRepository roomRepository;
+
+    protected static final String API_PREFIX = "/api/citadels";
 
     @Test
     public void testMongoDB() {
@@ -59,4 +66,20 @@ public abstract class CitadelsSpringBootTest {
                 .getContentAsString();
     }
 
+    protected Room givenGameStarted(String name, User holder, User... users) {
+        return roomRepository.createRoom(new Room(name, holder, asList(users))).orElseThrow();
+    }
+
+    protected Room findRoomById(String roomId) {
+        Room room = roomRepository.findRoomById(roomId).orElseThrow(() -> new JoinRoomException("CAN NOT FIND ROOM ID=" + roomId));
+        return room;
+    }
+
+    protected User findUserByName(String roomId, String name) {
+        Room room = findRoomById(roomId);
+        return room.getUsers().stream()
+                .filter(user1 -> name.equals(user1.getName()))
+                .findFirst()
+                .orElseThrow(() -> new NullPointerException("CAN NOT FIND USER NAME=" + name));
+    }
 }

@@ -21,8 +21,8 @@ public class JoinRoomUseCase {
         Room room = findRoomById(request.getRoomId());
         User user = new User(request.getUserName(), request.getUserImage());
         room.joinUser(user);
-        roomRepository.createRoom(room);
-        presenter.present(room);
+        Optional<?> actualRoom = roomRepository.createRoom(room);
+        presenter.present(room, user);
     }
 
     private Room findRoomById(String roomId) {
@@ -39,6 +39,6 @@ public class JoinRoomUseCase {
     }
 
     public interface Presenter {
-        void present(Room room);
+        void present(Room room, User joinedUser);
     }
 }
