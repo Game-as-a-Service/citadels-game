@@ -44,8 +44,10 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         JoinRoomView joinRoomView = objectMapper.readValue(content, JoinRoomView.class);
 
         // test response body
+        User actualUserC = findUserByName(actualRoom.getId(), "C");
         assertEquals("OK", joinRoomView.getStatus());
         assertEquals("", joinRoomView.getMsg());
+        assertEquals(actualUserC.getId(), joinRoomView.getJoinedUserId());
 
         // test room
         RoomView roomView = joinRoomView.getRoomView();
@@ -61,7 +63,6 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         assertEquals(3, actualRoom.getUsers().size());
         assertEquals(actualRoom.findUserById(A.getId()), A);
         assertEquals(actualRoom.findUserById(B.getId()), B);
-        User actualUserC = findUserByName(actualRoom.getId(), "C");
         assertEquals(actualRoom.findUserById(actualUserC.getId()), actualUserC);
     }
 
