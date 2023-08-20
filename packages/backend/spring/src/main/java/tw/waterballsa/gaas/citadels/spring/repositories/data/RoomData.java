@@ -30,7 +30,8 @@ public class RoomData {
 
     public static RoomData toData(Room room) {
         User holder = room.findHolder();
-        return RoomData.builder().name(room.getName())
+        return RoomData.builder().id(room.getId())
+                .name(room.getName())
                 .users(UserData.toData(room.getUsers()))
                 .status(room.getStatus())
                 .holderId(holder.getId())
