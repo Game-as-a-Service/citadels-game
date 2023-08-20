@@ -40,14 +40,12 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
 
         // transfer json to view model
         String content = mvcResult.getResponse().getContentAsString();
-        System.out.println(content);
         ObjectMapper objectMapper = new ObjectMapper();
         JoinRoomView joinRoomView = objectMapper.readValue(content, JoinRoomView.class);
 
         // test response body
         assertEquals("OK", joinRoomView.getStatus());
         assertEquals("", joinRoomView.getMsg());
-//        assertEquals(findUserByName(actualRoom.getId(), "C").getI。d(), joinRoomView.getJoinedUserId());
 
         // test room
         RoomView roomView = joinRoomView.getRoomView();

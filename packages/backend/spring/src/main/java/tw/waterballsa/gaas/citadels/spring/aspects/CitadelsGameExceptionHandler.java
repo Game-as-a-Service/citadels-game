@@ -12,7 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
 
 @RestControllerAdvice
-public class PlatformExceptionHandler {
+public class CitadelsGameExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(JoinRoomException.class)
