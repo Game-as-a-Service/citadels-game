@@ -25,7 +25,7 @@ public class JoinRoomController {
     @PostMapping("/rooms/{roomId}:join")
     public ResponseEntity<?> joinRoom(@PathVariable String roomId,
                                       @Valid @RequestBody JoinRoomRequest request) {
-        var present = new JoinRoomPresenter();
+        JoinRoomPresenter present = new JoinRoomPresenter();
         joinRoomUsecase.execute(request.toRequest(roomId), present);
         return status(HttpStatus.OK).body(present.getJoinRoomView());
     }
