@@ -5,9 +5,8 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
 import java.util.List;
-import java.time.*;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import static java.util.UUID.randomUUID;
 import static tw.waterballsa.gaas.citadels.domain.Room.Status.OPEN;
@@ -30,13 +29,13 @@ public class Room {
         this.createTime = LocalDateTime.now();
     }
 
-    public Room(String name, User holder, List<User> users) {
+    public Room(String name, String holderId, Set<User> userSet) {
         this.id = randomUUID().toString();
         this.name = name;
-        this.holderId = holder.getId();
+        this.holderId = holderId;
         this.status = OPEN;
         this.createTime = LocalDateTime.now();
-        for(User user : users) {
+        for(User user : userSet) {
             userIdToUser.put(user.getId(), user);
         }
     }

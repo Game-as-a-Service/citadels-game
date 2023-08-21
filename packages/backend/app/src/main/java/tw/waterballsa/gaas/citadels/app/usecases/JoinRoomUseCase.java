@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
+import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 
 import javax.inject.Named;
 import java.util.Optional;
@@ -21,13 +22,13 @@ public class JoinRoomUseCase {
         Room room = findRoomById(request.getRoomId());
         User user = new User(request.getUserName(), request.getUserImage());
         room.joinUser(user);
-        Optional<?> actualRoom = roomRepository.createRoom(room);
+        roomRepository.updateRoom(room);
         presenter.present(room, user);
     }
 
     private Room findRoomById(String roomId) {
         Optional<Room> room = roomRepository.findRoomById(roomId);
-        return room.orElseThrow(() -> new NullPointerException("CAN NOT FIND GAME, ID=" + roomId));
+        return room.orElseThrow(() -> new NotFoundException("CAN NOT FIND GAME, ID=" + roomId));
     }
 
     @Data

@@ -18,12 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class JoinRoomTest extends CitadelsSpringBootTest {
 
     @Test
-    public void playerJoinsGameSuccessfully() throws Exception {
+    public void givenRoomNotFull_whenUserJoinRoom_joinRoomSuccess() throws Exception {
 
         // init room
-        User A = new User("A", "imageName1");
-        User B = new User("B", "imageName1");
-        Room room = givenGameStarted("room A", A, A, B);
+        User userA = new User("A", "imageName1");
+        User userB = new User("B", "imageName1");
+        Room room = givenRoomStarted("room A", userA.getId(), userA, userB);
 
         // join room
         User C = new User("C", "imageName2");
@@ -61,22 +61,22 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
 
         // test user
         assertEquals(3, actualRoom.getUsers().size());
-        assertEquals(actualRoom.findUserById(A.getId()), A);
-        assertEquals(actualRoom.findUserById(B.getId()), B);
+        assertEquals(actualRoom.findUserById(userA.getId()), userA);
+        assertEquals(actualRoom.findUserById(userB.getId()), userB);
         assertEquals(actualRoom.findUserById(actualUserC.getId()), actualUserC);
     }
 
     @Test
-    public void playerJoinsRoomUnsuccessfully() throws Exception {
+    public void givenRoomIsFull_whenUserJoinRoom_joinRoomFailure() throws Exception {
 
-        User A = new User("A", "imageName1");
-        User B = new User("B", "imageName1");
-        User C = new User("C", "imageName1");
-        User D = new User("D", "imageName1");
-        User E = new User("E", "imageName1");
-        User F = new User("F", "imageName1");
-        User G = new User("G", "imageName1");
-        Room room = givenGameStarted("room A", A, A, B, C, D, E, F, G);
+        User userA = new User("A", "imageName1");
+        User userB = new User("B", "imageName1");
+        User userC = new User("C", "imageName1");
+        User userD = new User("D", "imageName1");
+        User userE = new User("E", "imageName1");
+        User userF = new User("F", "imageName1");
+        User userG = new User("G", "imageName1");
+        Room room = givenRoomStarted("room A", userA.getId(), userA, userB, userC, userD, userE, userF, userG);
 
         // join room
         User H = new User("H", "imageName1");
@@ -92,12 +92,12 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         Room actualGame = findRoomById(room.getId());
 
         assertEquals(7, actualGame.getUsers().size());
-        assertEquals(actualGame.findUserById(A.getId()), A);
-        assertEquals(actualGame.findUserById(B.getId()), B);
-        assertEquals(actualGame.findUserById(C.getId()), C);
-        assertEquals(actualGame.findUserById(D.getId()), D);
-        assertEquals(actualGame.findUserById(E.getId()), E);
-        assertEquals(actualGame.findUserById(F.getId()), F);
-        assertEquals(actualGame.findUserById(G.getId()), G);
+        assertEquals(actualGame.findUserById(userA.getId()), userA);
+        assertEquals(actualGame.findUserById(userB.getId()), userB);
+        assertEquals(actualGame.findUserById(userC.getId()), userC);
+        assertEquals(actualGame.findUserById(userD.getId()), userD);
+        assertEquals(actualGame.findUserById(userE.getId()), userE);
+        assertEquals(actualGame.findUserById(userF.getId()), userF);
+        assertEquals(actualGame.findUserById(userG.getId()), userG);
     }
 }

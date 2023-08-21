@@ -12,9 +12,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
-import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
-
-import static java.util.Arrays.asList;
+import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -60,18 +60,17 @@ public abstract class CitadelsSpringBootTest {
 
     @SneakyThrows
     protected String getContentAsString(ResultActions actions) {
-        return actions
-                .andReturn()
+        return actions.andReturn()
                 .getResponse()
                 .getContentAsString();
     }
 
-    protected Room givenGameStarted(String name, User holder, User... users) {
-        return roomRepository.createRoom(new Room(name, holder, asList(users))).orElseThrow();
+    protected Room givenRoomStarted(String name, String holderId, User... users) {
+        return roomRepository.createRoom(new Room(name, holderId, Stream.of(users).collect(Collectors.toSet())));
     }
 
     protected Room findRoomById(String roomId) {
-        Room room = roomRepository.findRoomById(roomId).orElseThrow(() -> new JoinRoomException("CAN NOT FIND ROOM ID=" + roomId));
+        Room room = roomRepository.findRoomById(roomId).orElseThrow(() -> new NotFoundException("CAN NOT FIND ROOM ID=" + roomId));
         return room;
     }
 
@@ -80,6 +79,6 @@ public abstract class CitadelsSpringBootTest {
         return room.getUsers().stream()
                 .filter(user1 -> name.equals(user1.getName()))
                 .findFirst()
-                .orElseThrow(() -> new NullPointerException("CAN NOT FIND USER NAME=" + name));
+                .orElseThrow(() -> new NotFoundException("CAN NOT FIND USER NAME=" + name));
     }
 }

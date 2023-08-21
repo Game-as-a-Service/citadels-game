@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class JoinRoomException extends RuntimeException {
-    private String message;
-    public JoinRoomException(String message) {
-        this.message = message;
+    private String msg;
+    public JoinRoomException(String msg) {
+        this.msg = msg;
     }
 }
