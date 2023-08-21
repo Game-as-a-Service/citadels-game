@@ -10,14 +10,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
+import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 
 @RestControllerAdvice
 public class CitadelsGameExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(JoinRoomException.class)
-    public ErrorResponse badRequest(JoinRoomException exception) {
-        return new ErrorResponse(Status.FAIL, exception.getMessage());
+    public ErrorResponse errorJoinRoomRequest(JoinRoomException exception) {
+        return new ErrorResponse(Status.FAIL, exception.getMsg());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NotFoundException.class)
+    public ErrorResponse ErrorNotFoundRequest(NotFoundException exception) {
+        return new ErrorResponse(Status.FAIL, exception.getMsg());
     }
 
     @ExceptionHandler(Exception.class)
