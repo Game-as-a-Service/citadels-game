@@ -18,7 +18,7 @@ public class CreateRoomUseCase {
 
     public void execute(Request request, Presenter presenter){
         Room room = createRoom(request);
-        presenter.setRoom(roomRepository.createRoom(room).orElse(null));
+        presenter.setRoom(roomRepository.createRoom(room));
     }
 
     private Room createRoom(Request request) {
@@ -38,5 +38,4 @@ public class CreateRoomUseCase {
         public String userName;
         public String userImage;
     }
-
 }

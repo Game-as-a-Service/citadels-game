@@ -4,6 +4,7 @@ import tw.waterballsa.gaas.citadels.domain.Room;
 import java.util.Optional;
 
 public interface RoomRepository {
-    Optional<Room> createRoom(Room room);
+    Room createRoom(Room room);
+    Room updateRoom(Room room);
     Optional<Room> findRoomById(String gameId);
 }
