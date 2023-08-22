@@ -30,8 +30,11 @@ const RoomList = () => {
   const onNextClick = () => {
     setPagination((prev) => ({ ...prev, current: current + 1 }))
   }
+  const onPageClick = (page) => {
+    setPagination((prev) => ({ ...prev, current: page }))
+  }
   // data
-  const [dataSource, setDataSource] = useState([])
+  const [dataSource, setDataSource] = useState(null)
   useEffect(() => {
     getData()
   }, [])
@@ -56,34 +59,41 @@ const RoomList = () => {
       </div>
       <div className='row__list list'>
         {loading && <div>loading ...</div>}
-        {dataSource?.map((room, index) => (
-          <div className='list__card' key={index}>
-            <div className='host'>
-              <div className='avatar'></div>
-              <div className='name'>{room.holderName}</div>
+        {dataSource ? (
+          dataSource?.map((room, index) => (
+            <div className='list__card' key={index}>
+              <div className='host'>
+                <div className='avatar'></div>
+                <div className='name'>{room.holderName}</div>
+              </div>
+              <div className='room-name'>
+                <div className='title'>房間名稱</div>
+                <div className='detail'>{room.gameName}</div>
+              </div>
+              <div className='players'>
+                <div className='title'>人數</div>
+                <div className='detail'>{room.totalPlayers}</div>
+              </div>
             </div>
-            <div className='room-name'>
-              <div className='title'>房間名稱</div>
-              <div className='detail'>{room.gameName}</div>
-            </div>
-            <div className='players'>
-              <div className='title'>人數</div>
-              <div className='detail'>{room.totalPlayers}</div>
-            </div>
-          </div>
-        ))}
-        {isOdd(dataSource?.length) && (
+          ))
+        ) : (
+          <div>查無資料</div>
+        )}
+        {dataSource && isOdd(dataSource?.length) && (
           <div className='list__card bg--trans'></div>
         )}
       </div>
       <div className='row__list'>
-        <Pagination
-          className='row__pagination'
-          current={current}
-          totalPage={totalPage}
-          onPrevClick={onPrevClick}
-          onNextClick={onNextClick}
-        />
+        {dataSource?.length > pageSize && (
+          <Pagination
+            className='row__pagination'
+            current={current}
+            totalPage={totalPage}
+            onPrevClick={onPrevClick}
+            onNextClick={onNextClick}
+            onPageClick={onPageClick}
+          />
+        )}
       </div>
     </div>
   )

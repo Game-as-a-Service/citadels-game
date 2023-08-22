@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
  * @param {number} props.current - current page
  * @param {function} props.onPrevClick - callback triggers when click prev btn
  * @param {function} props.onNextClick  - callback triggers when click next btn
+ * @param {function} props.onPageClick - callback triggers when click page btn
  * @param {string} props.className - classname applies on wrapper of pagination
  */
 
@@ -15,6 +16,7 @@ const Pagination = ({
   current,
   onPrevClick,
   onNextClick,
+  onPageClick,
   className = ''
 }) => {
   const [currentPage, setCurrentPage] = useState(current)
@@ -81,6 +83,7 @@ const Pagination = ({
   }
   const handleClickPage = (page) => {
     setCurrentPage(page)
+    if (onPageClick) onPageClick(page)
   }
   const handleClickPrev = () => {
     if (currentPage > 1) {
@@ -99,11 +102,7 @@ const Pagination = ({
       <div key='prev' className='prev-btn' onClick={handleClickPrev}></div>
       {renderPrevTabs()}
       {
-        <div
-          key={currentPage}
-          onClick={() => handleClickPage(currentPage)}
-          className='page-btn active'
-        >
+        <div key={currentPage} className='page-btn active'>
           {currentPage}
         </div>
       }
@@ -120,5 +119,6 @@ Pagination.propTypes = {
   current: PropTypes.number,
   onPrevClick: PropTypes.func,
   onNextClick: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  onPageClick: PropTypes.func
 }
