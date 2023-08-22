@@ -36,24 +36,7 @@ Cypress.Commands.add('setupIntercept', () => {
         userImage: 'imageName1'
       }
       req.reply({
-        createTime: '2023-07-04T19:29:54.001Z',
-        status: 'OK',
-        msg: '',
-        room: {
-          roomId: 'sxsxs111',
-          roomName: '一起玩富饒之城',
-          holderId: 'player1',
-          holderName: '陳XX',
-          users: [
-            {
-              userId: 'player1',
-              userImage: 'imageName1',
-              userName: '陳XX'
-            }
-          ],
-          status: 'OPEN',
-          totalUsers: 1
-        }
+        fixture: 'createRoom.json'
       })
     }
   ).as('createRoomRequest')
