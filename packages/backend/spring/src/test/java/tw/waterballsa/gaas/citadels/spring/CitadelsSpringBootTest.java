@@ -50,6 +50,7 @@ public abstract class CitadelsSpringBootTest {
     public String toJson(Object obj) {
         return objectMapper.writeValueAsString(obj);
     }
+
     public <T> T toObject(byte[] content, Class<T> toValueType){
         return objectMapper.convertValue(content, toValueType);
     }
@@ -72,13 +73,5 @@ public abstract class CitadelsSpringBootTest {
     protected Room findRoomById(String roomId) {
         Room room = roomRepository.findRoomById(roomId).orElseThrow(() -> new NotFoundException("CAN NOT FIND ROOM ID=" + roomId));
         return room;
-    }
-
-    protected User findUserByName(String roomId, String name) {
-        Room room = findRoomById(roomId);
-        return room.getUsers().stream()
-                .filter(user1 -> name.equals(user1.getName()))
-                .findFirst()
-                .orElseThrow(() -> new NotFoundException("CAN NOT FIND USER NAME=" + name));
     }
 }
