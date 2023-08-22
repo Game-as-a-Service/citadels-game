@@ -98,7 +98,7 @@ const RoomList = () => {
         <Pagination className='row__pagination' current={10} totalPage={20} />
       </div>
       <Modal
-        isModalOpen={true}
+        isModalOpen={isModalOpen}
         title={null}
         footer={
           <div className='button_group'>
