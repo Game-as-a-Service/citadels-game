@@ -10,7 +10,7 @@ describe('Modal E2E Test', () => {
     cy.get('.navbar__btn').click()
 
     // 顯示modal
-    cy.get('.custom-modal').should('be.visible')
+    cy.get('.modal-content').should('be.visible')
 
     // 輸入欄位輸入'一起玩富饒之城'
     cy.get('#roomName').type('一起玩富饒之城')
@@ -33,7 +33,7 @@ describe('Modal E2E Test', () => {
 
     cy.get('.navbar__btn').click()
 
-    cy.get('.custom-modal').should('be.visible')
+    cy.get('.modal-content').should('be.visible')
 
     cy.get('#roomName').type('一起玩富饒之城')
 
