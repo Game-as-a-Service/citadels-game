@@ -59,7 +59,7 @@ const RoomList = () => {
       </div>
       <div className='row__list list'>
         {loading && <div>loading ...</div>}
-        {dataSource ? (
+        {dataSource?.length !== 0 ? (
           dataSource?.map((room, index) => (
             <div className='list__card' key={index}>
               <div className='host'>
@@ -84,7 +84,7 @@ const RoomList = () => {
         )}
       </div>
       <div className='row__list'>
-        {dataSource?.length > pageSize && (
+        {totalRoom > pageSize && (
           <Pagination
             className='row__pagination'
             current={current}

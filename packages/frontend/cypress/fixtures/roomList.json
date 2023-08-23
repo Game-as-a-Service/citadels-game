@@ -1,0 +1,189 @@
+{
+  "searchTime": "2023-07-04T20:29:54.001Z",
+  "totalRoom": 13,
+  "status": "OK",
+  "msg": "",
+  "rooms": [
+    {
+      "gameId": "sxsxs111",
+      "gameName": "一起玩富饒之城",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "陳XX",
+      "holderId": "player1",
+      "totalPlayers": 3,
+      "players": [
+        { "playerId": "player1", "playerName": "陳XX" },
+        { "playerId": "player2", "playerName": "黃XX" },
+        { "playerId": "player3", "playerName": "陳XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs222",
+      "gameName": "一起玩玩玩玩富饒之城",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "王XX",
+      "holderId": "player1",
+      "totalPlayers": 5,
+      "players": [
+        { "playerId": "player1", "playerName": "王XX" },
+        { "playerId": "player2", "playerName": "黃XX" },
+        { "playerId": "player3", "playerName": "陳XX" },
+        { "playerId": "player4", "playerName": "葉XX" },
+        { "playerId": "player5", "playerName": "林XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs333",
+      "gameName": "一起玩 citadels-game",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "黃XX",
+      "holderId": "player1",
+      "totalPlayers": 1,
+      "players": [{ "playerId": "player1", "playerName": "黃XX" }]
+    },
+    {
+      "gameId": "sxsxs444",
+      "gameName": "一起玩 $#*&(%%",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "王XX",
+      "holderId": "player1",
+      "totalPlayers": 7,
+      "players": [
+        { "playerId": "player1", "playerName": "王XX" },
+        { "playerId": "player2", "playerName": "黃XX" },
+        { "playerId": "player3", "playerName": "陳XX" },
+        { "playerId": "player4", "playerName": "葉XX" },
+        { "playerId": "player5", "playerName": "林XX" },
+        { "playerId": "player6", "playerName": "王XX" },
+        { "playerId": "player7", "playerName": "謝XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs555",
+      "gameName": "一緒にお城ゲームをする城",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "王XX",
+      "holderId": "player1",
+      "totalPlayers": 5,
+      "players": [
+        { "playerId": "player1", "playerName": "王XX" },
+        { "playerId": "player2", "playerName": "黃XX" },
+        { "playerId": "player3", "playerName": "陳XX" },
+        { "playerId": "player4", "playerName": "葉XX" },
+        { "playerId": "player5", "playerName": "林XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs666",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "黃XX",
+      "holderId": "player1",
+      "totalPlayers": 4,
+      "players": [
+        { "playerId": "player1", "playerName": "黃XX" },
+        { "playerId": "player2", "playerName": "黃XX" },
+        { "playerId": "player3", "playerName": "陳XX" },
+        { "playerId": "player4", "playerName": "葉XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs777",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "葉XX",
+      "holderId": "player1",
+      "totalPlayers": 2,
+      "players": [
+        { "playerId": "player1", "playerName": "葉XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs888",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "張XX",
+      "holderId": "player1",
+      "totalPlayers": 2,
+      "players": [
+        { "playerId": "player1", "playerName": "張XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs999",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "吳XX",
+      "holderId": "player1",
+      "totalPlayers": 2,
+      "players": [
+        { "playerId": "player1", "playerName": "吳XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs010",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "黃XX",
+      "holderId": "player1",
+      "totalPlayers": 2,
+      "players": [
+        { "playerId": "player1", "playerName": "黃XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs011",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "黃XX",
+      "holderId": "player1",
+      "totalPlayers": 2,
+      "players": [
+        { "playerId": "player1", "playerName": "黃XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs012",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "黃XX",
+      "holderId": "player1",
+      "totalPlayers": 3,
+      "players": [
+        { "playerId": "player1", "playerName": "黃XX" },
+        { "playerId": "player2", "playerName": "黃XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    },
+    {
+      "gameId": "sxsxs013",
+      "gameName": "一起玩富饒之城1234",
+      "createTime": "2023-07-04T19:29:54.001Z",
+      "status": "OPEN",
+      "holderName": "洪XX",
+      "holderId": "player1",
+      "totalPlayers": 2,
+      "players": [
+        { "playerId": "player1", "playerName": "洪XX" },
+        { "playerId": "player2", "playerName": "黃XX" }
+      ]
+    }
+  ]
+}
