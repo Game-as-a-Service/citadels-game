@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.Room.Status;
 import tw.waterballsa.gaas.citadels.domain.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,7 +30,8 @@ public class RoomData {
 
     public static RoomData toData(Room room) {
         User holder = room.findHolder();
-        return RoomData.builder().name(room.getName())
+        return RoomData.builder().id(room.getId())
+                .name(room.getName())
                 .users(UserData.toData(room.getUsers()))
                 .status(room.getStatus())
                 .holderId(holder.getId())
@@ -42,5 +42,4 @@ public class RoomData {
     public Room toDomain() {
         return new Room(id, name, holderId, status, createTime, toDomains(users));
     }
-
 }

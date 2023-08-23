@@ -10,6 +10,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
+import tw.waterballsa.gaas.citadels.domain.Room;
+import tw.waterballsa.gaas.citadels.domain.User;
+import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -22,7 +27,9 @@ public abstract class CitadelsSpringBootTest {
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
-    protected RoomRepository citadelsGameRepository;
+    protected RoomRepository roomRepository;
+
+    protected static final String API_PREFIX = "/api/citadels";
 
     @Test
     public void testMongoDB() {
@@ -43,6 +50,7 @@ public abstract class CitadelsSpringBootTest {
     public String toJson(Object obj) {
         return objectMapper.writeValueAsString(obj);
     }
+
     public <T> T toObject(byte[] content, Class<T> toValueType){
         return objectMapper.convertValue(content, toValueType);
     }
@@ -53,10 +61,17 @@ public abstract class CitadelsSpringBootTest {
 
     @SneakyThrows
     protected String getContentAsString(ResultActions actions) {
-        return actions
-                .andReturn()
+        return actions.andReturn()
                 .getResponse()
                 .getContentAsString();
     }
 
+    protected Room givenRoomStarted(String name, String holderId, User... users) {
+        return roomRepository.createRoom(new Room(name, holderId, Stream.of(users).collect(Collectors.toSet())));
+    }
+
+    protected Room findRoomById(String roomId) {
+        Room room = roomRepository.findRoomById(roomId).orElseThrow(() -> new NotFoundException("CAN NOT FIND ROOM ID=" + roomId));
+        return room;
+    }
 }

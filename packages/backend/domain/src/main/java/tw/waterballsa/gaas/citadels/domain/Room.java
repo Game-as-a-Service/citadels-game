@@ -1,11 +1,12 @@
 package tw.waterballsa.gaas.citadels.domain;
 
 import lombok.AllArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static java.util.UUID.randomUUID;
 import static tw.waterballsa.gaas.citadels.domain.Room.Status.OPEN;
@@ -18,6 +19,7 @@ public class Room {
     private Status status = OPEN;
     private LocalDateTime createTime;
     private Map<String, User> userIdToUser = new LinkedHashMap<>();
+    private final int MAXIMUM_USERS = 7;
 
     public Room(String name, User holder) {
         this.id = randomUUID().toString();
@@ -25,6 +27,17 @@ public class Room {
         this.holderId = holder.getId();
         this.userIdToUser.put(holder.getId(), holder);
         this.createTime = LocalDateTime.now();
+    }
+
+    public Room(String name, String holderId, Set<User> userSet) {
+        this.id = randomUUID().toString();
+        this.name = name;
+        this.holderId = holderId;
+        this.status = OPEN;
+        this.createTime = LocalDateTime.now();
+        for(User user : userSet) {
+            userIdToUser.put(user.getId(), user);
+        }
     }
 
     public User findHolder() {
@@ -46,7 +59,6 @@ public class Room {
     public String getName() {
         return name;
     }
-
     public Status getStatus() {
         return status;
     }
@@ -55,7 +67,22 @@ public class Room {
         return createTime;
     }
 
+    public void joinUser(User user) {
+        if(isFull()) {
+            throw new JoinRoomException("GAME IS FULL");
+        }
+        userIdToUser.put(user.getId(), user);
+    }
+
+    public boolean isFull() {
+        return userIdToUser.size() >= MAXIMUM_USERS;
+    }
+
     public enum Status {
-        OPEN, PLAYING
+        OPEN,
+        PLAYING,
+        CLOSE
     }
 }
+
+

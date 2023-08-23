@@ -20,10 +20,10 @@ import static tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.CreateRo
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api/citadels")
-public class RoomController {
+public class CreateRoomController {
     private final CreateRoomUseCase createRoomUseCase;
 
-    @PostMapping("/game")
+    @PostMapping("/room")
     public ResponseEntity<CreateRoomView> createGame(@RequestBody CreateRoomRequest request) {
         CreateRoomPresenter presenter = new CreateRoomPresenter();
         createRoomUseCase.execute(request.toRequest(), presenter);
@@ -57,5 +57,4 @@ public class RoomController {
             return new CreateRoomUseCase.Request(roomName, userName, userImage);
         }
     }
-
 }

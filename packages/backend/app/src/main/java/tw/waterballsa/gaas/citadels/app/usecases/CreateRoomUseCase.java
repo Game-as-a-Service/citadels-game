@@ -38,5 +38,4 @@ public class CreateRoomUseCase {
         public String userName;
         public String userImage;
     }
-
 }

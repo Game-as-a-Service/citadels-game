@@ -3,20 +3,32 @@ package tw.waterballsa.gaas.citadels.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static java.util.UUID.randomUUID;
+import java.util.Objects;
 
+import static java.util.UUID.randomUUID;
 
 @Getter
 @AllArgsConstructor
 public class User {
-    private final String id;
-    private final String name;
-    private final String imageName;
+    private String id;
+    private String name;
+    private String imageName;
 
-    public User(String name, String useImage) {
-        this.id = randomUUID().toString();
-        this.name = name;
-        this.imageName = useImage;
+    public User(String name, String image) {
+        this(randomUUID().toString(), name, image);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User user = (User) obj;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(imageName, user.imageName);
+    }
 }
