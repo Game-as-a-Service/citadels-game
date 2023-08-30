@@ -61,8 +61,8 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
 
         // test user
         assertEquals(3, actualRoom.getUsers().size());
-        assertEquals(actualRoom.findUserById(userA.getId()), userA);
-        assertEquals(actualRoom.findUserById(userB.getId()), userB);
+        assertEquals(actualRoom.findUserById(userA.getId()).get(), userA);
+        assertEquals(actualRoom.findUserById(userB.getId()).get(), userB);
 
         Optional<User> actualUserC = actualRoom.findUserById(joinRoomView.getJoinedUserId());
         assertTrue(actualUserC.isPresent());
@@ -96,12 +96,12 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         Room actualGame = findRoomById(room.getId());
 
         assertEquals(7, actualGame.getUsers().size());
-        assertEquals(actualGame.findUserById(userA.getId()), userA);
-        assertEquals(actualGame.findUserById(userB.getId()), userB);
-        assertEquals(actualGame.findUserById(userC.getId()), userC);
-        assertEquals(actualGame.findUserById(userD.getId()), userD);
-        assertEquals(actualGame.findUserById(userE.getId()), userE);
-        assertEquals(actualGame.findUserById(userF.getId()), userF);
-        assertEquals(actualGame.findUserById(userG.getId()), userG);
+        assertEquals(actualGame.findUserById(userA.getId()).get(), userA);
+        assertEquals(actualGame.findUserById(userB.getId()).get(), userB);
+        assertEquals(actualGame.findUserById(userC.getId()).get(), userC);
+        assertEquals(actualGame.findUserById(userD.getId()).get(), userD);
+        assertEquals(actualGame.findUserById(userE.getId()).get(), userE);
+        assertEquals(actualGame.findUserById(userF.getId()).get(), userF);
+        assertEquals(actualGame.findUserById(userG.getId()).get(), userG);
     }
 }
