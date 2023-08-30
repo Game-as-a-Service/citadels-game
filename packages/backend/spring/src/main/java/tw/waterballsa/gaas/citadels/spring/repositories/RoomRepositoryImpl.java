@@ -30,6 +30,11 @@ public class RoomRepositoryImpl implements RoomRepository {
         return roomDAO.findById(roomId).map(RoomData::toDomain);
     }
 
+    @Override
+    public void deleteRoom(String roomId) {
+        roomDAO.deleteById(roomId);
+    }
+
     private Room saveOrUpdateRoom(Room room) {
         RoomData data = RoomData.toData(room);
         return roomDAO.save(data).toDomain();

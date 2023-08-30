@@ -9,6 +9,8 @@ import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.JoinRoomView;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.RoomView;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -62,9 +64,10 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         assertEquals(actualRoom.findUserById(userA.getId()), userA);
         assertEquals(actualRoom.findUserById(userB.getId()), userB);
 
-        User actualUserC = actualRoom.findUserById(joinRoomView.getJoinedUserId());
-        assertEquals(actualUserC.getName(), userC.getName());
-        assertEquals(actualUserC.getImageName(), userC.getImageName());
+        Optional<User> actualUserC = actualRoom.findUserById(joinRoomView.getJoinedUserId());
+        assertTrue(actualUserC.isPresent());
+        assertEquals(actualUserC.get().getName(), userC.getName());
+        assertEquals(actualUserC.get().getImageName(), userC.getImageName());
     }
 
     @Test

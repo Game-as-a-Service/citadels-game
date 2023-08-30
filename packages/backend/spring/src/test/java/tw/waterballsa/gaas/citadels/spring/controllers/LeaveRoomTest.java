@@ -5,8 +5,10 @@ import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
 import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,11 +21,13 @@ public class LeaveRoomTest extends CitadelsSpringBootTest {
         User userC = new User("userC", "image");
         String roomAId = givenRoomStarted("roomA", userA.getId(), userA, userB, userC).getId();
 
-        mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:leave", roomAId).content("{\"userId\": \"" + userC.getId() + "\"}"))
+        mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:leave", roomAId)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"userId\": \"" + userC.getId() + "\"}"))
                 .andExpect(status().isOk());
 
         Room roomA = roomRepository.findRoomById(roomAId).orElseThrow();
-        assertNull(roomA.findUserById(userC.getId()));
+        assertFalse(roomA.findUserById(userC.getId()).isPresent());
     }
 
     @Test
@@ -31,10 +35,12 @@ public class LeaveRoomTest extends CitadelsSpringBootTest {
         User userA = new User("userA", "image");
         String roomAId = givenRoomStarted("roomA", userA.getId(), userA).getId();
 
-        mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:leave", roomAId).content("{\"userId\": \"" + userA.getId() + "\"}"))
+        mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:leave", roomAId)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"userId\": \"" + userA.getId() + "\"}"))
                 .andExpect(status().isOk());
 
-        Room roomA = roomRepository.findRoomById(roomAId).orElseThrow();
-        assertEquals(Room.Status.CLOSE, roomA.getStatus());
+        Optional<Room> roomA = roomRepository.findRoomById(roomAId);
+        assertFalse(roomA.isPresent());
     }
 }

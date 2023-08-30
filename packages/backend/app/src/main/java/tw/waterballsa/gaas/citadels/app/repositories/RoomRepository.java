@@ -7,4 +7,5 @@ public interface RoomRepository {
     Room createRoom(Room room);
     Room updateRoom(Room room);
     Optional<Room> findRoomById(String gameId);
+    void deleteRoom(String roomId);
 }
