@@ -87,6 +87,11 @@ public class Room {
         userIdToUser.remove(userId);
         if (userIdToUser.isEmpty()) {
             this.status = CLOSE;
+            return;
+        }
+        if (holderId.equals(userId)) {
+            User anyUser = userIdToUser.values().stream().findAny().orElseThrow(() -> new NotFoundException("the room have not any users"));
+            this.holderId = anyUser.getId();
         }
     }
 

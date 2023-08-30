@@ -43,4 +43,21 @@ public class LeaveRoomTest extends CitadelsSpringBootTest {
         Optional<Room> roomA = roomRepository.findRoomById(roomAId);
         assertFalse(roomA.isPresent());
     }
+
+    @Test
+    public void givenRoomAHaveUserAIsHolderAndTheOther2Users_whenUserALeaveRoomA_thenHolderWillChanged() throws Exception {
+        User userA = new User("userA", "image");
+        User userB = new User("userB", "image");
+        User userC = new User("userC", "image");
+        String roomAId = givenRoomStarted("roomA", userA.getId(), userA, userB, userC).getId();
+
+        mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:leave", roomAId)
+                        .contentType(APPLICATION_JSON)
+                        .content("{\"userId\": \"" + userA.getId() + "\"}"))
+                .andExpect(status().isOk());
+
+        Room roomA = roomRepository.findRoomById(roomAId).orElseThrow();
+        assertNotNull(roomA.findHolder());
+        assertNotEquals(userA, roomA.findHolder());
+    }
 }
