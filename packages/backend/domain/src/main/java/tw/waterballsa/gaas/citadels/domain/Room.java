@@ -41,7 +41,7 @@ public class Room {
     }
 
     public User findHolder() {
-        return findUserById(this.holderId).orElseThrow(() -> new NotFoundException("holder is not found"));
+        return findUserById(this.holderId).orElseThrow(() -> new NotFoundException("HOLDER IS NOT FOUND"));
     }
 
     public boolean isClose() {
@@ -89,8 +89,12 @@ public class Room {
             this.status = CLOSE;
             return;
         }
+        transferHolderIfHolderLeave(userId);
+    }
+
+    private void transferHolderIfHolderLeave(String userId) {
         if (holderId.equals(userId)) {
-            User anyUser = userIdToUser.values().stream().findAny().orElseThrow(() -> new NotFoundException("the room have not any users"));
+            User anyUser = userIdToUser.values().stream().findAny().orElseThrow(() -> new NotFoundException("THE ROOM HAVE NOT ANY USERS"));
             this.holderId = anyUser.getId();
         }
     }
