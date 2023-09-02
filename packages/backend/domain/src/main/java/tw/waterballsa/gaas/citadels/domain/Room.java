@@ -1,14 +1,14 @@
 package tw.waterballsa.gaas.citadels.domain;
 
 import lombok.AllArgsConstructor;
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
 import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
+
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static java.util.UUID.randomUUID;
+import static tw.waterballsa.gaas.citadels.domain.Room.Status.CLOSE;
 import static tw.waterballsa.gaas.citadels.domain.Room.Status.OPEN;
 
 @AllArgsConstructor
@@ -35,17 +35,21 @@ public class Room {
         this.holderId = holderId;
         this.status = OPEN;
         this.createTime = LocalDateTime.now();
-        for(User user : userSet) {
+        for (User user : userSet) {
             userIdToUser.put(user.getId(), user);
         }
     }
 
     public User findHolder() {
-        return findUserById(this.holderId);
+        return findUserById(this.holderId).orElseThrow(() -> new NotFoundException("HOLDER IS NOT FOUND"));
     }
 
-    public User findUserById(String userId) {
-        return userIdToUser.get(userId);
+    public boolean isClose() {
+        return this.status.equals(CLOSE) || userIdToUser.isEmpty();
+    }
+
+    public Optional<User> findUserById(String userId) {
+        return Optional.ofNullable(userIdToUser.get(userId));
     }
 
     public List<User> getUsers() {
@@ -59,6 +63,7 @@ public class Room {
     public String getName() {
         return name;
     }
+
     public Status getStatus() {
         return status;
     }
@@ -68,7 +73,7 @@ public class Room {
     }
 
     public void joinUser(User user) {
-        if(isFull()) {
+        if (isFull()) {
             throw new JoinRoomException("GAME IS FULL");
         }
         userIdToUser.put(user.getId(), user);
@@ -76,6 +81,22 @@ public class Room {
 
     public boolean isFull() {
         return userIdToUser.size() >= MAXIMUM_USERS;
+    }
+
+    public void removeUserById(String userId) {
+        userIdToUser.remove(userId);
+        if (userIdToUser.isEmpty()) {
+            this.status = CLOSE;
+            return;
+        }
+        assignNewHostIfCurrentHostLeave(userId);
+    }
+
+    private void assignNewHostIfCurrentHostLeave(String userId) {
+        if (holderId.equals(userId)) {
+            User newHolder = userIdToUser.values().stream().findAny().orElseThrow(() -> new NotFoundException("THE ROOM HAVE NOT ANY USERS"));
+            this.holderId = newHolder.getId();
+        }
     }
 
     public enum Status {
