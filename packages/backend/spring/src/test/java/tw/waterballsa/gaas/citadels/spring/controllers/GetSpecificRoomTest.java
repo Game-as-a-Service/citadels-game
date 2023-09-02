@@ -41,8 +41,8 @@ public class GetSpecificRoomTest extends CitadelsSpringBootTest {
 
         // test user
         assertEquals(2, actualRoom.getUsers().size());
-        assertEquals(actualRoom.findUserById(userA.getId()), userA);
-        assertEquals(actualRoom.findUserById(userB.getId()), userB);
+        assertEquals(actualRoom.findUserById(userA.getId()).get(), userA);
+        assertEquals(actualRoom.findUserById(userB.getId()).get(), userB);
     }
 
     @Test
