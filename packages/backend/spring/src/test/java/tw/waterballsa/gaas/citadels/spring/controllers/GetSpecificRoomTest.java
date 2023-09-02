@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class GetSpecificRoomTest extends CitadelsSpringBootTest {
 
     @Test
-    public void UserAInRoomA_RequestsUpdateRoomStatus_ReceiveSuccess() throws Exception {
+    public void RequestsRoomAStatus_ReceiveSuccess() throws Exception {
         // init room
         User userA = new User("A", "imageName1");
         User userB = new User("B", "imageName1");
@@ -43,5 +43,16 @@ public class GetSpecificRoomTest extends CitadelsSpringBootTest {
         assertEquals(2, actualRoom.getUsers().size());
         assertEquals(actualRoom.findUserById(userA.getId()), userA);
         assertEquals(actualRoom.findUserById(userB.getId()), userB);
+    }
+
+    @Test
+    public void RequestsNotExistRoomStatus_ReceiveFail() throws Exception {
+        // init room
+        String fakeRoomId = "123";
+        ResultActions mvcResult = mockMvc.perform(get(API_PREFIX + "/rooms/{roomId}", fakeRoomId))
+                .andExpect(status().isBadRequest());
+        GetSpecificRoomView getSpecificRoomView = getBody(mvcResult, GetSpecificRoomView.class);
+        assertEquals("FAIL", getSpecificRoomView.getStatus());
+        assertEquals("CAN NOT FIND GAME, ID=" + fakeRoomId, getSpecificRoomView.getMsg());
     }
 }
