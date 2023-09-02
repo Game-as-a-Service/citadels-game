@@ -8,7 +8,6 @@ import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 
 import javax.inject.Named;
-import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
@@ -27,8 +26,7 @@ public class LeaveRoomUseCase {
     }
 
     private Room findRoomById(String roomId) {
-        Optional<Room> room = roomRepository.findRoomById(roomId);
-        return room.orElseThrow(() -> new NotFoundException("CAN NOT FIND GAME, ID=" + roomId));
+        return roomRepository.findRoomById(roomId).orElseThrow(() -> new NotFoundException("CAN NOT FIND GAME, ID=" + roomId));
     }
 
     @Data

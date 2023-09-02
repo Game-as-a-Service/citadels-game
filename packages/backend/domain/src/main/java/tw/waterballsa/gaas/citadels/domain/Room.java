@@ -89,13 +89,13 @@ public class Room {
             this.status = CLOSE;
             return;
         }
-        transferHolderIfHolderLeave(userId);
+        assignNewHostIfCurrentHostLeave(userId);
     }
 
-    private void transferHolderIfHolderLeave(String userId) {
+    private void assignNewHostIfCurrentHostLeave(String userId) {
         if (holderId.equals(userId)) {
-            User anyUser = userIdToUser.values().stream().findAny().orElseThrow(() -> new NotFoundException("THE ROOM HAVE NOT ANY USERS"));
-            this.holderId = anyUser.getId();
+            User newHolder = userIdToUser.values().stream().findAny().orElseThrow(() -> new NotFoundException("THE ROOM HAVE NOT ANY USERS"));
+            this.holderId = newHolder.getId();
         }
     }
 
