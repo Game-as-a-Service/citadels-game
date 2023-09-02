@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class GetSpecificRoomTest extends CitadelsSpringBootTest {
 
     @Test
-    public void RequestsRoomAStatus_ReceiveSuccess() throws Exception {
+    public void requestsRoomAStatus_ReceiveSuccess() throws Exception {
         // init room
         User userA = new User("A", "imageName1");
         User userB = new User("B", "imageName1");
@@ -46,7 +46,7 @@ public class GetSpecificRoomTest extends CitadelsSpringBootTest {
     }
 
     @Test
-    public void RequestsNotExistRoomStatus_ReceiveFail() throws Exception {
+    public void requestsNotExistRoomStatus_ReceiveFail() throws Exception {
         // init room
         String fakeRoomId = "123";
         ResultActions mvcResult = mockMvc.perform(get(API_PREFIX + "/rooms/{roomId}", fakeRoomId))
