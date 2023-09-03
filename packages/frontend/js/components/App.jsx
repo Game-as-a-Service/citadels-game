@@ -1,5 +1,5 @@
 import getAPI from '../api/getAPI'
-import Hello from './Hello' // 請根據你的目錄結構修改路徑
+import Hello from './Hello'
 
 const App = () => {
   const { data } = getAPI()
