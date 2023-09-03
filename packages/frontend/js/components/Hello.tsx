@@ -1,9 +1,9 @@
 // src/components/Hello.tsx
 
-import React from 'react';
+import React from 'react'
 
 interface Props {
-  name: string;
+  name: string
 }
 
 const Hello: React.FC<Props> = ({ name }) => {
@@ -11,7 +11,7 @@ const Hello: React.FC<Props> = ({ name }) => {
     <div>
       <h1>Hello, {name}!</h1>
     </div>
-  );
-};
+  )
+}
 
-export default Hello;
+export default Hello
