@@ -1,8 +1,7 @@
 package tw.waterballsa.gaas.citadels.spring.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
 import tw.waterballsa.gaas.citadels.spring.CitadelsSpringBootTest;
@@ -31,15 +30,13 @@ public class JoinRoomTest extends CitadelsSpringBootTest {
         User userC = new User("C", "imageName2");
         String jsonBody = "{\"userName\"  : \"" + userC.getName()  + "\", " +
                            "\"userImage\" : \"" + userC.getImageName() + "\"}";
-        MvcResult mvcResult = mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:join", room.getId())
+        ResultActions resultActions = mockMvc.perform(post(API_PREFIX + "/rooms/{roomId}:join", room.getId())
                         .contentType(APPLICATION_JSON)
                         .content(jsonBody))
-                        .andExpect(status().isOk())
-                        .andReturn();
+                        .andExpect(status().isOk());
 
         // transfer json to view model
-        String content = mvcResult.getResponse().getContentAsString();
-        JoinRoomView joinRoomView = fromJson(content, JoinRoomView.class);
+        JoinRoomView joinRoomView = getBody(resultActions, JoinRoomView.class);
 
         // check result
         // test response body

@@ -23,7 +23,7 @@ public class CitadelsGameExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NotFoundException.class)
-    public ErrorResponse ErrorNotFoundRequest(NotFoundException exception) {
+    public ErrorResponse errorNotFoundRequest(NotFoundException exception) {
         return new ErrorResponse(Status.FAIL, exception.getMsg());
     }
 
