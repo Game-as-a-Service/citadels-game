@@ -17,6 +17,11 @@ module.exports = function () {
     module: {
       rules: [
         {
+          test: /\.(js|jsx|ts|tsx)$/,
+          loader: 'ts-loader', 
+          exclude: /node_modules/
+        },
+        {
           test: /\.(js|jsx)$/,
           loader: 'esbuild-loader',
           options: {
@@ -57,7 +62,7 @@ module.exports = function () {
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     plugins: [
       // 提取CSS文件, 和style-loader無法共存
