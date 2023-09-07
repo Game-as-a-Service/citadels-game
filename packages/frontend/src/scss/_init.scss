@@ -13,6 +13,9 @@ $g-yellow: linear-gradient(45deg, #f8f148, #fcd139);
 $g-gray: linear-gradient(217deg, #cbcabc 0%, #aca99e 100%);
 $blue: #5891ff;
 $cyan: #8fdbe0;
+$purple-blue: #4a5680;
+$dark-blue: #4a5680;
+$dark-red: #6f3c3c;
 $light-blue: #ecf4f9;
 $trans-white: #fcfcfc;
 $white: #ffffff;
@@ -26,15 +29,45 @@ $purple: #514673;
   font-family: Inter;
   font-weight: 600;
 }
+.f-30-r {
+  color: $dark-red;
+  font-size: clamp(1.5rem, 2.5rem, 3rem);
+  font-family: Inter;
+  font-weight: 600;
+}
 .f-24-b {
-  color: #514673;
+  color: $purple;
   font-size: clamp(1rem, 1.5rem, 2rem);
   font-family: Inter;
   font-weight: 600;
 }
 .f-20-b {
-  color: #514673;
+  color: $purple;
   font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+.f-20-db {
+  color: $dark-blue;
+  font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+.f-14-r {
+  color: $dark-red;
+  font-size: clamp(0.78rem, 1.1667em, 1.36rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+.f-12-b {
+  color: $purple-blue;
+  font-size: clamp(0.5rem, 1rem, 1.25rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+.f-12-db {
+  color: $dark-blue;
+  font-size: clamp(0.5rem, 1rem, 1.25rem);
   font-family: Inter;
   font-weight: 600;
 }
@@ -64,8 +97,14 @@ $purple: #514673;
   font-weight: 600;
 }
 
-/*定義常用編排*/
+@mixin f-12-b {
+  color: $purple-blue;
+  font-size: clamp(0.5rem, 1rem, 1.25rem);
+  font-family: Inter;
+  font-weight: 600;
+}
 
+/*定義常用編排*/
 @mixin flex-center-column {
   display: flex;
   flex-direction: column;
@@ -118,7 +157,7 @@ img {
 body {
   background-image: linear-gradient(45deg, #7e66c5, #567ecc);
   background-repeat: no-repeat;
-  // height: 100vh;
+  //height: 100vh;
 }
 
 .bg {
@@ -218,4 +257,24 @@ body {
   @include f-20-w;
   cursor: pointer;
   padding-top: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*定義頭像樣式*/
+.avatar-sm {
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  background-color: white;
+  display: inline-block;
+}
+
+.avatar-lg {
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  background-color: rgb(86, 173, 220);
+  display: inline-block;
 }
