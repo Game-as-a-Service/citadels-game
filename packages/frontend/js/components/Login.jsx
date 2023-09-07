@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import RecycleSvg from '../../src/img/recycle.svg'
 import Portrait1 from '../../src/img/portrait1.svg'
 import Portrait2 from '../../src/img/portrait2.svg'
+
+// 更換圖片
+const portraits = [
+  <div key='portrait1.svg'>
+    <Portrait1 />
+  </div>,
+  <div key='portrait2.svg'>
+    <Portrait2 />
+  </div>
+]
+const portraitLength = portraits.length
 
 const Login = () => {
   // 有名子的話直接進入大廳
@@ -13,20 +24,12 @@ const Login = () => {
     }
   }, [])
 
-  // 更換圖片
-  const portraits = [
-    <div key='portrait1.svg'>
-      <Portrait1 />
-    </div>,
-    <div key='portrait2.svg'>
-      <Portrait2 />
-    </div>
-  ]
-  const [portraitChangeCount, setPortraitChangeCount] = useState(0)
+  const portraitChangeCount = useRef(0)
   const [portraitIndex, setPortraitIndex] = useState(0)
   const changeImage = () => {
-    setPortraitChangeCount(portraitChangeCount + 1)
-    setPortraitIndex(portraitChangeCount % portraits.length)
+    portraitChangeCount.current++
+    console.log('portraitChangeCount:', portraitChangeCount)
+    setPortraitIndex(portraitChangeCount.current % portraitLength)
   }
 
   // 輸入名子
