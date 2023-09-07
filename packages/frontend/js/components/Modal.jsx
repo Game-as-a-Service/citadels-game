@@ -19,9 +19,9 @@ const Modal = ({ isModalOpen, title, footer, children }) => {
 
 Modal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  title: PropTypes.node.isRequired,
-  footer: PropTypes.node.isRequired,
-  children: PropTypes.node.isRequired
+  title: PropTypes.node,
+  footer: PropTypes.node,
+  children: PropTypes.node
 }
 
 export default Modal
