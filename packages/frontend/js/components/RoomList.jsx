@@ -22,7 +22,6 @@ const RoomList = () => {
   // 創建房間
   const [isModalOpen, setIsModalOpen] = useState(false)
   const showModal = () => {
-    console.log('isModalOpen', isModalOpen)
     setIsModalOpen(!isModalOpen)
   }
 
@@ -43,13 +42,13 @@ const RoomList = () => {
       userImage
     })
   }
+
   const navigate = useNavigate()
   const [isErrorVisible, setIsErrorVisible] = useState(false)
   const [errorText, setErrorText] = useState('')
 
-  const handleSubmitRoomName = (event) => {
-    event.preventDefault()
-    console.log('click')
+  const handleSubmitRoomName = (e) => {
+    e.preventDefault()
     createRoom(newRoom)
       .then((res) => {
         if (res.status === 'OK') {
@@ -69,7 +68,7 @@ const RoomList = () => {
     <div className='room-list'>
       <div className='navbar'>
         <div className='navbar__role'>
-          <img className='avatar' />
+          <img className='avatar-sm' />
           <span className='name'>王老先生</span>
         </div>
         <div className='navbar__btn' onClick={showModal}>
@@ -81,7 +80,7 @@ const RoomList = () => {
         {!data && <div>loading ...</div>}
         {data?.map((room, index) => (
           <div className='list__card' key={index}>
-            <div className='avatar'></div>
+            <div className='avatar-sm'></div>
             <div className='host'>
               <div className='title'>房主</div>
               <div className='detail'>{room.holderName}</div>
@@ -102,19 +101,14 @@ const RoomList = () => {
         title={null}
         footer={
           <div className='button_group'>
-            <button
-              className='cancel-btn'
-              onClick={() => {
-                showModal()
-              }}
-            >
+            <button className='cancel-btn' onClick={showModal}>
               取消
             </button>
             <button
               className='blue-btn'
               type='submit'
-              onClick={(event) => {
-                handleSubmitRoomName(event)
+              onClick={(e) => {
+                handleSubmitRoomName(e)
               }}
             >
               創建房間
