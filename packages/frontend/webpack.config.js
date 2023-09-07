@@ -12,8 +12,7 @@ module.exports = function () {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: isProduction ? 'js/bundle.[chunkhash].js' : 'js/bundle.js',
-      chunkFilename: isProduction ? 'js/[id].[chunkhash].js' : 'js/[name].js',
-      publicPath: '/'
+      chunkFilename: isProduction ? 'js/[id].[chunkhash].js' : 'js/[name].js'
     },
     module: {
       rules: [
@@ -53,6 +52,30 @@ module.exports = function () {
             publicPath: (pathData, assetInfo) => {
               return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : ''
             }
+          }
+        },
+        {
+          test: /\.svg$/i,
+          resourceQuery: /url/,
+          type: 'asset',
+          generator: {
+            filename: './img/[hash:7]/[ext]',
+            publicPath: (pathData, assetInfo) => {
+              return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : '';
+            },
+          },
+        },
+        {
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/, 
+          
+          resourceQuery: { not: [/url/] },
+          use: ['@svgr/webpack'],
+          generator: {
+            filename: './img/[hash:7]/[ext]',
+            publicPath: (pathData, assetInfo) => {
+              return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : '';
+            },
           }
         }
       ]
