@@ -13,3 +13,7 @@ export const getRoomList = (payload) => {
 export const createRoom = (payload) => {
   return axios.post('/createroom', payload)
 }
+
+export const getSpecificRoom = (payload) => {
+  return axios.get('/rooms', payload)
+}
