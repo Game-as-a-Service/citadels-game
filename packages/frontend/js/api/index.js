@@ -7,5 +7,5 @@ const url =
 const axios = axiosInstance(url)
 
 export const getRoomList = (payload) => {
-  return axios.get('/games', payload)
+  return axios.get('/rooms', payload)
 }
