@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class GetSpecificRoomTest extends CitadelsSpringBootTest {
-
+    // for no reason
     @Test
     public void requestsRoomAStatus_ReceiveSuccess() throws Exception {
         // init room
