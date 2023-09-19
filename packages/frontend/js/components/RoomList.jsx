@@ -6,8 +6,12 @@ import { getRoomList } from '../redux/slice/roomSlice'
 import { createRoom } from '../api'
 import Modal from './Modal'
 import ErrorModal from './ErrorModal'
+import { useAuth } from './AuthContext'
 
 const RoomList = () => {
+  localStorage.setItem('userName', '陳XX') // 正式版要刪除
+  localStorage.setItem('userImage', 'userImage') // 正式版要刪除
+
   const dispatch = useDispatch()
   const { data = [] } = useSelector((state) => state.room)
   const isOdd = (totalAmout) => totalAmout % 2 !== 0
@@ -30,16 +34,15 @@ const RoomList = () => {
     userName: '',
     userImage: ''
   })
-  const [userName, setUserName] = useState(localStorage.getItem('userName'))
-  const [userImage, setUserImage] = useState(localStorage.getItem('userImage'))
-  localStorage.setItem('userName', '陳XX') // 正式版要刪除
-  localStorage.setItem('userImage', 'userImage') // 正式版要刪除
+
+  const { myAuth } = useAuth()
+
   const handleRoomNameChange = (e) => {
     setNewRoom({
       ...newRoom,
       [e.target.name]: e.target.value,
-      userName,
-      userImage
+      userName: myAuth.userName,
+      userImage: myAuth.userImage
     })
   }
 

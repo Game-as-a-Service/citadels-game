@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react'
 import { getSpecificRoom } from '../api'
 import More from '../../src/img/more.svg'
 import ErrorModal from './ErrorModal'
+import { useAuth } from './AuthContext'
 
 const Game = () => {
+  localStorage.setItem('userName', '陳XX') // 正式版要刪除
+
   const { roomId } = useParams() // 獲取路徑參數 roomId
   console.log(roomId)
 
@@ -13,6 +16,9 @@ const Game = () => {
   const [errorText, setErrorText] = useState('')
   // 玩家資訊
   const [usersList, setUsersList] = useState([])
+  const [isHolder, setIsHolder] = useState(false)
+  const { myAuth } = useAuth()
+
   const [roomName, setRoomName] = useState('')
 
   // 遊戲開始
@@ -27,6 +33,9 @@ const Game = () => {
           setUsersList(res.rooms.users)
           setRoomName(res.rooms.roomName)
           console.log('call Specific Room')
+          if (res.rooms.holderName === myAuth.userName) {
+            setIsHolder(true)
+          }
         }
       })
       .catch((err) => {
