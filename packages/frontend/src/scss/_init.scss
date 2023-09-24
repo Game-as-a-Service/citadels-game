@@ -20,6 +20,7 @@ $light-blue: #ecf4f9;
 $trans-white: #fcfcfc;
 $white: #ffffff;
 $purple: #514673;
+$gray: #a1a1a1;
 
 /*定義字型*/
 /*f-文字大小(pt)-顏色-weight*/
@@ -53,6 +54,12 @@ $purple: #514673;
   font-family: Inter;
   font-weight: 600;
 }
+.f-20-gray {
+  color: $gray;
+  font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
 .f-14-r {
   color: $dark-red;
   font-size: clamp(0.78rem, 1.1667em, 1.36rem);
@@ -73,6 +80,12 @@ $purple: #514673;
 }
 @mixin f-20-w {
   color: $white;
+  font-size: clamp(0.75rem, 1.25rem, 1.75rem);
+  font-family: Inter;
+  font-weight: 600;
+}
+@mixin f-20-gray {
+  color: $gray;
   font-size: clamp(0.75rem, 1.25rem, 1.75rem);
   font-family: Inter;
   font-weight: 600;

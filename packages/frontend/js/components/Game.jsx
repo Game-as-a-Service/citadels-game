@@ -2,24 +2,24 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getSpecificRoom } from '../api'
 import More from '../../src/img/more.svg'
+import LeaveGame from '../../src/img/leaveGame.svg'
 import ErrorModal from './ErrorModal'
 import { useAuth } from './AuthContext'
 
 const Game = () => {
-  localStorage.setItem('userName', '陳XX') // 正式版要刪除
-
   const { roomId } = useParams() // 獲取路徑參數 roomId
-  console.log(roomId)
+  // console.log(roomId)
 
   // 錯誤
   const [isErrorVisible, setIsErrorVisible] = useState(false)
   const [errorText, setErrorText] = useState('')
   // 玩家資訊
-  const [usersList, setUsersList] = useState([])
-  const [isHolder, setIsHolder] = useState(false)
-  const { myAuth } = useAuth()
+  // const [usersList, setUsersList] = useState([])
+  // const [roomName, setRoomName] = useState('')
 
-  const [roomName, setRoomName] = useState('')
+  const [isHolder, setIsHolder] = useState(false)
+  const [roomInfo, setRoomInfo] = useState({})
+  const { myAuth } = useAuth()
 
   // 遊戲開始
   const [isGameStart, setIsGameStart] = useState(false)
@@ -30,8 +30,7 @@ const Game = () => {
     getSpecificRoom(roomId)
       .then((res) => {
         if (res.status === 'OK') {
-          setUsersList(res.rooms.users)
-          setRoomName(res.rooms.roomName)
+          setRoomInfo(res.rooms)
           console.log('call Specific Room')
           if (res.rooms.holderName === myAuth.userName) {
             setIsHolder(true)
@@ -46,25 +45,29 @@ const Game = () => {
   }
 
   useEffect(() => {
+    fetchData()
     // 設置定時器，每隔3秒重新獲取房間人數數據
-    let intervalId
-    if (!isGameStart) {
-      intervalId = setInterval(() => {
-        fetchData()
-      }, 3000)
-    }
-    return () => {
-      clearInterval(intervalId)
-    }
+    // let intervalId
+    // if (!isGameStart) {
+    // intervalId = setInterval(() => {
+    // }, 3000)
+    // }
+    // return () => {
+    // clearInterval(intervalId)
+    // }
   }, [roomId, isGameStart])
   return (
     <>
+      <nav className='nav'>
+        <div className='leaveIcon'>
+          <LeaveGame />
+          <span>離開遊戲</span>
+        </div>
+        <div className='nav_title'>{roomInfo.roomName}</div>
+      </nav>
       <div className='game'>
-        <nav className='nav'>
-          <div className='nav_title'>{roomName}</div>
-        </nav>
         <div className='user_section'>
-          {usersList?.map((user, index) => (
+          {roomInfo.users?.map((user, index) => (
             <div className='user_panel' key={index}>
               <div className='user_info'>
                 <div className='avatar-lg'></div>
@@ -119,15 +122,18 @@ const Game = () => {
               </div>
             </div>
           )}
+          {!isGameStart && (
+            <div className='pending'>
+              <span className='f-40-w'>...等待其他玩家加入</span>
+            </div>
+          )}
         </div>
-        {!isGameStart && (
-          <div className='pending'>
-            <span className='f-40-w'>...等待其他玩家加入</span>
-          </div>
-        )}
       </div>
       <div className='my_game'>
-        <div className='avatar-lg'></div>
+        <div className='user_info'>
+          <div className='avatar-lg'></div>
+          <div className='user_name'>{myAuth.userName}</div>
+        </div>
         {isGameStart && (
           <div className='my_game_info'>
             <div className='my_character'></div>
@@ -146,7 +152,7 @@ const Game = () => {
             </div>
           </div>
         )}
-        {!isGameStart && (
+        {!isGameStart && isHolder && (
           <div className='blue-btn' onClick={GameStart}>
             開始遊戲
           </div>

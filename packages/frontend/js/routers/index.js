@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from '../components/App'
 import Login from '../components/Login'
-import { AuthContextProvider } from './contexts/AuthContext'
+import { AuthContextProvider } from '../components/AuthContext'
 
 const Routers = () => {
   return (

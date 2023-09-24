@@ -1,41 +1,41 @@
+.nav {
+  width: 100%;
+  height: 65px;
+  background-color: #f3ecdb;
+  @include flex-center-row;
+  position: relative;
+}
+.nav_title {
+  @include f-20-b;
+}
+.leaveIcon {
+  position: absolute;
+  @include flex-center-row;
+  @include f-20-gray;
+  left: 30px;
+  gap: 5px;
+  cursor: pointer;
+}
 /*遊戲主畫面*/
 .game {
   width: 100%;
-  min-height: 90vh;
+  min-height: 72vh;
   margin: 0px;
-  .nav {
-    width: 100%;
-    height: 65px;
-    background-color: #f3ecdb;
-    @include flex-center-row;
-  }
+  @include flex-center-row;
   .user_section {
-    padding: 50px;
+    max-width: 1440px;
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 35px;
+    gap: 50px;
   }
   .user_panel {
-    width: 100%;
+    width: 400px;
     height: 150px;
     background-color: #ecf4f9;
     border-radius: 20px;
     @include flex-center-row;
     gap: 15px;
-  }
-  .user_info {
-    @include flex-center-column;
-  }
-
-  .user_avatar {
-    width: 72px;
-    height: 72px;
-    background-color: aquamarine;
-    border-radius: 50%;
-  }
-
-  .user_name {
-    @include f-12-b;
   }
 
   .user_asset {
@@ -315,4 +315,11 @@
   width: 100%;
   @include flex-center-row;
   margin-bottom: 20px;
+}
+
+.user_info {
+  @include flex-center-column;
+}
+.user_name {
+  @include f-12-b;
 }
