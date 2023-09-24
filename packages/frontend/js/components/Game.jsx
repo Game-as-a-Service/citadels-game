@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { getSpecificRoom } from '../api'
+import { getSpecificRoom, leaveRoom } from '../api'
 import More from '../../src/img/more.svg'
 import LeaveGame from '../../src/img/leaveGame.svg'
 import ErrorModal from './ErrorModal'
 import { useAuth } from './AuthContext'
+import Modal from './Modal'
 
 const Game = () => {
   const { roomId } = useParams() // 獲取路徑參數 roomId
@@ -13,10 +14,14 @@ const Game = () => {
   // 錯誤
   const [isErrorVisible, setIsErrorVisible] = useState(false)
   const [errorText, setErrorText] = useState('')
-  // 玩家資訊
-  // const [usersList, setUsersList] = useState([])
-  // const [roomName, setRoomName] = useState('')
 
+  // Modal
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const showModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
+
+  // 玩家資訊
   const [isHolder, setIsHolder] = useState(false)
   const [roomInfo, setRoomInfo] = useState({})
   const { myAuth } = useAuth()
@@ -26,7 +31,15 @@ const Game = () => {
   const GameStart = () => {
     setIsGameStart(!isGameStart)
   }
-  const fetchData = () => {
+
+  // SSE更新房間狀態
+  const BaseURL = '<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>'
+  useEffect(() => {
+    initRoomData()
+    const roomSource = new EventSource(`${BaseURL}/rooms`)
+    roomSource.onmessage = (e) => updateRoomData(e.data)
+  }, [])
+  const initRoomData = () => {
     getSpecificRoom(roomId)
       .then((res) => {
         if (res.status === 'OK') {
@@ -43,23 +56,22 @@ const Game = () => {
         setErrorText('連線發生錯誤')
       })
   }
+  const updateRoomData = (data) => {
+    const parsedData = JSON.parse(data)
+    setRoomInfo(parsedData.rooms)
+  }
 
-  useEffect(() => {
-    fetchData()
-    // 設置定時器，每隔3秒重新獲取房間人數數據
-    // let intervalId
-    // if (!isGameStart) {
-    // intervalId = setInterval(() => {
-    // }, 3000)
-    // }
-    // return () => {
-    // clearInterval(intervalId)
-    // }
-  }, [roomId, isGameStart])
+  const navigate = useNavigate()
+  const leavingRoom = (roomId, userId) => {
+    const payload = { userId: '' }
+    payload.userId = userId
+    leaveRoom(roomId, payload)
+    navigate('/rooms')
+  }
   return (
     <>
       <nav className='nav'>
-        <div className='leaveIcon'>
+        <div className='leaveIcon' onClick={showModal}>
           <LeaveGame />
           <span>離開遊戲</span>
         </div>
@@ -163,6 +175,26 @@ const Game = () => {
         onClose={() => setIsErrorVisible(false)}
         errorText={errorText}
       ></ErrorModal>
+      <Modal
+        isModalOpen={isModalOpen}
+        title={'確定要離開房間嗎?'}
+        footer={
+          <div className='button_group'>
+            <button className='cancel-btn' onClick={showModal}>
+              取消
+            </button>
+            <button
+              className='blue-btn'
+              type='submit'
+              onClick={() => {
+                leavingRoom(roomInfo.roomId, myAuth.userId)
+              }}
+            >
+              確定
+            </button>
+          </div>
+        }
+      ></Modal>
     </>
   )
 }

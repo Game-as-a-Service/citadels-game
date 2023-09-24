@@ -17,3 +17,7 @@ export const createRoom = (payload) => {
 export const getSpecificRoom = (payload) => {
   return axios.get(`/rooms/?id=${payload}`)
 }
+
+export const leaveRoom = (roomId, payload) => {
+  return axios.post(`/rooms/${roomId}:leave`, payload)
+}

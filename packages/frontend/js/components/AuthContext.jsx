@@ -5,6 +5,7 @@ const AuthContext = createContext({})
 export default AuthContext
 
 export const AuthContextProvider = ({ children }) => {
+  localStorage.setItem('userId', 'user123') // 正式版要刪除
   localStorage.setItem('userName', '陳XX') // 正式版要刪除
 
   const navigate = useNavigate()
