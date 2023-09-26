@@ -44,6 +44,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
+          envs: TARGET_DIR,MONGO_URI  # Passing both as environment variables
           script: |
-            cd /webApp/backend 
+            echo "MONGO_URI=${MONGO_URI}" >> $TARGET_DIR/backend/.env
+            cd $TARGET_DIR/backend 
             sudo docker-compose up -d --build
