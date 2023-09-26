@@ -2,7 +2,7 @@ name: backend pr ci job
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "backend/tes_backend_cd" ]
     paths: 
       - 'packages/backend/**'
 jobs:
