@@ -1,4 +1,4 @@
-name: backend pr ci job
+name: Java CI
 
 on:
   push:
