@@ -1,7 +1,7 @@
 name: backend pr ci job
 
 on:
-  pull_request:
+  push:
     branches: [ "backend/tes_backend_cd" ]
     paths: 
       - 'packages/backend/**'
