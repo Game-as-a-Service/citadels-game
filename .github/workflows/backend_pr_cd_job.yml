@@ -46,6 +46,5 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: TARGET_DIR,MONGO_URI  # Passing both as environment variables
           script: |
-            echo "MONGO_URI=${MONGO_URI}" >> $TARGET_DIR/backend/.env
-            cd $TARGET_DIR/backend 
+            cd ~/citadels/backend 
             sudo docker-compose up -d --build
