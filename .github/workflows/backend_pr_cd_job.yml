@@ -47,4 +47,4 @@ jobs:
           envs: TARGET_DIR
           script: |
             cd ~/citadels/backend 
-            sudo docker-compose up -d --build
+            sudo MONGO_URI=$MONGO_URI docker-compose up -d --build
