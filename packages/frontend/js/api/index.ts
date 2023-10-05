@@ -6,30 +6,30 @@ const url =
     : ''
 const axios = axiosInstance(url)
 
-export const getRoomList = (payload:Object) => {
+export const getRoomList = (payload: Object) => {
   return axios.get('/games', payload)
 }
 
-export const createRoom = (payload:Object) => {
+export const createRoom = (payload: Object) => {
   return axios.post<Room>('/createroom', payload)
 }
 
 interface Room {
-  roomId: string;
-  roomName: string;
-  createTime: string;
-  status: string;
-  holderName: string;
-  holderId: string;
-  totalUsers: number;
+  roomId: string
+  roomName: string
+  createTime: string
+  status: string
+  holderName: string
+  holderId: string
+  totalUsers: number
   users: Array<{
-    userId: string;
-    userName: string;
-    userImage: string;
-  }>;
+    userId: string
+    userName: string
+    userImage: string
+  }>
 }
 
-export const getSpecificRoom = (payload:String) => {
+export const getSpecificRoom = (payload: String) => {
   return axios.get('/rooms', {
     params: {
       payload: payload

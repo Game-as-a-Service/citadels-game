@@ -1,14 +1,13 @@
-import React from 'react';
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getSpecificRoom } from '../api'
 import More from '../../src/img/more.svg'
 import ErrorModal from './ErrorModal'
 
-
 const Game = () => {
   type Params = {
-    roomId: string;
+    roomId: string
   }
   const { roomId } = useParams<Params>() // 獲取路徑參數 roomId
   console.log(roomId)
@@ -17,21 +16,21 @@ const Game = () => {
   const [isErrorVisible, setIsErrorVisible] = useState<Boolean>(false)
   const [errorText, setErrorText] = useState<String>('')
   // 玩家資訊
-  const [roomInfo, setRoomInfo] = useState<Room | null>(null);
+  const [roomInfo, setRoomInfo] = useState<Room | null>(null)
 
   interface Room {
-    roomId: string;
-    roomName: string;
-    createTime: string;
-    status: string;
-    holderName: string;
-    holderId: string;
-    totalUsers: number;
+    roomId: string
+    roomName: string
+    createTime: string
+    status: string
+    holderName: string
+    holderId: string
+    totalUsers: number
     users: Array<{
-      userId: string;
-      userName: string;
-      userImage: string;
-    }>;
+      userId: string
+      userName: string
+      userImage: string
+    }>
   }
   //const [usersList, setUsersList] = useState([])
   //const [roomName, setRoomName] = useState('')
@@ -42,15 +41,14 @@ const Game = () => {
     setIsGameStart(!isGameStart)
   }
 
-
-  const BaseURL = "<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>";
+  const BaseURL = '<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>'
 
   //SSE寫法
   useEffect(() => {
     initRoomData()
     const roomSource = new EventSource(`${BaseURL}/rooms`)
-    roomSource.onmessage = e => updateRoomData(e.data)
-  },[])
+    roomSource.onmessage = (e) => updateRoomData(e.data)
+  }, [])
 
   const initRoomData = () => {
     getSpecificRoom(roomId)
@@ -70,7 +68,7 @@ const Game = () => {
   }
 
   const updateRoomData = (data) => {
-    const parsedData = JSON.parse(data);
+    const parsedData = JSON.parse(data)
     setRoomInfo(parsedData.rooms)
   }
 
