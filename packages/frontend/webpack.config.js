@@ -17,6 +17,11 @@ module.exports = function () {
     module: {
       rules: [
         {
+          test: /\.(js|jsx|ts|tsx)$/,
+          loader: 'ts-loader', 
+          exclude: /node_modules/
+        },
+        {
           test: /\.(js|jsx)$/,
           loader: 'esbuild-loader',
           options: {
@@ -53,35 +58,11 @@ module.exports = function () {
               return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : ''
             }
           }
-        },
-        {
-          test: /\.svg$/i,
-          resourceQuery: /url/,
-          type: 'asset',
-          generator: {
-            filename: './img/[hash:7]/[ext]',
-            publicPath: (pathData, assetInfo) => {
-              return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : '';
-            },
-          },
-        },
-        {
-          test: /\.svg$/i,
-          issuer: /\.[jt]sx?$/, 
-          
-          resourceQuery: { not: [/url/] },
-          use: ['@svgr/webpack'],
-          generator: {
-            filename: './img/[hash:7]/[ext]',
-            publicPath: (pathData, assetInfo) => {
-              return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : '';
-            },
-          }
         }
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     plugins: [
       // 提取CSS文件, 和style-loader無法共存

@@ -1,30 +1,40 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import React from 'react';
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { getSpecificRoom, leaveRoom } from '../api'
+import { getSpecificRoom } from '../api'
 import More from '../../src/img/more.svg'
-import LeaveGame from '../../src/img/leaveGame.svg'
 import ErrorModal from './ErrorModal'
-import { useAuth } from './AuthContext'
-import Modal from './Modal'
+
 
 const Game = () => {
-  const { roomId } = useParams() // 獲取路徑參數 roomId
-  // console.log(roomId)
+  type Params = {
+    roomId: string;
+  }
+  const { roomId } = useParams<Params>() // 獲取路徑參數 roomId
+  console.log(roomId)
 
   // 錯誤
-  const [isErrorVisible, setIsErrorVisible] = useState(false)
-  const [errorText, setErrorText] = useState('')
-
-  // Modal
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const showModal = () => {
-    setIsModalOpen(!isModalOpen)
-  }
-
+  const [isErrorVisible, setIsErrorVisible] = useState<Boolean>(false)
+  const [errorText, setErrorText] = useState<String>('')
   // 玩家資訊
-  const [isHolder, setIsHolder] = useState(false)
-  const [roomInfo, setRoomInfo] = useState({})
-  const { myAuth } = useAuth()
+  const [roomInfo, setRoomInfo] = useState<Room | null>(null);
+
+  interface Room {
+    roomId: string;
+    roomName: string;
+    createTime: string;
+    status: string;
+    holderName: string;
+    holderId: string;
+    totalUsers: number;
+    users: Array<{
+      userId: string;
+      userName: string;
+      userImage: string;
+    }>;
+  }
+  //const [usersList, setUsersList] = useState([])
+  //const [roomName, setRoomName] = useState('')
 
   // 遊戲開始
   const [isGameStart, setIsGameStart] = useState(false)
@@ -32,22 +42,24 @@ const Game = () => {
     setIsGameStart(!isGameStart)
   }
 
-  // SSE更新房間狀態
-  const BaseURL = '<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>'
+
+  const BaseURL = "<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>";
+
+  //SSE寫法
   useEffect(() => {
     initRoomData()
     const roomSource = new EventSource(`${BaseURL}/rooms`)
-    roomSource.onmessage = (e) => updateRoomData(e.data)
-  }, [])
+    roomSource.onmessage = e => updateRoomData(e.data)
+  },[])
+
   const initRoomData = () => {
     getSpecificRoom(roomId)
       .then((res) => {
         if (res.status === 'OK') {
+          //setUsersList(res.rooms.users)
+          //setRoomName(res.rooms.roomName)
           setRoomInfo(res.rooms)
           console.log('call Specific Room')
-          if (res.rooms.holderName === myAuth.userName) {
-            setIsHolder(true)
-          }
         }
       })
       .catch((err) => {
@@ -56,28 +68,30 @@ const Game = () => {
         setErrorText('連線發生錯誤')
       })
   }
+
   const updateRoomData = (data) => {
-    const parsedData = JSON.parse(data)
+    const parsedData = JSON.parse(data);
     setRoomInfo(parsedData.rooms)
   }
 
-  const navigate = useNavigate()
-  const leavingRoom = (roomId, userId) => {
-    const payload = { userId: '' }
-    payload.userId = userId
-    leaveRoom(roomId, payload)
-    navigate('/rooms')
-  }
+  // useEffect(() => {
+  //   // 設置定時器，每隔3秒重新獲取房間人數數據
+  //   let intervalId
+  //   if (!isGameStart) {
+  //     intervalId = setInterval(() => {
+  //       fetchData()
+  //     }, 3000)
+  //   }
+  //   return () => {
+  //     clearInterval(intervalId)
+  //   }
+  // }, [roomId, isGameStart])
   return (
     <>
-      <nav className='nav'>
-        <div className='leaveIcon' onClick={showModal}>
-          <LeaveGame />
-          <span>離開遊戲</span>
-        </div>
-        <div className='nav_title'>{roomInfo.roomName}</div>
-      </nav>
       <div className='game'>
+        <nav className='nav'>
+          <div className='nav_title'>{roomInfo.roomName}</div>
+        </nav>
         <div className='user_section'>
           {roomInfo.users?.map((user, index) => (
             <div className='user_panel' key={index}>
@@ -134,18 +148,15 @@ const Game = () => {
               </div>
             </div>
           )}
-          {!isGameStart && (
-            <div className='pending'>
-              <span className='f-40-w'>...等待其他玩家加入</span>
-            </div>
-          )}
         </div>
+        {!isGameStart && (
+          <div className='pending'>
+            <span className='f-40-w'>...等待其他玩家加入</span>
+          </div>
+        )}
       </div>
       <div className='my_game'>
-        <div className='user_info'>
-          <div className='avatar-lg'></div>
-          <div className='user_name'>{myAuth.userName}</div>
-        </div>
+        <div className='avatar-lg'></div>
         {isGameStart && (
           <div className='my_game_info'>
             <div className='my_character'></div>
@@ -164,7 +175,7 @@ const Game = () => {
             </div>
           </div>
         )}
-        {!isGameStart && isHolder && (
+        {!isGameStart && (
           <div className='blue-btn' onClick={GameStart}>
             開始遊戲
           </div>
@@ -175,26 +186,6 @@ const Game = () => {
         onClose={() => setIsErrorVisible(false)}
         errorText={errorText}
       ></ErrorModal>
-      <Modal
-        isModalOpen={isModalOpen}
-        title={'確定要離開房間嗎?'}
-        footer={
-          <div className='button_group'>
-            <button className='cancel-btn' onClick={showModal}>
-              取消
-            </button>
-            <button
-              className='blue-btn'
-              type='submit'
-              onClick={() => {
-                leavingRoom(roomInfo.roomId, myAuth.userId)
-              }}
-            >
-              確定
-            </button>
-          </div>
-        }
-      ></Modal>
     </>
   )
 }

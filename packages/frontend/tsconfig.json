@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2015", // 目標編譯到的ECMAScript版本（這裡是ES6）
+    "lib": ["dom", "dom.iterable", "esnext"], // 要包含的JavaScript標準庫
+    "jsx": "react", // 設定React JSX語法支援
+    "module": "esnext", // ES模組
+    "moduleResolution": "node", // 模組解析策略，使用Node.js解析
+    "strict": true, // 啟用嚴格模式，提供更多的類型檢查
+    "esModuleInterop": true, // 啟用導入/導出Interop支援
+    "skipLibCheck": true, // 跳過檢查宣告文件的型別檢查
+    "forceConsistentCasingInFileNames": true, // 強制文件名大小寫一致
+    "noEmit": false, // 不生成任何輸出文件，用於純類型檢查
+    "strictNullChecks": true, // 啟用嚴格的空值檢查
+    "noImplicitAny": true, // 不允許隱式的any型別
+    "allowJs": true // 允許編譯JavaScript文件（用於混合專案）
+  },
+  "include": ["js/**/*.ts", "js/**/*.tsx", "js/*.ts","src/custom.d.ts"], // TypeScript編譯包括的文件
+  "exclude": ["node_modules"] // TypeScript編譯排除的文件夾
+}
