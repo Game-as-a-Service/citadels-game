@@ -45,7 +45,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd $TARGET_DIR/backend 
+            cd ~/citadels/backend 
             sudo MONGO_URI=$MONGO_URI docker-compose up -d --build
         env: 
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
