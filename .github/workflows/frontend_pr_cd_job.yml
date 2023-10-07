@@ -2,8 +2,7 @@ name: React CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "backend/tes_backend_cd" ]
 
 jobs:
   build:
