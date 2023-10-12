@@ -1,37 +1,26 @@
-import React from 'react'
+import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getSpecificRoom } from '../api'
 import More from '../../src/img/more.svg'
 import ErrorModal from './ErrorModal'
+import { CreateRoom , specific_room , SpecificRoom } from '../common/types'
+
+//const More = require("../../src/img/more.svg") as string;
 
 const Game = () => {
   type Params = {
-    roomId: string
+    roomId: string;
   }
   const { roomId } = useParams<Params>() // 獲取路徑參數 roomId
   console.log(roomId)
 
   // 錯誤
-  const [isErrorVisible, setIsErrorVisible] = useState<Boolean>(false)
+  const [isErrorVisible, setIsErrorVisible] = useState<boolean>(false)
   const [errorText, setErrorText] = useState<String>('')
   // 玩家資訊
-  const [roomInfo, setRoomInfo] = useState<Room | null>(null)
+  const [roomInfo, setRoomInfo] = useState<specific_room | null>(null);
 
-  interface Room {
-    roomId: string
-    roomName: string
-    createTime: string
-    status: string
-    holderName: string
-    holderId: string
-    totalUsers: number
-    users: Array<{
-      userId: string
-      userName: string
-      userImage: string
-    }>
-  }
   //const [usersList, setUsersList] = useState([])
   //const [roomName, setRoomName] = useState('')
 
@@ -41,21 +30,29 @@ const Game = () => {
     setIsGameStart(!isGameStart)
   }
 
-  const BaseURL = '<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>'
+
+  //const BaseURL = "<https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io>";
 
   //SSE寫法
   useEffect(() => {
     initRoomData()
-    const roomSource = new EventSource(`${BaseURL}/rooms`)
-    roomSource.onmessage = (e) => updateRoomData(e.data)
-  }, [])
+    const sse = new EventSource(`/sse-endpoint`)
+    sse.onmessage = e => updateRoomData(e.data)
+    
+    sse.onerror = () => {
+      sse.close();
+    }
+
+    return () => {
+      sse.close();
+    };
+  },[])
 
   const initRoomData = () => {
-    getSpecificRoom(roomId)
+    if(roomId){
+      getSpecificRoom(roomId)
       .then((res) => {
-        if (res.status === 'OK') {
-          //setUsersList(res.rooms.users)
-          //setRoomName(res.rooms.roomName)
+        if (res.status.toString() === 'OK') {
           setRoomInfo(res.rooms)
           console.log('call Specific Room')
         }
@@ -65,12 +62,19 @@ const Game = () => {
         setIsErrorVisible(true)
         setErrorText('連線發生錯誤')
       })
+    }
   }
 
-  const updateRoomData = (data) => {
-    const parsedData = JSON.parse(data)
-    setRoomInfo(parsedData.rooms)
+  const updateRoomData = (data:string) => {
+    const parsedData:SpecificRoom = JSON.parse(data);
+    const rooms = parsedData.rooms;
+    
+    setRoomInfo(rooms)
   }
+
+
+
+
 
   // useEffect(() => {
   //   // 設置定時器，每隔3秒重新獲取房間人數數據
@@ -88,10 +92,10 @@ const Game = () => {
     <>
       <div className='game'>
         <nav className='nav'>
-          <div className='nav_title'>{roomInfo.roomName}</div>
+          <div className='nav_title'>{roomInfo?.roomName}</div>
         </nav>
         <div className='user_section'>
-          {roomInfo.users?.map((user, index) => (
+          {roomInfo?.users?.map((user, index) => (
             <div className='user_panel' key={index}>
               <div className='user_info'>
                 <div className='avatar-lg'></div>

@@ -11,22 +11,7 @@ export const getRoomList = (payload: Object) => {
 }
 
 export const createRoom = (payload: Object) => {
-  return axios.post<Room>('/createroom', payload)
-}
-
-interface Room {
-  roomId: string
-  roomName: string
-  createTime: string
-  status: string
-  holderName: string
-  holderId: string
-  totalUsers: number
-  users: Array<{
-    userId: string
-    userName: string
-    userImage: string
-  }>
+  return axios.post('/createroom', payload)
 }
 
 export const getSpecificRoom = (payload: String) => {
