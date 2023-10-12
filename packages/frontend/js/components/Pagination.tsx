@@ -1,17 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-/**
- * Render pagination
- * @param {Object} props
- * @param {number} props.totalPage - total page
- * @param {number} props.current - current page
- * @param {function} props.onPrevClick - callback triggers when click prev btn
- * @param {function} props.onNextClick  - callback triggers when click next btn
- * @param {function} props.onPageClick - callback triggers when click page btn
- * @param {string} props.className - classname applies on wrapper of pagination
- */
+// /**
+//  * Render pagination
+//  * @param {Object} props
+//  * @param {number} props.totalPage - total page
+//  * @param {number} props.current - current page
+//  * @param {function} props.onPrevClick - callback triggers when click prev btn
+//  * @param {function} props.onNextClick  - callback triggers when click next btn
+//  * @param {function} props.onPageClick - callback triggers when click page btn
+//  * @param {string} props.className - classname applies on wrapper of pagination
+//  */
 
-const Pagination = ({
+type Pagination = {
+  totalPage: number
+  current: number
+  onPrevClick: Function
+  onNextClick: Function
+  onPageClick: Function
+  className: string
+}
+
+const Pagination: React.FC<Pagination> = ({
   totalPage,
   current,
   onPrevClick,
@@ -19,9 +28,9 @@ const Pagination = ({
   onPageClick,
   className = ''
 }) => {
-  const [currentPage, setCurrentPage] = useState(current)
+  const [currentPage, setCurrentPage] = useState<number>(current)
 
-  const renderPrevTabs = () => {
+  const renderPrevTabs = (): React.ReactElement[] => {
     const pages = []
     let count = 0
     const maxCount = 2
@@ -49,7 +58,7 @@ const Pagination = ({
     }
     return pages.reverse()
   }
-  const renderNextTabs = () => {
+  const renderNextTabs = (): React.ReactElement[] => {
     const pages = []
     let count = 0
     const maxCount = 2
@@ -81,17 +90,17 @@ const Pagination = ({
     }
     return pages
   }
-  const handleClickPage = (page) => {
+  const handleClickPage = (page: number): void => {
     setCurrentPage(page)
     if (onPageClick) onPageClick(page)
   }
-  const handleClickPrev = () => {
+  const handleClickPrev = (): void => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1)
       if (onPrevClick) onPrevClick()
     }
   }
-  const handleClickNext = () => {
+  const handleClickNext = (): void => {
     if (currentPage < totalPage) {
       setCurrentPage((prev) => prev + 1)
       if (onNextClick) onNextClick()
@@ -113,12 +122,3 @@ const Pagination = ({
 }
 
 export default Pagination
-
-Pagination.propTypes = {
-  totalPage: PropTypes.number,
-  current: PropTypes.number,
-  onPrevClick: PropTypes.func,
-  onNextClick: PropTypes.func,
-  className: PropTypes.string,
-  onPageClick: PropTypes.func
-}

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2015", // 目標編譯到的ECMAScript版本（這裡是ES6）
     "lib": ["dom", "dom.iterable", "esnext"], // 要包含的JavaScript標準庫
-    "jsx": "react", // 設定React JSX語法支援
+    "jsx": "react-jsx", // 設定React JSX語法支援
     "module": "esnext", // ES模組
     "moduleResolution": "node", // 模組解析策略，使用Node.js解析
     "strict": true, // 啟用嚴格模式，提供更多的類型檢查

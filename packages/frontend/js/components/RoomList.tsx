@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
 import Pagination from './Pagination'
 import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../hooks'
 import { getRoomList } from '../redux/slice/roomSlice'
 
-const RoomList = () => {
-  const dispatch = useDispatch()
-  const { data, loading } = useSelector((state) => state.room)
-  const { rooms, totalRoom } = data || {}
-  const isOdd = (totalAmout) => totalAmout % 2 !== 0
+type obj = {
+  [key: string]: any
+}
+
+const RoomList: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const { data, loading } = useAppSelector((state) => state.room)
+  const { rooms, totalRooms } = data || {}
+  const isOdd = (totalAmout: number) => totalAmout % 2 !== 0
   // pagination
   const [pagination, setPagination] = useState({
     totalPage: 1,
@@ -16,11 +21,11 @@ const RoomList = () => {
   })
   const { totalPage, current, pageSize } = pagination
   useEffect(() => {
-    if (totalRoom > 0) {
-      const totalPage = Math.ceil(totalRoom / pageSize)
+    if (totalRooms && totalRooms > 0) {
+      const totalPage = Math.ceil(totalRooms / pageSize)
       setPagination((prev) => ({ ...prev, totalPage }))
     }
-  }, [totalRoom])
+  }, [totalRooms])
   const getData = () => {
     dispatch(getRoomList())
   }
@@ -30,11 +35,11 @@ const RoomList = () => {
   const onNextClick = () => {
     setPagination((prev) => ({ ...prev, current: current + 1 }))
   }
-  const onPageClick = (page) => {
+  const onPageClick = (page: number) => {
     setPagination((prev) => ({ ...prev, current: page }))
   }
   // data
-  const [dataSource, setDataSource] = useState(null)
+  const [dataSource, setDataSource] = useState<Array<obj>>()
   useEffect(() => {
     getData()
   }, [])
@@ -84,7 +89,7 @@ const RoomList = () => {
         )}
       </div>
       <div className='row__list'>
-        {totalRoom > pageSize && (
+        {totalRooms && totalRooms > pageSize && (
           <Pagination
             className='row__pagination'
             current={current}
