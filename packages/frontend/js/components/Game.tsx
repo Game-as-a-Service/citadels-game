@@ -2,11 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getSpecificRoom } from '../api'
-import More from '../../src/img/more.svg'
 import ErrorModal from './ErrorModal'
-import { CreateRoom , specific_room , SpecificRoom } from '../common/types'
-
-//const More = require("../../src/img/more.svg") as string;
+import { specific_room , SpecificRoom } from '../common/types'
+const More = require('../../src/img/more.svg').default;
 
 const Game = () => {
   type Params = {
