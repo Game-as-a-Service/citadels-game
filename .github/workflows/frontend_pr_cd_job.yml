@@ -28,7 +28,7 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         REMOTE_HOST: ${{ secrets.HOST }}
         REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}/frontend
+        TARGET: ${{ secrets.TARGET_DIR }}
   
     - name: Executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
@@ -38,7 +38,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-                cd ~/citadels/frontend/frontend
+                cd ~/citadels/frontend
                 sudo docker stop react-container
                 sudo docker rm react-container
                 sudo docker rmi react-image
