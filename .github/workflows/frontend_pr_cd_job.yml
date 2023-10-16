@@ -38,7 +38,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-                cd ~/citadels/frontend
+                cd ~/citadels/frontend/frontend
                 sudo docker stop react-container
                 sudo docker rm react-container
                 sudo docker rmi react-image
