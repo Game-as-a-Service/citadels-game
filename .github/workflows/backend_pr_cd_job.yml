@@ -44,5 +44,5 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd ~/citadels/backend 
-            sudo MONGO_URI=$MONGO_URI docker-compose up -d --build
+            cd /webApp/backend 
+            sudo docker-compose up -d --build
