@@ -32,3 +32,58 @@ type player = {
 export const getRoomList = () => {
   return axios.get<RoomList>('/rooms')
 }
+
+type CreateRoom = {
+  createTime: string
+  status: string
+  msg: string
+  rooms: Record<string, create_room>
+}
+
+type create_room = {
+  roomId: string
+  roomName: string
+  holderId: string
+  holderName: string
+  users: Array<{
+    userId: string
+    userName: string
+    userImage: string
+  }>
+  status: string
+  totalUsers: number
+}
+
+export const createRoom = (payload: Object) => {
+  return axios.post<CreateRoom>('/createroom', payload)
+}
+
+type SpecificRoom = {
+  searchTime: string
+  status: string
+  msg: string
+  rooms: Record<string, specific_room>
+}
+
+type specific_room = {
+  roomId: string
+  roomName: string
+  createTime: string
+  status: string
+  holderName: string
+  holderId: string
+  totalUsers: number
+  users: Array<{
+    userId: string
+    userName: string
+    userImage: string
+  }>
+}
+
+export const getSpecificRoom = (payload: String) => {
+  return axios.get<SpecificRoom>('/rooms', {
+    params: {
+      payload: payload
+    }
+  })
+}
