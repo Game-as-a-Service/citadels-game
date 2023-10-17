@@ -13,10 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@svgr/webpack": "^8.0.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "cypress": "^12.14.0",
