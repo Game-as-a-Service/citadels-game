@@ -7,7 +7,6 @@ import ErrorModal from './ErrorModal'
 import { specific_room, SpecificRoom } from '../common/types'
 const More = require('../../src/img/more.svg').default
 const Leave = require('../../src/img/leaveGame.svg').default
-const Coin = require('../../src/img/coin.svg').default
 
 import { useUser } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
