@@ -81,9 +81,9 @@ type specific_room = {
 }
 
 export const getSpecificRoom = (payload: String) => {
-  return axios.get<SpecificRoom>('/rooms', {
-    params: {
-      payload: payload
-    }
-  })
+  return axios.get<SpecificRoom>(`/api/citadels/rooms/${payload}`)
+}
+
+export const leaveRoom = (payload: Object, roomId: string) => {
+  return axios.post(`/rooms/${roomId}:leave`, payload)
 }
