@@ -11,12 +11,12 @@
     display: flex;
     align-items: center;
   }
-  .nav_content{
+  .nav_content {
     width: calc(50% + 112px);
     display: flex;
     justify-content: space-between;
   }
-  .leave{
+  .leave {
     margin-left: 20px;
     gap: 10px;
     cursor: pointer;
@@ -160,12 +160,12 @@
   @include flex-center-column;
 }
 
-.my_info{
+.my_info {
   @include flex-center-column;
   gap: 10px;
 }
 
-.my_name{
+.my_name {
   @include f-20-b;
 }
 
@@ -182,4 +182,3 @@
   @include flex-center-row;
   margin-bottom: 20px;
 }
-
