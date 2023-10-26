@@ -72,6 +72,18 @@ $purple: #514673;
   align-items: center;
 }
 
+/*定義rwd斷點*/
+@mixin md {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
 /* 拔除input樣式 */
 input[type='number']::-webkit-outer-spin-button,
 myAuth input[type='number']::-webkit-inner-spin-button {
@@ -90,6 +102,21 @@ input:focus {
   outline: none !important;
 }
 
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
 body {
   background-image: linear-gradient(45deg, #7e66c5, #567ecc);
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+#app {
+  background-image: linear-gradient(45deg, #7e66c5, #567ecc);
+}
+.bg {
+  &--trans {
+    background-color: transparent !important;
+  }
 }
