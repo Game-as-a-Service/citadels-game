@@ -58,6 +58,30 @@ module.exports = function () {
               return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : ''
             }
           }
+        },
+        {
+          test: /\.svg$/i,
+          resourceQuery: /url/,
+          type: 'asset',
+          generator: {
+            filename: './img/[hash:7]/[ext]',
+            publicPath: (pathData, assetInfo) => {
+              return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : '';
+            },
+          },
+        },
+        {
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/, 
+          
+          resourceQuery: { not: [/url/] },
+          use: ['@svgr/webpack'],
+          generator: {
+            filename: './img/[hash:7]/[ext]',
+            publicPath: (pathData, assetInfo) => {
+              return pathData.module.rawRequest.indexOf('/css/') > -1 ? '.' : '';
+            },
+          }
         }
       ]
     },
