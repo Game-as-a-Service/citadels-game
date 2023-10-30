@@ -14,6 +14,6 @@
     "noImplicitAny": true, // 不允許隱式的any型別
     "allowJs": true // 允許編譯JavaScript文件（用於混合專案）
   },
-  "include": ["js/**/*.ts", "js/**/*.tsx", "js/*.ts"], // TypeScript編譯包括的文件
+  "include": ["js/**/*.ts", "js/**/*.tsx", "js/*.ts", "src/custom.d.ts"], // TypeScript編譯包括的文件
   "exclude": ["node_modules"] // TypeScript編譯排除的文件夾
 }
