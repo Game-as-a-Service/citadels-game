@@ -46,8 +46,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ~/citadels/backend
-            export COMPOSE_DOCKER_CLI_BUILD=0
-            export DOCKER_BUILDKIT=0
-            sudo MONGO_URI=$MONGO_URI docker-compose up -d --build
+            sudo -E DOCKER_BUILDKIT=0 docker-compose up -d --build
         env: 
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
