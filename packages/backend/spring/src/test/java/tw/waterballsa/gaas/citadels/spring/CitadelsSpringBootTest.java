@@ -16,14 +16,20 @@ import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 public abstract class CitadelsSpringBootTest {
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected MockMvc mockMvc;
     @Autowired
-    protected tw.waterballsa.gaas.citadels.spring.repositories.dao.RoomDAO RoomDAO;
+    protected tw.waterballsa.gaas.citadels.spring.repositories.dao.RoomDAO roomDAO;
+    @Autowired
+    protected tw.waterballsa.gaas.citadels.spring.repositories.dao.GameDAO gameDAO;
+
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
@@ -71,7 +77,6 @@ public abstract class CitadelsSpringBootTest {
     }
 
     protected Room findRoomById(String roomId) {
-        Room room = roomRepository.findRoomById(roomId).orElseThrow(() -> new NotFoundException("CAN NOT FIND ROOM ID=" + roomId));
-        return room;
+        return roomRepository.findRoomById(roomId).orElseThrow(() -> new NotFoundException("CAN NOT FIND ROOM ID=" + roomId));
     }
 }

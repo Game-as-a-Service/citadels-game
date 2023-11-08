@@ -22,7 +22,7 @@ public class CreateRoomTest extends CitadelsSpringBootTest {
     public void whenUserACreateRoom_ShouldCreateSuccessfully() {
         CreateRoomController.CreateRoomRequest createRoomRequest = new CreateRoomController.CreateRoomRequest("RoomA", "userA", "user.png");
         CreateRoomView createRoomView = getBody(createRoom(createRoomRequest), CreateRoomView.class);
-        Optional<RoomData> roomData = RoomDAO.findById(createRoomView.getRoom().getRoomId());
+        Optional<RoomData> roomData = roomDAO.findById(createRoomView.getRoom().getRoomId());
 
         assertTrue(roomData.isPresent());
         RoomData room = roomData.get();
