@@ -46,6 +46,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ~/citadels/backend
-            sudo -E DOCKER_BUILDKIT=0 docker-compose up -d --build
+            sudo -E docker-compose up -d --build
         env: 
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
