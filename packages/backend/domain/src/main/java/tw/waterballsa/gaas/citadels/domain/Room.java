@@ -1,6 +1,10 @@
 package tw.waterballsa.gaas.citadels.domain;
 
 import lombok.AllArgsConstructor;
+import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+
+import lombok.NoArgsConstructor;
 import tw.waterballsa.gaas.citadels.exceptions.JoinRoomException;
 import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 
@@ -12,6 +16,7 @@ import static tw.waterballsa.gaas.citadels.domain.Room.Status.CLOSE;
 import static tw.waterballsa.gaas.citadels.domain.Room.Status.OPEN;
 
 @AllArgsConstructor
+@NoArgsConstructor
 public class Room {
     private String id;
     private String name;
@@ -70,6 +75,10 @@ public class Room {
 
     public LocalDateTime getCreateTime() {
         return createTime;
+    }
+
+    public Integer getTotalUser() {
+        return userIdToUser.size();
     }
 
     public void joinUser(User user) {
