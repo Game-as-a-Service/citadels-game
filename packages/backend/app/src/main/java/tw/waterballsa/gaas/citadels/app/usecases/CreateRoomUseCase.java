@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
+import tw.waterballsa.gaas.citadels.app.outport.RoomRepository;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
 

@@ -3,12 +3,15 @@ package tw.waterballsa.gaas.citadels.app.usecases;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
+import tw.waterballsa.gaas.citadels.app.outport.EventBus;
+import tw.waterballsa.gaas.citadels.app.outport.RoomRepository;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.domain.User;
+import tw.waterballsa.gaas.citadels.events.RoomEvent;
 import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 
 import javax.inject.Named;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,12 +21,15 @@ public class JoinRoomUseCase {
 
     private final RoomRepository roomRepository;
 
+    private final EventBus eventBus;
+
     public void execute(Request request, Presenter presenter) {
         Room room = findRoomById(request.getRoomId());
         User user = new User(request.getUserName(), request.getUserImage());
         room.joinUser(user);
-        roomRepository.updateRoom(room);
-        presenter.present(room, user);
+        Room updatedRoom = roomRepository.updateRoom(room);
+        eventBus.broadcast(List.of(new RoomEvent(updatedRoom)));
+        presenter.present(updatedRoom, user);
     }
 
     private Room findRoomById(String roomId) {

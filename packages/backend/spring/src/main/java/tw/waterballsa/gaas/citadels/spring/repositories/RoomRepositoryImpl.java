@@ -2,7 +2,7 @@ package tw.waterballsa.gaas.citadels.spring.repositories;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
+import tw.waterballsa.gaas.citadels.app.outport.RoomRepository;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.spring.repositories.dao.RoomDAO;
 import tw.waterballsa.gaas.citadels.spring.repositories.data.RoomData;

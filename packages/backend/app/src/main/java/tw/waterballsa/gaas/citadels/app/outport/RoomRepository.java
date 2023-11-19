@@ -1,4 +1,4 @@
-package tw.waterballsa.gaas.citadels.app.repositories;
+package tw.waterballsa.gaas.citadels.app.outport;
 
 import tw.waterballsa.gaas.citadels.domain.Room;
 import java.util.Optional;

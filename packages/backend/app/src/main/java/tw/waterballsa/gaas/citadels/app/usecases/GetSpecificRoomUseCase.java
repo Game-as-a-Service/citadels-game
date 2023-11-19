@@ -3,7 +3,7 @@ package tw.waterballsa.gaas.citadels.app.usecases;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import tw.waterballsa.gaas.citadels.app.repositories.RoomRepository;
+import tw.waterballsa.gaas.citadels.app.outport.RoomRepository;
 import tw.waterballsa.gaas.citadels.domain.Room;
 import tw.waterballsa.gaas.citadels.exceptions.NotFoundException;
 
