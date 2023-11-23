@@ -1,0 +1,25 @@
+.character-modal-content {
+    width: 80%;
+    height: min(300px, 500px);
+    background-color: $light-blue;
+    border-radius: 20px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .character-modal-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .character-img{
+    width: 132px;
+    height: 132px;
+    border-radius: 132px;
+  }
