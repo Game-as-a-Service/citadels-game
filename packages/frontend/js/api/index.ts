@@ -1,10 +1,17 @@
 import axiosInstance from '../common/axiosInstance'
 
-const url =
-  process.env.NODE_ENV === 'development'
-    ? 'https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io'
-    : ''
-const axios = axiosInstance(url)
+type Domain = {
+  development: string
+  production: string
+}
+const domain: Domain = {
+  development: 'https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io',
+  production: ''
+}
+
+const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
+
+const axios = axiosInstance(domain[env])
 
 export type RoomList = {
   totalRooms: number
