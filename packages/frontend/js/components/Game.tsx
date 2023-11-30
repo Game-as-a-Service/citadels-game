@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { getSpecificRoom, leaveRoom } from '../api'
 import Modal from './Modal'
 import ErrorModal from './ErrorModal'
-import { specific_room, SpecificRoom } from '../common/types'
+import { specific_room, GameData, PlayerView } from '../common/types'
 const More = require('../../src/img/more.svg').default
 const Leave = require('../../src/img/leaveGame.svg').default
 
@@ -48,6 +48,9 @@ const Game = () => {
     setIsGameStart(!isGameStart)
   }
 
+  const [GameInfo, setGameInfo] = useState<PlayerView | null>(null)
+
+
   //SSE寫法
   useEffect(() => {
     initRoomData()
@@ -61,10 +64,21 @@ const Game = () => {
     }
     isPlayerHolder()
 
+    if(isGameStart){
+      const sseGame = new EventSource(
+        `https://001f08b9-acb7-4c3a-a54f-a9254b7e8e55.mock.pstmn.io/event/citadels/game/${roomId}`
+      )
+      sseGame.onmessage = (e) => updateGameData(e.data)
+
+      sseGame.onerror = () => {
+        sseGame.close()
+      }
+    }
+
     return () => {
       sse.close()
     }
-  }, [])
+  }, [isGameStart])
 
   const initRoomData = () => {
     if (roomId) {
@@ -116,6 +130,14 @@ const Game = () => {
   const showModal = () => {
     setIsModalOpen(!isModalOpen)
   }
+
+
+  //開始遊戲
+
+  const updateGameData = (data: any) => {
+    const parsedData: PlayerView = JSON.parse(data.playerViews)
+    setGameInfo(parsedData)
+  }
   return (
     <>
       <div className='game'>
@@ -156,7 +178,7 @@ const Game = () => {
                       <div className='f-12-b'>手牌</div>
                     </div>
                     <div className='card_nums'>
-                      <span className='f-20-db'>5</span>
+                      <span className='f-20-db'>0</span>
                       <span className='f-12-db'>張</span>
                     </div>
                   </div>

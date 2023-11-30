@@ -40,3 +40,37 @@ export type specific_room = {
     userImage: string
   }>
 }
+
+
+interface BuildCard {
+  name: string;
+  coins: number;
+  color: "BLUE" | "YELLOW" | "PURPLE"; 
+}
+
+export interface PlayerView {
+  id: string;
+  name: string;
+  imageName: string;
+  coins: number;
+  buildCards: BuildCard[];
+  characterCard: null | string; 
+  hasCrown: boolean;
+}
+
+interface CharacterCardView {
+  sequence: number;
+  name: string;
+}
+
+export interface GameData {
+  id: string;
+  roomId: string;
+  name: string;
+  status: string;
+  createTime: string;
+  playerViews: PlayerView[];
+  characterCardViews: CharacterCardView[];
+  buildCardViews: BuildCard[];
+}
+
