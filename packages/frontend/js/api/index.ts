@@ -55,7 +55,7 @@ type create_room = {
 }
 
 export const createRoom = (payload: Object) => {
-  return axios.post<CreateRoom>('/createroom', payload)
+  return axios.post<CreateRoom>('/api/citadels/room', payload)
 }
 
 type SpecificRoom = {
