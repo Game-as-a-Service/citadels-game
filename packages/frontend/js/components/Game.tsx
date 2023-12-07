@@ -5,6 +5,7 @@ import { getSpecificRoom, leaveRoom } from '../api'
 import Modal from './Modal'
 import ErrorModal from './ErrorModal'
 import { specific_room, SpecificRoom } from '../common/types'
+import UserInfoModal from './UserInfoModal'
 const More = require('../../src/img/more.svg').default
 const Leave = require('../../src/img/leaveGame.svg').default
 
@@ -47,6 +48,7 @@ const Game = () => {
   const GameStart = () => {
     setIsGameStart(!isGameStart)
   }
+
 
   //SSE寫法
   useEffect(() => {
@@ -116,6 +118,11 @@ const Game = () => {
   const showModal = () => {
     setIsModalOpen(!isModalOpen)
   }
+
+  const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState<boolean>(false)
+  const showUserInfoModal = () => {
+    setIsUserInfoModalOpen(!isUserInfoModalOpen)
+  }
   return (
     <>
       <div className='game'>
@@ -172,7 +179,7 @@ const Game = () => {
                   </div>
                 </div>
                 <div className='area'></div>
-                <div className='seemore'>
+                <div className='seemore' onClick={showUserInfoModal}>
                   <More />
                   <div>
                     <span className='f-12-db'>已建立</span>
@@ -182,6 +189,7 @@ const Game = () => {
                     <span>個地區</span>
                   </div>
                 </div>
+                <UserInfoModal isUserInfoModalOpen={isUserInfoModalOpen}></UserInfoModal>
               </div>
             ))}
             {isGameStart && (

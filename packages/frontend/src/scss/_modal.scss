@@ -7,7 +7,7 @@
   bottom: 0px;
   right: 0px;
   left: 0px;
-  background-color: rgba(86, 87, 123, 0.8);
+  background-color: rgba(86, 87, 123, 0.1);
   z-index: 100;
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@
 }
 .modal-content {
   width: auto;
-  height: min(300px, 500px);
+  height: min(400px, 500px);
   background-color: $light-blue;
   border-radius: 20px;
   padding: 50px;
