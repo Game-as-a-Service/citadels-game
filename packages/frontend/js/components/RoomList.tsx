@@ -8,7 +8,7 @@ import { getRoomList } from '../redux/slice/roomSlice'
 import Modal from './Modal'
 import ErrorModal from './ErrorModal'
 
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { createRoom } from '../api'
 
 type obj = {
@@ -87,7 +87,7 @@ const RoomList: React.FC = () => {
     })
   }
 
-  const navigate = useNavigate()
+  const history = useHistory()
   const [isErrorVisible, setIsErrorVisible] = useState(false)
   const [errorText, setErrorText] = useState('')
 
@@ -100,7 +100,7 @@ const RoomList: React.FC = () => {
 
           // @ts-ignore
           const roomID = res.room.roomId
-          navigate(`/game/${roomID}`)
+          history.push(`/game/${roomID}`)
         }
       })
       .catch((err) => {
