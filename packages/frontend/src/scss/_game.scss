@@ -1,28 +1,102 @@
 /*遊戲主畫面*/
 .game {
   width: 100%;
-  height: 100vh;
   margin: 0px;
-  background-image: $blue;
+  min-height: calc(100vh - 219px);
+  position: relative;
   .nav {
     width: 100%;
     height: 65px;
     background-color: #f3ecdb;
-    @include flex-center-row;
+    display: flex;
+    align-items: center;
   }
-  .player_info {
-    width: min(360px, 370px);
+  .nav_content {
+    width: calc(50% + 112px);
+    display: flex;
+    justify-content: space-between;
+  }
+  .leave {
+    margin-left: 20px;
+    gap: 10px;
+    cursor: pointer;
+    @include flex-center-row;
+    @include f-20-gray;
+  }
+  .user_section {
+    max-width: 1644px;
+    margin: 0 auto;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 35px;
+  }
+  .user_panel {
+    width: 100%;
     height: 150px;
     background-color: #ecf4f9;
     border-radius: 20px;
     @include flex-center-row;
-    gap: 20px;
+    gap: 15px;
+    position: relative;
   }
-  .player_avatar {
+
+  .user_panel::after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-image: url(../img/king.svg);
+    background-size: contain;
+    z-index: 10;
+    top: -15px;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+    transform: rotate(-10.26deg)
+  }
+
+  .user_panel:hover::after{
+    opacity: 1;
+    width: 37px;
+    height: 37px;
+    transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+  }
+
+  .user_panel:hover {
+    background-color: #d2ebfb;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  .user_info {
+    @include flex-center-column;
+  }
+
+  .user_avatar {
     width: 72px;
     height: 72px;
     background-color: aquamarine;
     border-radius: 50%;
+  }
+
+  .user_name {
+    @include f-12-b;
+  }
+
+  .user_asset {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .asset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .card_info {
+    @include flex-center-column;
+    gap: 5px;
   }
   .card_icon {
     width: 18.5px;
@@ -46,45 +120,131 @@
     background-color: rgb(238, 238, 178);
   }
   .seemore {
-    display: flex;
-    flex-direction: column;
+    @include flex-center-column;
+    gap: 5px;
+    cursor: pointer;
   }
+}
 
-  .my_game {
-    width: 100%;
-    min-height: 219px;
-    background-color: #ecf4f9;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  .my_character {
-    width: 84px;
-    height: 136px;
-    background-color: #d98d8d;
-    border-radius: 20px;
-  }
-  .my_card_group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .my_card {
-    width: 88px;
-    height: 133px;
-    background-color: #fdff8c;
-    border-radius: 20px;
-  }
-  .my_money_icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: yellow;
-  }
-  .my_money {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.my_game {
+  width: 100%;
+  min-height: 219px;
+  background-color: #ecf4f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0% 10%;
+}
+.my_game_info {
+  @include flex-center-row;
+  gap: 50px;
+}
+.my_character {
+  width: 84px;
+  height: 136px;
+  background-color: #d98d8d;
+  border-radius: 20px;
+}
+.my_card_group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.my_card {
+  width: 88px;
+  height: 133px;
+  background-color: #fdff8c;
+  border-radius: 20px;
+}
+.my_money_icon {
+  width: 64px;
+  height: 64px;
+  background-image: url(../img/coin.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.my_money {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.my_area {
+  width: 100%;
+  background-color: #f3ecdb;
+  border-radius: 20px;
+  grid-column: span 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px;
+}
+.my_area_group {
+  @include flex-center-row;
+  gap: 10px;
+}
+.my_point {
+  @include flex-center-column;
+}
+
+.my_info {
+  @include flex-center-column;
+  gap: 10px;
+}
+
+.my_name {
+  @include f-20-b;
+}
+
+.my_avatar {
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  background-color: white;
+  display: inline-block;
+}
+
+.pending {
+  width: 100%;
+  @include flex-center-row;
+  margin-bottom: 20px;
+}
+
+
+.user-info-modal-content {
+  min-width: 200px;
+  height: min(300px, 500px);
+  background-color: $light-blue;
+  border-radius: 20px;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.area-container{
+  min-width:200px;
+  width: 325px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: start;
+  gap: 5px;
+}
+
+.btn-close{
+  width: 13px;
+  height: 13px;
+  background-image: url(../img/close.svg);
+  background-size: contain;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
