@@ -2,10 +2,10 @@ export type CreateRoom = {
   createTime: string
   status: string
   msg: string
-  rooms: Record<string, create_room>
+  rooms: Record<string, UpdatedRooms>
 }
 
-export type create_room = {
+export type UpdatedRooms = {
   roomId: string
   roomName: string
   holderId: string
@@ -23,10 +23,10 @@ export type SpecificRoom = {
   searchTime: string
   status: string
   msg: string
-  rooms: Record<string, specific_room>
+  rooms: Record<string, TimedRooms>
 }
 
-export type specific_room = {
+export type TimedRooms = {
   roomId: string
   roomName: string
   createTime: string
