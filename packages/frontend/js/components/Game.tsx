@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import { getSpecificRoom, leaveRoom } from '../api'
 import Modal from './Modal'
 import ErrorModal from './ErrorModal'
-import { specific_room, SpecificRoom } from '../common/types'
+import { TimedRooms } from '../common/types'
 import UserInfoModal from './UserInfoModal'
 const More = require('../../src/img/more.svg').default
 const Leave = require('../../src/img/leaveGame.svg').default
 
 import { useUser } from '../contexts/UserContext'
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export type room = {
   roomId: string
@@ -39,7 +39,7 @@ const Game = () => {
   const [errorText, setErrorText] = useState<String>('')
 
   // 玩家資訊
-  const [roomInfo, setRoomInfo] = useState<specific_room | null>(null)
+  const [roomInfo, setRoomInfo] = useState<TimedRooms | null>(null)
   const { user } = useUser()
   const [isHolder, setIsHolder] = useState<boolean>(false)
 
@@ -90,7 +90,7 @@ const Game = () => {
   }
 
   const updateRoomData = (data: any) => {
-    const parsedData: specific_room = JSON.parse(data.rooms)
+    const parsedData: TimedRooms = JSON.parse(data.rooms)
     setRoomInfo(parsedData)
   }
 
@@ -102,7 +102,7 @@ const Game = () => {
     }
   }
 
-  const navigate = useNavigate()
+  const history = useHistory()
   const leaveGame = () => {
     if (roomId) {
       leaveRoom({ userId: user?.userId }, roomId).then((res) => {
@@ -111,7 +111,7 @@ const Game = () => {
         }
       })
     }
-    navigate(`/rooms`)
+    history.push(`/rooms`)
   }
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
