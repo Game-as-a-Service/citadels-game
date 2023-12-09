@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CharacterCard {
+public class RoleCard {
     private int sequence;
     private String name;
 }

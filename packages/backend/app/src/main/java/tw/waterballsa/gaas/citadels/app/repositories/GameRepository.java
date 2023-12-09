@@ -1,13 +1,12 @@
 package tw.waterballsa.gaas.citadels.app.repositories;
 
-import tw.waterballsa.gaas.citadels.domain.Game;
-import tw.waterballsa.gaas.citadels.domain.Room;
+import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 
 import java.util.Optional;
 
 public interface GameRepository {
 
-    Game createGame(Game game);
+    CitadelsGame createGame(CitadelsGame citadelsGame);
 
-    Optional<Game> findGameById(String gameId);
+    Optional<CitadelsGame> findGameById(String gameId);
 }

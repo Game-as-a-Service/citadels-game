@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.waterballsa.gaas.citadels.app.usecases.GetGameUseCase;
 import tw.waterballsa.gaas.citadels.app.usecases.StartGameUseCase;
-import tw.waterballsa.gaas.citadels.domain.Game;
+import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.GetGameView;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.StartGameView;
 
@@ -39,36 +39,35 @@ public class GameController {
 
     @GetMapping("/games/{gameId}")
     public ResponseEntity<?> getGame(@PathVariable String gameId) {
-        GetGamePresenter presenter = new GetGamePresenter();
+        GetCitadelsGamePresenter presenter = new GetCitadelsGamePresenter();
         getGameUseCase.execute(gameId, presenter);
         return status(OK).body(presenter.getGameView());
     }
 
-
-    class GetGamePresenter implements GetGameUseCase.Presenter {
-        private Game game;
+    class GetCitadelsGamePresenter implements GetGameUseCase.Presenter {
+        private CitadelsGame citadelsGame;
 
         public GetGameView getGameView() {
-            return GetGameView.toViewModel(game);
+            return GetGameView.toViewModel(citadelsGame);
         }
 
         @Override
-        public void setGame(Game game) {
-            this.game = game;
+        public void setGame(CitadelsGame citadelsGame) {
+            this.citadelsGame = citadelsGame;
         }
     }
 
 
     class StartGamePresenter implements Presenter {
-        private Game game;
+        private CitadelsGame citadelsGame;
 
         @Override
-        public void setGame(Game game) {
-            this.game = game;
+        public void setGame(CitadelsGame citadelsGame) {
+            this.citadelsGame = citadelsGame;
         }
 
         public StartGameView getStartGameView() {
-            return toViewModel(game);
+            return toViewModel(citadelsGame);
         }
     }
 

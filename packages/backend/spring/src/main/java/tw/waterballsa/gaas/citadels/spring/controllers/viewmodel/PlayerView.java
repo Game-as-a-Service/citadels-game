@@ -2,12 +2,8 @@ package tw.waterballsa.gaas.citadels.spring.controllers.viewmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import tw.waterballsa.gaas.citadels.domain.BuildCard;
-import tw.waterballsa.gaas.citadels.domain.CharacterCard;
-import tw.waterballsa.gaas.citadels.domain.Game;
 import tw.waterballsa.gaas.citadels.domain.Player;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +14,8 @@ public class PlayerView {
     private String name;
     private String imageName;
     private Integer coins;
-    private List<BuildCardView> buildCards;
-    private CharacterCardView characterCard;
+    private List<BuildingCardView> buildingCardViews;
+    private RoleCardView roleCardView;
     private Boolean hasCrown;
 
     public static List<PlayerView> toViewModels(List<Player> players) {
@@ -28,8 +24,8 @@ public class PlayerView {
 
 
     public static PlayerView toViewModel(Player player) {
-        List<BuildCardView> buildCardViews = BuildCardView.toViewModels(player.getBuildCards());
-        CharacterCardView characterCardView = CharacterCardView.toViewModel(player.getCharacterCard());
-        return new PlayerView(player.getId(),player.getName(),player.getImageName(),player.getCoins(),buildCardViews,characterCardView,player.getHasCrown());
+        List<BuildingCardView> buildingCardViews = BuildingCardView.toViewModels(player.getBuildingCards());
+        RoleCardView roleCardView = RoleCardView.toViewModel(player.getRoleCard());
+        return new PlayerView(player.getId(),player.getName(),player.getImageName(),player.getCoins(),buildingCardViews,roleCardView,player.getHasCrown());
     }
 }

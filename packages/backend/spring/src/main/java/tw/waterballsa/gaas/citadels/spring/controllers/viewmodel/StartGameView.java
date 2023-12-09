@@ -2,7 +2,7 @@ package tw.waterballsa.gaas.citadels.spring.controllers.viewmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import tw.waterballsa.gaas.citadels.domain.Game;
+import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,7 +13,7 @@ public class StartGameView {
     private String msg;
     private String gameId;
 
-    public static StartGameView toViewModel(Game game) {
-        return new StartGameView(LocalDateTime.now().toString(), "OK", "", game.getId());
+    public static StartGameView toViewModel(CitadelsGame citadelsGame) {
+        return new StartGameView(LocalDateTime.now().toString(), "OK", "", citadelsGame.getId());
     }
 }

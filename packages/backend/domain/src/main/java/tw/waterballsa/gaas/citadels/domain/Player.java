@@ -12,27 +12,13 @@ public class Player {
     private String name;
     private String imageName;
     private Integer coins;
-    private List<BuildCard> buildCards;
-    private CharacterCard characterCard;
+    private List<BuildingCard> buildingCards;
+    private RoleCard roleCard;
     private Boolean hasCrown;
     static final int DEFAULT_COIN = 0;
 
     public Player(String id, String name, String image) {
         this(id, name, image, DEFAULT_COIN, new ArrayList<>(), null, null);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Player user = (Player) obj;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(imageName, user.imageName);
     }
 
     public void removeCrown() {
@@ -47,7 +33,7 @@ public class Player {
         this.coins = this.coins + coins;
     }
 
-    public void plusCards(List<BuildCard> buildCardList) {
-        buildCards.addAll(buildCardList);
+    public void plusCards(List<BuildingCard> buildingCardList) {
+        buildingCards.addAll(buildingCardList);
     }
 }

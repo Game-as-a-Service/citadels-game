@@ -18,9 +18,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static tw.waterballsa.gaas.citadels.domain.Game.DEFAULT_CARD_QUANTITY;
-import static tw.waterballsa.gaas.citadels.domain.Game.DEFAULT_COINS;
-import static tw.waterballsa.gaas.citadels.domain.Game.Status.PLAYING;
+import static tw.waterballsa.gaas.citadels.domain.CitadelsGame.DEFAULT_CARD_QUANTITY;
+import static tw.waterballsa.gaas.citadels.domain.CitadelsGame.DEFAULT_COINS;
 
 public class CreateGameAndGetGameTest extends CitadelsSpringBootTest {
 
@@ -33,14 +32,12 @@ public class CreateGameAndGetGameTest extends CitadelsSpringBootTest {
         GameView gameView = getGameViewResponse.getGameView();
 
         assertNotNull(gameView);
-        assertEquals(PLAYING,gameView.getStatus());
-        assertEquals(request.getRoomId(), gameView.getRoomId());
         assertEquals(startGameView.getGameId(), gameView.getId());
         List<PlayerView> playerViews = gameView.getPlayerViews();
         assertEquals(request.getPlayers().size(), playerViews.size());
         playerViews.forEach(player -> {
             assertEquals(DEFAULT_COINS, player.getCoins());
-            assertEquals(DEFAULT_CARD_QUANTITY, player.getBuildCards().size());
+            assertEquals(DEFAULT_CARD_QUANTITY, player.getBuildingCardViews().size());
         });
     }
 

@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import tw.waterballsa.gaas.citadels.domain.Game;
+import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 
-import java.time.LocalDateTime;
 import java.util.List;
+
+import static tw.waterballsa.gaas.citadels.spring.repositories.data.BuildingCardData.toDomains;
+import static tw.waterballsa.gaas.citadels.spring.repositories.data.RoleCardData.toDomainList;
 
 
 @Data
@@ -20,30 +22,20 @@ import java.util.List;
 public class GameData {
     @Id
     private String id;
-    private String roomId;
-    private String name;
-    private LocalDateTime createTime;
-    private Game.Status status;
     private List<PlayerData> players;
-    private String kingPlayerId;
-    private List<CharacterCardData> characterCards;
-    private List<BuildCardData> buildCards;
+    private List<RoleCardData> roleCardsData;
+    private List<BuildingCardData> buildingCardsData;
 
-    public static GameData toData(Game game) {
-        return GameData.builder().id(game.getId())
-                .roomId(game.getRoomId())
-                .name(game.getName())
-                .players(PlayerData.toData(game.getPlayers()))
-                .status(game.getStatus())
-                .characterCards(CharacterCardData.toData(game.getCharacterCards()))
-                .buildCards(BuildCardData.toData(game.getBuildCards()))
-                .createTime(game.getCreateTime())
+    public static GameData toData(CitadelsGame citadelsGame) {
+        return GameData.builder().id(citadelsGame.getId())
+                .players(PlayerData.toData(citadelsGame.getPlayers()))
+                .roleCardsData(RoleCardData.toData(citadelsGame.getRoleCards()))
+                .buildingCardsData(BuildingCardData.toData(citadelsGame.getBuildingCards()))
                 .build();
     }
 
-    public Game toDomain() {
-        return new Game(id, roomId, name, status, createTime, PlayerData.toDomainList(players),
-                        CharacterCardData.toDomainList(characterCards), BuildCardData.toDomains(buildCards));
+    public CitadelsGame toDomain() {
+        return new CitadelsGame(id, PlayerData.toDomainList(players), toDomainList(roleCardsData), toDomains(buildingCardsData));
     }
 
 }

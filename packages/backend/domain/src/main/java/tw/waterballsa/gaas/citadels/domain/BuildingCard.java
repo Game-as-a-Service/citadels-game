@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class BuildCard {
+public class BuildingCard {
     private String name;
     private int coins;
     private Color color;

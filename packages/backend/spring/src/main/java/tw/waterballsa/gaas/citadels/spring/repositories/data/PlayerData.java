@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import tw.waterballsa.gaas.citadels.domain.BuildCard;
-import tw.waterballsa.gaas.citadels.domain.CharacterCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.RoleCard;
 import tw.waterballsa.gaas.citadels.domain.Player;
 
 import java.util.Arrays;
@@ -23,13 +23,13 @@ public class PlayerData {
     private String name;
     private String imageName;
     private Integer coins;
-    private List<BuildCardData> buildCardDataList;
-    private CharacterCardData characterCardData;
+    private List<BuildingCardData> buildingCardDataList;
+    private RoleCardData characterCardData;
     private Boolean hasCrown;
 
     public static PlayerData toData(Player player) {
         return new PlayerData(player.getId(), player.getName(), player.getImageName(), player.getCoins(),
-                BuildCardData.toData(player.getBuildCards()), CharacterCardData.toData(player.getCharacterCard()), player.getHasCrown());
+                BuildingCardData.toData(player.getBuildingCards()), RoleCardData.toData(player.getRoleCard()), player.getHasCrown());
     }
 
     public static List<PlayerData> toData(List<Player> players) {
@@ -37,9 +37,9 @@ public class PlayerData {
     }
 
     public static Player toDomain(PlayerData playerData) {
-        List<BuildCard> buildCards = BuildCardData.toDomains(playerData.getBuildCardDataList());
-        CharacterCard characterCard = CharacterCardData.toDomain(playerData.getCharacterCardData());
-        return new Player(playerData.getId(), playerData.getName(), playerData.getImageName(), playerData.getCoins(), buildCards, characterCard, playerData.getHasCrown());
+        List<BuildingCard> buildingCards = BuildingCardData.toDomains(playerData.getBuildingCardDataList());
+        RoleCard roleCard = RoleCardData.toDomain(playerData.getCharacterCardData());
+        return new Player(playerData.getId(), playerData.getName(), playerData.getImageName(), playerData.getCoins(), buildingCards, roleCard, playerData.getHasCrown());
     }
 
     public static List<Player> toDomainList(List<PlayerData> playersDataList) {
