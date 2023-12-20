@@ -49,7 +49,6 @@ const Game = () => {
     setIsGameStart(!isGameStart)
   }
 
-
   //SSE寫法
   useEffect(() => {
     initRoomData()
@@ -189,7 +188,9 @@ const Game = () => {
                     <span>個地區</span>
                   </div>
                 </div>
-                <UserInfoModal isUserInfoModalOpen={isUserInfoModalOpen}></UserInfoModal>
+                <UserInfoModal
+                  isUserInfoModalOpen={isUserInfoModalOpen}
+                ></UserInfoModal>
               </div>
             ))}
             {isGameStart && (
