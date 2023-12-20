@@ -10,7 +10,7 @@ const More = require('../../src/img/more.svg').default
 const Leave = require('../../src/img/leaveGame.svg').default
 
 import { useUser } from '../contexts/UserContext'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export type room = {
   roomId: string
@@ -102,7 +102,7 @@ const Game = () => {
     }
   }
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const leaveGame = () => {
     if (roomId) {
       leaveRoom({ userId: user?.userId }, roomId).then((res) => {
@@ -111,7 +111,7 @@ const Game = () => {
         }
       })
     }
-    history.push(`/rooms`)
+    navigate(`/rooms`)
   }
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)

@@ -8,7 +8,7 @@ import { getRoomList } from '../redux/slice/roomSlice'
 import Modal from './Modal'
 import ErrorModal from './ErrorModal'
 
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { createRoom } from '../api'
 
 type obj = {
@@ -17,6 +17,7 @@ type obj = {
 
 const RoomList: React.FC = () => {
   const dispatch = useAppDispatch()
+  //@ts-ignore
   const { data, loading } = useAppSelector((state) => state.room)
   const { rooms, totalRooms } = data || {}
   const isOdd = (totalAmout: number) => totalAmout % 2 !== 0
@@ -87,7 +88,7 @@ const RoomList: React.FC = () => {
     })
   }
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const [isErrorVisible, setIsErrorVisible] = useState(false)
   const [errorText, setErrorText] = useState('')
 
@@ -100,7 +101,7 @@ const RoomList: React.FC = () => {
 
           // @ts-ignore
           const roomID = res.room.roomId
-          history.push(`/game/${roomID}`)
+          navigate(`/game/${roomID}`)
         }
       })
       .catch((err) => {
