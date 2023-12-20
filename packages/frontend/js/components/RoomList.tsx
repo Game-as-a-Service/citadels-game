@@ -76,7 +76,7 @@ const RoomList: React.FC = () => {
   const [userImage, setUserImage] = useState<string | null>(
     localStorage.getItem('userImage')
   )
-  
+
   const handleRoomNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewRoom({
       ...newRoom,

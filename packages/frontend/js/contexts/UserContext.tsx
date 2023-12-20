@@ -18,7 +18,6 @@ interface UserProviderProps {
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
