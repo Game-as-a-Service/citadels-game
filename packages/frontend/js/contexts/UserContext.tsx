@@ -18,9 +18,6 @@ interface UserProviderProps {
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  localStorage.setItem('userId', 'player1') // 正式版要刪除
-  localStorage.setItem('userName', '陳XX') // 正式版要刪除
-  localStorage.setItem('userImage', 'userImage') // 正式版要刪除
 
   const [user, setUser] = useState<User | null>(null)
 

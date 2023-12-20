@@ -76,9 +76,7 @@ const RoomList: React.FC = () => {
   const [userImage, setUserImage] = useState<string | null>(
     localStorage.getItem('userImage')
   )
-  localStorage.setItem('userName', '陳XX') // 正式版要刪除
-  localStorage.setItem('userImage', 'userImage') // 正式版要刪除
-
+  
   const handleRoomNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewRoom({
       ...newRoom,
