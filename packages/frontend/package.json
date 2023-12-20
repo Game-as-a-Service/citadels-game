@@ -6,6 +6,7 @@
   "scripts": {
     "test": "cypress run",
     "dev": "webpack-dev-server --hot --progress --mode development",
+    "prod": "webpack --mode production",
     "format": "prettier . --write --ignore-unknown",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
