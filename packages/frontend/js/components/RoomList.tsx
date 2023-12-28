@@ -1,8 +1,15 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import Pagination from './Pagination'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { getRoomList } from '../redux/slice/roomSlice'
+
+import Modal from './Modal'
+import ErrorModal from './ErrorModal'
+
+import { useNavigate } from 'react-router-dom'
+import { createRoom } from '../api'
 
 type obj = {
   [key: string]: any
@@ -10,6 +17,7 @@ type obj = {
 
 const RoomList: React.FC = () => {
   const dispatch = useAppDispatch()
+  //@ts-ignore
   const { data, loading } = useAppSelector((state) => state.room)
   const { rooms, totalRooms } = data || {}
   const isOdd = (totalAmout: number) => totalAmout % 2 !== 0
@@ -50,6 +58,57 @@ const RoomList: React.FC = () => {
       setDataSource(rooms.slice(start, end))
     }
   }, [current, rooms])
+
+  // createRoom
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const showModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
+
+  const [newRoom, setNewRoom] = useState({
+    roomName: '',
+    userName: '',
+    userImage: ''
+  })
+  const [userName, setUserName] = useState<string | null>(
+    localStorage.getItem('userName')
+  )
+  const [userImage, setUserImage] = useState<string | null>(
+    localStorage.getItem('userImage')
+  )
+
+  const handleRoomNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewRoom({
+      ...newRoom,
+      [e.target.name]: e.target.value,
+      userName: userName ?? '',
+      userImage: userImage ?? ''
+    })
+  }
+
+  const navigate = useNavigate()
+  const [isErrorVisible, setIsErrorVisible] = useState(false)
+  const [errorText, setErrorText] = useState('')
+
+  const handleSubmitRoomName = async () => {
+    console.log('執行創建')
+    await createRoom(newRoom)
+      .then((res) => {
+        if (res.status.toString() === 'OK') {
+          console.log(res)
+
+          // @ts-ignore
+          const roomID = res.room.roomId
+          navigate(`/game/${roomID}`)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        setIsErrorVisible(true)
+        setErrorText('連線發生錯誤')
+      })
+  }
+
   return (
     <div className='room-list'>
       <div className='navbar'>
@@ -57,10 +116,50 @@ const RoomList: React.FC = () => {
           <img className='avatar' />
           <span className='name'>王老先生</span>
         </div>
-        <div className='navbar__btn'>
+        <div className='navbar__btn' onClick={showModal}>
           <span className='cross-btn'></span>
           <span className='text'>創建房間</span>
         </div>
+        <Modal
+          isModalOpen={isModalOpen}
+          title={null}
+          footer={
+            <>
+              <button className='cancel-btn' onClick={showModal}>
+                取消
+              </button>
+              <button
+                className='blue-btn'
+                type='submit'
+                onClick={handleSubmitRoomName}
+              >
+                創建房間
+              </button>
+            </>
+          }
+        >
+          <form>
+            <div>
+              <label htmlFor='roomName' className='f-24-b'>
+                房間名稱：
+              </label>
+              <input
+                id='roomName'
+                type='text'
+                name='roomName'
+                value={newRoom.roomName}
+                onChange={(e) => handleRoomNameChange(e)}
+                placeholder='輸入房間名稱'
+                className='main_input'
+              />
+            </div>
+          </form>
+        </Modal>
+        <ErrorModal
+          isErrorVisible={isErrorVisible}
+          onClose={() => setIsErrorVisible(false)}
+          errorText={errorText}
+        ></ErrorModal>
       </div>
       <div className='row__list list'>
         {loading && <div>loading ...</div>}

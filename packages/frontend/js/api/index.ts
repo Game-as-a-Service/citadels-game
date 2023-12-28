@@ -1,5 +1,5 @@
 import axiosInstance from '../common/axiosInstance'
-
+import { CreateRoom, SpecificRoom } from '../common/types'
 type Domain = {
   development: string
   production: string
@@ -38,4 +38,16 @@ type player = {
 
 export const getRoomList = () => {
   return axios.get<RoomList>('/rooms')
+}
+
+export const createRoom = (payload: Object) => {
+  return axios.post<CreateRoom>('/api/citadels/room', payload)
+}
+
+export const getSpecificRoom = (payload: String) => {
+  return axios.get<SpecificRoom>(`/api/citadels/rooms/${payload}`)
+}
+
+export const leaveRoom = (payload: Object, roomId: string) => {
+  return axios.post(`/rooms/${roomId}:leave`, payload)
 }
