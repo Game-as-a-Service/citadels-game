@@ -21,15 +21,15 @@ module.exports = function () {
           loader: 'ts-loader', 
           exclude: /node_modules/
         },
-        {
-          test: /\.(js|jsx)$/,
-          loader: 'esbuild-loader',
-          options: {
-            loader: 'jsx',
-            target: 'es2015'
-          },
-          exclude: /node_modules/
-        },
+        // {
+        //   test: /\.(js|jsx)$/,
+        //   loader: 'esbuild-loader',
+        //   options: {
+        //     loader: 'jsx',
+        //     target: 'es2015'
+        //   },
+        //   exclude: /node_modules/
+        // },
         {
           test: /\.(sc|c)ss$/,
           use: [
