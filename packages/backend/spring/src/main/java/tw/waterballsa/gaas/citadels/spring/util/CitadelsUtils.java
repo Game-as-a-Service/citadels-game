@@ -1,17 +1,19 @@
 package tw.waterballsa.gaas.citadels.spring.util;
 
+import java.util.List;
 import java.util.Random;
 
-public class CitadelsUtils {
-    static void shuffle(Object[] List, int cards) {
+public class CitadelsUtils<T> {
+
+    public static <T> void shuffle(List<T> cards) {
         Random rd = new Random();
 
-        for (int i = cards - 1; i > 0; i--) {
-            int j = rd.nextInt(i+1);
+        for (int i = cards.size() - 1; i > 0; i--) {
+            int j = rd.nextInt(i + 1);
 
-            Object temp = List[i];
-            List[i] = List[j];
-            List[j] = temp;
+            T temp = cards.get(i);
+            cards.set(i, cards.get(j));
+            cards.set(j,temp);
         }
     }
 }
