@@ -1,9 +1,9 @@
-package tw.waterballsa.gaas.citadels.spring.util;
+package tw.waterballsa.gaas.citadels.util;
 
 import java.util.List;
 import java.util.Random;
 
-public class CitadelsUtils<T> {
+public class CitadelsUtils {
 
     public static <T> void shuffle(List<T> cards) {
         Random rd = new Random();
