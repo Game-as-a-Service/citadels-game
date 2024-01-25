@@ -24,6 +24,7 @@ public class RoomView {
     public static RoomView toViewModel(Room room) {
         User holder = room.findHolder();
         List<UserView> usersView = UserView.toViewModel(room.getUsers());
-        return new RoomView(room.getCreateTime().toString(), room.getId(), room.getName(), holder.getId(), holder.getName(), usersView, room.getStatus(), room.getUsers().size());
+        return new RoomView(room.getCreateTime().toString(), room.getId(), room.getName(),
+                holder.getId(), holder.getName(), usersView, room.getStatus(), room.getUsers().size());
     }
 }

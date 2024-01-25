@@ -21,6 +21,7 @@ import static tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.CreateRo
 @AllArgsConstructor
 @RequestMapping(value = "/api/citadels")
 public class CreateRoomController {
+
     private final CreateRoomUseCase createRoomUseCase;
 
     @PostMapping("/room")
