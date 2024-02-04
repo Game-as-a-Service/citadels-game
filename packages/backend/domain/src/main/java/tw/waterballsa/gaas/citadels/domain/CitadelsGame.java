@@ -1,5 +1,8 @@
 package tw.waterballsa.gaas.citadels.domain;
 
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCardFactory;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -60,11 +63,9 @@ public class CitadelsGame {
             player.plusCards(getTwoCards());
             player.plusCoins(2);
         });
-
     }
 
     public List<BuildingCard> getTwoCards() {
-        return Arrays.asList(new BuildingCard("test", 3, BuildingCard.Color.BLUE), new BuildingCard("test", 2, BuildingCard.Color.BLUE));
+        return Arrays.asList(new BuildingCard("test", 3, BuildingCardFactory.Color.BLUE), new BuildingCard("test", 2, BuildingCardFactory.Color.BLUE));
     }
-
 }

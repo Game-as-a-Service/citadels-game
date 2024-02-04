@@ -2,7 +2,8 @@ package tw.waterballsa.gaas.citadels.spring.controllers.viewmodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import tw.waterballsa.gaas.citadels.domain.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCardFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,8 @@ import java.util.stream.Collectors;
 public class BuildingCardView {
     private String name;
     private int coins;
-    private BuildingCard.Color color;
+    private BuildingCardFactory.Color color;
+
 
     public static List<BuildingCardView> toViewModels(List<BuildingCard> buildingCards) {
         return buildingCards.stream().map(BuildingCardView::toViewModel).collect(Collectors.toList());

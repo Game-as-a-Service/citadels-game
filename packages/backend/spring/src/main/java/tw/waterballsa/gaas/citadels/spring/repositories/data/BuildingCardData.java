@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import tw.waterballsa.gaas.citadels.domain.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCardFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ public class BuildingCardData {
     @Id
     private String name;
     private int coins;
-    private BuildingCard.Color color;
+    private BuildingCardFactory.Color color;
 
     public static BuildingCardData toData(BuildingCard buildingCard) {
         return new BuildingCardData(buildingCard.getName(), buildingCard.getCoins(), buildingCard.getColor());
