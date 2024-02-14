@@ -13,7 +13,7 @@ public class CitadelsUtils {
 
             T temp = cards.get(i);
             cards.set(i, cards.get(j));
-            cards.set(j,temp);
+            cards.set(j, temp);
         }
     }
 }
