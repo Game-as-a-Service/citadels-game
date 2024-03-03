@@ -18,18 +18,18 @@ module.exports = function () {
       rules: [
         {
           test: /\.(js|jsx|ts|tsx)$/,
-          loader: 'ts-loader', 
+          use: 'awesome-typescript-loader',
           exclude: /node_modules/
         },
-        {
-          test: /\.(js|jsx)$/,
-          loader: 'esbuild-loader',
-          options: {
-            loader: 'jsx',
-            target: 'es2015'
-          },
-          exclude: /node_modules/
-        },
+        // {
+        //   test: /\.(js|jsx)$/,
+        //   loader: 'esbuild-loader',
+        //   options: {
+        //     loader: 'jsx',
+        //     target: 'es2015'
+        //   },
+        //   exclude: /node_modules/
+        // },
         {
           test: /\.(sc|c)ss$/,
           use: [
