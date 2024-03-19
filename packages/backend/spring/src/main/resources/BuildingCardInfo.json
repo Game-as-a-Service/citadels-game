@@ -1,0 +1,170 @@
+[
+  {
+    "name": "TEMPLE",
+    "color": "blue",
+    "cost": 1,
+    "number":3
+  },
+  {
+    "name": "CHURCH",
+    "color": "blue",
+    "cost": 2,
+    "number":3
+  },
+  {
+    "name": "MONASTERY",
+    "color": "blue",
+    "cost": 3,
+    "number":3
+  },
+  {
+    "name": "CATHEDRAL",
+    "color": "blue",
+    "cost": 5,
+    "number":2
+  },
+  {
+    "name": "WATCHTOWER",
+    "color": "red",
+    "cost": 1,
+    "number":3
+  },
+  {
+    "name": "PRISON",
+    "color": "red",
+    "cost": 2,
+    "number":3
+  },
+  {
+    "name": "BATTLEFIELD",
+    "color": "red",
+    "cost": 3,
+    "number":3
+  },
+  {
+    "name": "FORTRESS",
+    "color": "red",
+    "cost": 5,
+    "number":2
+  },
+  {
+    "name": "MANOR",
+    "color": "gold",
+    "cost": 3,
+    "number":5
+  },
+  {
+    "name": "CASTLE",
+    "color": "gold",
+    "cost": 4,
+    "number":4
+  },
+  {
+    "name": "PALACE",
+    "color": "gold",
+    "cost": 5,
+    "number":3
+  },
+  {
+    "name": "TAVERN",
+    "color": "green",
+    "cost": 1,
+    "number":5
+  },
+  {
+    "name": "INN",
+    "color": "green",
+    "cost": 2,
+    "number":3
+  },
+  {
+    "name": "MARKET",
+    "color": "green",
+    "cost": 2,
+    "number":4
+  },
+  {
+    "name": "BOATHOUSE",
+    "color": "green",
+    "cost": 3,
+    "number":3
+  },
+  {
+    "name": "HARBOR",
+    "color": "green",
+    "cost": 4,
+    "number":3
+  },
+  {
+    "name": "TOWN_HALL",
+    "color": "green",
+    "cost": 5,
+    "number":2
+  },
+  {
+    "name": "LIBRARY",
+    "color": "purple",
+    "cost": 6,
+    "number":1
+  },
+  {
+    "name": "DRAGON_GATE",
+    "color": "purple",
+    "cost": 8,
+    "number":1
+  },
+  {
+    "name": "GRAVEYARD",
+    "color": "purple",
+    "cost": 5,
+    "number":1
+  },
+  {
+    "name": "GHOST_TOWN",
+    "color": "purple",
+    "cost": 2,
+    "number":1
+  },
+  {
+    "name": "SCHOOL_OF_MAGIC",
+    "color": "purple",
+    "cost": 6,
+    "number":1
+  },
+  {
+    "name": "LABORATORY",
+    "color": "purple",
+    "cost": 5,
+    "number":1
+  },
+  {
+    "name": "SMITHY",
+    "color": "purple",
+    "cost": 5,
+    "number":1
+  },
+  {
+    "name": "OBSERVATORY",
+    "color": "purple",
+    "cost": 5,
+    "number":1
+  },
+  {
+    "name": "UNIVERSITY",
+    "color": "purple",
+    "cost": 8,
+    "number":1
+  },
+  {
+    "name": "BASTION",
+    "color": "purple",
+    "cost": 3,
+    "number":1
+  },
+  {
+    "name": "GREAT_WALL",
+    "color": "purple",
+    "cost": 6,
+    "number":1
+  }
+]
