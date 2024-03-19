@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class BuildingCardView {
     private String name;
     private int coins;
-    private BuildingCardFactory.Color color;
+    private BuildingCard.Color color;
 
 
     public static List<BuildingCardView> toViewModels(List<BuildingCard> buildingCards) {

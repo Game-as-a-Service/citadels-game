@@ -13,8 +13,6 @@ import tw.waterballsa.gaas.citadels.domain.Player;
 
 import javax.inject.Named;
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.*;
 
@@ -34,7 +32,7 @@ public class StartGameUseCase {
     private CitadelsGame createGame(Request request) {
         List<Player> players = getPlayers(request.getPlayers());
         List<RoleCard> roleCards = getRoleCards();
-        List<BuildingCard> buildingCards = getBuildingCards();
+        List<BuildingCard> buildingCards = factory.createBuildingCards().orElseThrow();
         CitadelsGame citadelsGame = new CitadelsGame(players, roleCards, buildingCards);
         citadelsGame.start();
         return citadelsGame;
@@ -77,51 +75,5 @@ public class StartGameUseCase {
         public String id;
         public String name;
         public String imageName;
-    }
-
-    private List<BuildingCard> getBuildingCards() {
-        List<BuildingCard> cards = new ArrayList<>();
-        Stream.of(
-                        getBuildingCards(BuildingCardFactory.Type.TEMPLE, 3),
-                        getBuildingCards(BuildingCardFactory.Type.CHURCH, 3),
-                        getBuildingCards(BuildingCardFactory.Type.MONASTERY, 3),
-                        getBuildingCards(BuildingCardFactory.Type.CATHEDRAL, 2),
-                        getBuildingCards(BuildingCardFactory.Type.WATCHTOWER, 3),
-                        getBuildingCards(BuildingCardFactory.Type.PRISON, 3),
-                        getBuildingCards(BuildingCardFactory.Type.BATTLEFIELD, 3),
-                        getBuildingCards(BuildingCardFactory.Type.FORTRESS, 2),
-                        getBuildingCards(BuildingCardFactory.Type.MANOR, 5),
-                        getBuildingCards(BuildingCardFactory.Type.CASTLE, 4),
-                        getBuildingCards(BuildingCardFactory.Type.PALACE, 3),
-                        getBuildingCards(BuildingCardFactory.Type.TAVERN, 5),
-                        getBuildingCards(BuildingCardFactory.Type.INN, 3),
-                        getBuildingCards(BuildingCardFactory.Type.MARKET, 4),
-                        getBuildingCards(BuildingCardFactory.Type.BOATHOUSE, 3),
-                        getBuildingCards(BuildingCardFactory.Type.HARBOR, 3),
-                        getBuildingCards(BuildingCardFactory.Type.TOWN_HALL, 2),
-                        getBuildingCards(BuildingCardFactory.Type.LIBRARY, 1),
-                        getBuildingCards(BuildingCardFactory.Type.DRAGON_GATE, 1),
-                        getBuildingCards(BuildingCardFactory.Type.GRAVEYARD, 1),
-                        getBuildingCards(BuildingCardFactory.Type.GHOST_TOWN, 1),
-                        getBuildingCards(BuildingCardFactory.Type.SCHOOL_OF_MAGIC, 1),
-                        getBuildingCards(BuildingCardFactory.Type.LABORATORY, 1),
-                        getBuildingCards(BuildingCardFactory.Type.SMITHY, 1),
-                        getBuildingCards(BuildingCardFactory.Type.OBSERVATORY, 1),
-                        getBuildingCards(BuildingCardFactory.Type.UNIVERSITY, 1),
-                        getBuildingCards(BuildingCardFactory.Type.BASTION, 1),
-                        getBuildingCards(BuildingCardFactory.Type.GREAT_WALL, 1)
-                )
-                .flatMap(Collection::stream)
-                .forEach(cards::add);
-
-        return cards;
-    }
-
-    private List<BuildingCard> getBuildingCards(BuildingCardFactory.Type type, int count) {
-        List<BuildingCard> buildingCards = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            buildingCards.add(factory.createBuildingCard(type).orElseThrow());
-        }
-        return buildingCards;
     }
 }

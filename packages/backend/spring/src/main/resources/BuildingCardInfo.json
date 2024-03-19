@@ -1,170 +1,170 @@
 [
   {
-    "index": 0,
     "name": "TEMPLE",
     "color": "blue",
-    "cost": 1
+    "cost": 1,
+    "number":3
   },
   {
-    "index": 1,
     "name": "CHURCH",
     "color": "blue",
-    "cost": 2
+    "cost": 2,
+    "number":3
   },
   {
-    "index": 2,
     "name": "MONASTERY",
     "color": "blue",
-    "cost": 3
+    "cost": 3,
+    "number":3
   },
   {
-    "index": 3,
     "name": "CATHEDRAL",
     "color": "blue",
-    "cost": 5
+    "cost": 5,
+    "number":2
   },
   {
-    "index": 4,
     "name": "WATCHTOWER",
     "color": "red",
-    "cost": 1
+    "cost": 1,
+    "number":3
   },
   {
-    "index": 5,
     "name": "PRISON",
     "color": "red",
-    "cost": 2
+    "cost": 2,
+    "number":3
   },
   {
-    "index": 6,
     "name": "BATTLEFIELD",
     "color": "red",
-    "cost": 3
+    "cost": 3,
+    "number":3
   },
   {
-    "index": 7,
     "name": "FORTRESS",
     "color": "red",
-    "cost": 5
+    "cost": 5,
+    "number":2
   },
   {
-    "index": 8,
     "name": "MANOR",
     "color": "gold",
-    "cost": 3
+    "cost": 3,
+    "number":5
   },
   {
-    "index": 9,
     "name": "CASTLE",
     "color": "gold",
-    "cost": 4
+    "cost": 4,
+    "number":4
   },
   {
-    "index": 10,
     "name": "PALACE",
     "color": "gold",
-    "cost": 5
+    "cost": 5,
+    "number":3
   },
   {
-    "index": 11,
     "name": "TAVERN",
     "color": "green",
-    "cost": 1
+    "cost": 1,
+    "number":5
   },
   {
-    "index": 12,
     "name": "INN",
     "color": "green",
-    "cost": 2
+    "cost": 2,
+    "number":3
   },
   {
-    "index": 13,
     "name": "MARKET",
     "color": "green",
-    "cost": 2
+    "cost": 2,
+    "number":4
   },
   {
-    "index": 14,
     "name": "BOATHOUSE",
     "color": "green",
-    "cost": 3
+    "cost": 3,
+    "number":3
   },
   {
-    "index": 15,
     "name": "HARBOR",
     "color": "green",
-    "cost": 4
+    "cost": 4,
+    "number":3
   },
   {
-    "index": 16,
     "name": "TOWN_HALL",
     "color": "green",
-    "cost": 5
+    "cost": 5,
+    "number":2
   },
   {
-    "index": 17,
     "name": "LIBRARY",
     "color": "purple",
-    "cost": 6
+    "cost": 6,
+    "number":1
   },
   {
-    "index": 18,
     "name": "DRAGON_GATE",
     "color": "purple",
-    "cost": 8
+    "cost": 8,
+    "number":1
   },
   {
-    "index": 19,
     "name": "GRAVEYARD",
     "color": "purple",
-    "cost": 5
+    "cost": 5,
+    "number":1
   },
   {
-    "index": 20,
     "name": "GHOST_TOWN",
     "color": "purple",
-    "cost": 2
+    "cost": 2,
+    "number":1
   },
   {
-    "index": 21,
     "name": "SCHOOL_OF_MAGIC",
     "color": "purple",
-    "cost": 6
+    "cost": 6,
+    "number":1
   },
   {
-    "index": 22,
     "name": "LABORATORY",
     "color": "purple",
-    "cost": 5
+    "cost": 5,
+    "number":1
   },
   {
-    "index": 23,
     "name": "SMITHY",
     "color": "purple",
-    "cost": 5
+    "cost": 5,
+    "number":1
   },
   {
-    "index": 24,
     "name": "OBSERVATORY",
     "color": "purple",
-    "cost": 5
+    "cost": 5,
+    "number":1
   },
   {
-    "index": 25,
     "name": "UNIVERSITY",
     "color": "purple",
-    "cost": 8
+    "cost": 8,
+    "number":1
   },
   {
-    "index": 26,
     "name": "BASTION",
     "color": "purple",
-    "cost": 3
+    "cost": 3,
+    "number":1
   },
   {
-    "index": 27,
     "name": "GREAT_WALL",
     "color": "purple",
-    "cost": 6
+    "cost": 6,
+    "number":1
   }
 ]

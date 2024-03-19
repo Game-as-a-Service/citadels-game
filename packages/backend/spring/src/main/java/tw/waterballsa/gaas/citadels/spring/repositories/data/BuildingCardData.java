@@ -17,7 +17,7 @@ public class BuildingCardData {
     @Id
     private String name;
     private int coins;
-    private BuildingCardFactory.Color color;
+    private BuildingCard.Color color;
 
     public static BuildingCardData toData(BuildingCard buildingCard) {
         return new BuildingCardData(buildingCard.getName(), buildingCard.getCoins(), buildingCard.getColor());
