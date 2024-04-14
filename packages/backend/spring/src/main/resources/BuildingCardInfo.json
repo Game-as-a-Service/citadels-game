@@ -1,170 +1,327 @@
 [
   {
     "name": "TEMPLE",
-    "color": "blue",
-    "cost": 1,
-    "number":3
+    "color": "BLUE",
+    "coins": 1
+  },
+  {
+    "name": "TEMPLE",
+    "color": "BLUE",
+    "coins": 1
+  },
+  {
+    "name": "TEMPLE",
+    "color": "BLUE",
+    "coins": 1
   },
   {
     "name": "CHURCH",
-    "color": "blue",
-    "cost": 2,
-    "number":3
+    "color": "BLUE",
+    "coins": 2
+  },
+  {
+    "name": "CHURCH",
+    "color": "BLUE",
+    "coins": 2
+  },
+  {
+    "name": "CHURCH",
+    "color": "BLUE",
+    "coins": 2
   },
   {
     "name": "MONASTERY",
-    "color": "blue",
-    "cost": 3,
-    "number":3
+    "color": "BLUE",
+    "coins": 3
+  },
+  {
+    "name": "MONASTERY",
+    "color": "BLUE",
+    "coins": 3
+  },
+  {
+    "name": "MONASTERY",
+    "color": "BLUE",
+    "coins": 3
   },
   {
     "name": "CATHEDRAL",
-    "color": "blue",
-    "cost": 5,
-    "number":2
+    "color": "BLUE",
+    "coins": 5
+  },
+  {
+    "name": "CATHEDRAL",
+    "color": "BLUE",
+    "coins": 5
   },
   {
     "name": "WATCHTOWER",
-    "color": "red",
-    "cost": 1,
-    "number":3
+    "color": "RED",
+    "coins": 1
+  },
+  {
+    "name": "WATCHTOWER",
+    "color": "RED",
+    "coins": 1
+  },
+  {
+    "name": "WATCHTOWER",
+    "color": "RED",
+    "coins": 1
   },
   {
     "name": "PRISON",
-    "color": "red",
-    "cost": 2,
-    "number":3
+    "color": "RED",
+    "coins": 2
+  },
+  {
+    "name": "PRISON",
+    "color": "RED",
+    "coins": 2
+  },
+  {
+    "name": "PRISON",
+    "color": "RED",
+    "coins": 2
   },
   {
     "name": "BATTLEFIELD",
-    "color": "red",
-    "cost": 3,
-    "number":3
+    "color": "RED",
+    "coins": 3
+  },
+  {
+    "name": "BATTLEFIELD",
+    "color": "RED",
+    "coins": 3
+  },
+  {
+    "name": "BATTLEFIELD",
+    "color": "RED",
+    "coins": 3
   },
   {
     "name": "FORTRESS",
-    "color": "red",
-    "cost": 5,
-    "number":2
+    "color": "RED",
+    "coins": 5
+  },
+  {
+    "name": "FORTRESS",
+    "color": "RED",
+    "coins": 5
   },
   {
     "name": "MANOR",
-    "color": "gold",
-    "cost": 3,
-    "number":5
+    "color": "GOLD",
+    "coins": 3
+  },
+  {
+    "name": "MANOR",
+    "color": "GOLD",
+    "coins": 3
+  },
+  {
+    "name": "MANOR",
+    "color": "GOLD",
+    "coins": 3
+  },
+  {
+    "name": "MANOR",
+    "color": "GOLD",
+    "coins": 3
+  },
+  {
+    "name": "MANOR",
+    "color": "GOLD",
+    "coins": 3
   },
   {
     "name": "CASTLE",
-    "color": "gold",
-    "cost": 4,
-    "number":4
+    "color": "GOLD",
+    "coins": 4
+  },
+  {
+    "name": "CASTLE",
+    "color": "GOLD",
+    "coins": 4
+  },
+  {
+    "name": "CASTLE",
+    "color": "GOLD",
+    "coins": 4
+  },
+  {
+    "name": "CASTLE",
+    "color": "GOLD",
+    "coins": 4
   },
   {
     "name": "PALACE",
-    "color": "gold",
-    "cost": 5,
-    "number":3
+    "color": "GOLD",
+    "coins": 5
+  },
+  {
+    "name": "PALACE",
+    "color": "GOLD",
+    "coins": 5
+  },
+  {
+    "name": "PALACE",
+    "color": "GOLD",
+    "coins": 5
   },
   {
     "name": "TAVERN",
-    "color": "green",
-    "cost": 1,
-    "number":5
+    "color": "GREEN",
+    "coins": 1
+  },
+  {
+    "name": "TAVERN",
+    "color": "GREEN",
+    "coins": 1
+  },
+  {
+    "name": "TAVERN",
+    "color": "GREEN",
+    "coins": 1
+  },
+  {
+    "name": "TAVERN",
+    "color": "GREEN",
+    "coins": 1
+  },
+  {
+    "name": "TAVERN",
+    "color": "GREEN",
+    "coins": 1
   },
   {
     "name": "INN",
-    "color": "green",
-    "cost": 2,
-    "number":3
+    "color": "GREEN",
+    "coins": 2
+  },
+  {
+    "name": "INN",
+    "color": "GREEN",
+    "coins": 2
+  },
+  {
+    "name": "INN",
+    "color": "GREEN",
+    "coins": 2
   },
   {
     "name": "MARKET",
-    "color": "green",
-    "cost": 2,
-    "number":4
+    "color": "GREEN",
+    "coins": 2
+  },
+  {
+    "name": "MARKET",
+    "color": "GREEN",
+    "coins": 2
+  },
+  {
+    "name": "MARKET",
+    "color": "GREEN",
+    "coins": 2
+  },
+  {
+    "name": "MARKET",
+    "color": "GREEN",
+    "coins": 2
   },
   {
     "name": "BOATHOUSE",
-    "color": "green",
-    "cost": 3,
-    "number":3
+    "color": "GREEN",
+    "coins": 3
+  },
+  {
+    "name": "BOATHOUSE",
+    "color": "GREEN",
+    "coins": 3
+  },
+  {
+    "name": "BOATHOUSE",
+    "color": "GREEN",
+    "coins": 3
   },
   {
     "name": "HARBOR",
-    "color": "green",
-    "cost": 4,
-    "number":3
+    "color": "GREEN",
+    "coins": 4
+  },
+  {
+    "name": "HARBOR",
+    "color": "GREEN",
+    "coins": 4
+  },
+  {
+    "name": "HARBOR",
+    "color": "GREEN",
+    "coins": 4
   },
   {
     "name": "TOWN_HALL",
-    "color": "green",
-    "cost": 5,
-    "number":2
+    "color": "GREEN",
+    "coins": 5
+  },
+  {
+    "name": "TOWN_HALL",
+    "color": "GREEN",
+    "coins": 5
   },
   {
     "name": "LIBRARY",
-    "color": "purple",
-    "cost": 6,
-    "number":1
+    "color": "PURPLE",
+    "coins": 6
   },
   {
     "name": "DRAGON_GATE",
-    "color": "purple",
-    "cost": 8,
-    "number":1
+    "color": "PURPLE",
+    "coins": 8
   },
   {
     "name": "GRAVEYARD",
-    "color": "purple",
-    "cost": 5,
-    "number":1
+    "color": "PURPLE",
+    "coins": 5
   },
   {
     "name": "GHOST_TOWN",
-    "color": "purple",
-    "cost": 2,
-    "number":1
+    "color": "PURPLE",
+    "coins": 2
   },
   {
     "name": "SCHOOL_OF_MAGIC",
-    "color": "purple",
-    "cost": 6,
-    "number":1
+    "color": "PURPLE",
+    "coins": 6
   },
   {
     "name": "LABORATORY",
-    "color": "purple",
-    "cost": 5,
-    "number":1
+    "color": "PURPLE",
+    "coins": 5
   },
   {
     "name": "SMITHY",
-    "color": "purple",
-    "cost": 5,
-    "number":1
+    "color": "PURPLE",
+    "coins": 5
   },
   {
     "name": "OBSERVATORY",
-    "color": "purple",
-    "cost": 5,
-    "number":1
+    "color": "PURPLE",
+    "coins": 5
   },
   {
     "name": "UNIVERSITY",
-    "color": "purple",
-    "cost": 8,
-    "number":1
+    "color": "PURPLE",
+    "coins": 8
   },
   {
     "name": "BASTION",
-    "color": "purple",
-    "cost": 3,
-    "number":1
+    "color": "PURPLE",
+    "coins": 3
   },
   {
     "name": "GREAT_WALL",
-    "color": "purple",
-    "cost": 6,
-    "number":1
+    "color": "PURPLE",
+    "coins": 6
   }
 ]
