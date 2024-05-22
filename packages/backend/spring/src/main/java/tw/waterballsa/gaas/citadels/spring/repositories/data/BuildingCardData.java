@@ -2,19 +2,13 @@ package tw.waterballsa.gaas.citadels.spring.repositories.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
-import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCardFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-@Document("buildingCards")
 @AllArgsConstructor
-@NoArgsConstructor
 public class BuildingCardData {
     private String name;
     private int coins;

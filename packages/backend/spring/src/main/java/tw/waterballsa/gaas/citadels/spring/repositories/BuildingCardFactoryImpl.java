@@ -5,6 +5,7 @@ import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
 import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCardFactory;
 import tw.waterballsa.gaas.citadels.spring.repositories.dao.BuildingCardDAO;
 import tw.waterballsa.gaas.citadels.spring.repositories.data.BuildingCardData;
+import tw.waterballsa.gaas.citadels.spring.repositories.data.BuildingCardSetting;
 
 import javax.inject.Named;
 import java.util.List;
@@ -18,7 +19,6 @@ public class BuildingCardFactoryImpl implements BuildingCardFactory {
 
     @Override
     public Optional<List<BuildingCard>> createBuildingCards() {
-        List<BuildingCardData> list = buildingCardDAO.findAll();
-        return  Optional.of(BuildingCardData.toDomains(buildingCardDAO.findAll()));
+        return  Optional.of(BuildingCardSetting.toDomains(buildingCardDAO.findAll()));
     }
 }
