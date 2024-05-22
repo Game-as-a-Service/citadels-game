@@ -2,326 +2,225 @@
   {
     "name": "TEMPLE",
     "color": "BLUE",
-    "coins": 1
-  },
-  {
-    "name": "TEMPLE",
-    "color": "BLUE",
-    "coins": 1
-  },
-  {
-    "name": "TEMPLE",
-    "color": "BLUE",
-    "coins": 1
+    "coins": 1,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "temple.png"
   },
   {
     "name": "CHURCH",
     "color": "BLUE",
-    "coins": 2
-  },
-  {
-    "name": "CHURCH",
-    "color": "BLUE",
-    "coins": 2
-  },
-  {
-    "name": "CHURCH",
-    "color": "BLUE",
-    "coins": 2
+    "coins": 2,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "church.png"
   },
   {
     "name": "MONASTERY",
     "color": "BLUE",
-    "coins": 3
-  },
-  {
-    "name": "MONASTERY",
-    "color": "BLUE",
-    "coins": 3
-  },
-  {
-    "name": "MONASTERY",
-    "color": "BLUE",
-    "coins": 3
+    "coins": 3,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "monastery.png"
   },
   {
     "name": "CATHEDRAL",
     "color": "BLUE",
-    "coins": 5
-  },
-  {
-    "name": "CATHEDRAL",
-    "color": "BLUE",
-    "coins": 5
-  },
-  {
-    "name": "WATCHTOWER",
-    "color": "RED",
-    "coins": 1
+    "coins": 5,
+    "quantity" : 2,
+    "description" : "",
+    "image" : "cathedral.png"
   },
   {
     "name": "WATCHTOWER",
     "color": "RED",
-    "coins": 1
-  },
-  {
-    "name": "WATCHTOWER",
-    "color": "RED",
-    "coins": 1
-  },
-  {
-    "name": "PRISON",
-    "color": "RED",
-    "coins": 2
+    "coins": 1,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "watchtower.png"
   },
   {
     "name": "PRISON",
     "color": "RED",
-    "coins": 2
-  },
-  {
-    "name": "PRISON",
-    "color": "RED",
-    "coins": 2
-  },
-  {
-    "name": "BATTLEFIELD",
-    "color": "RED",
-    "coins": 3
+    "coins": 2,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "prison.png"
   },
   {
     "name": "BATTLEFIELD",
     "color": "RED",
-    "coins": 3
-  },
-  {
-    "name": "BATTLEFIELD",
-    "color": "RED",
-    "coins": 3
+    "coins": 3,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "battlefield.png"
   },
   {
     "name": "FORTRESS",
     "color": "RED",
-    "coins": 5
-  },
-  {
-    "name": "FORTRESS",
-    "color": "RED",
-    "coins": 5
-  },
-  {
-    "name": "MANOR",
-    "color": "GOLD",
-    "coins": 3
+    "coins": 5,
+    "quantity" : 2,
+    "description" : "",
+    "image" : "fortress.png"
   },
   {
     "name": "MANOR",
     "color": "GOLD",
-    "coins": 3
-  },
-  {
-    "name": "MANOR",
-    "color": "GOLD",
-    "coins": 3
-  },
-  {
-    "name": "MANOR",
-    "color": "GOLD",
-    "coins": 3
-  },
-  {
-    "name": "MANOR",
-    "color": "GOLD",
-    "coins": 3
+    "coins": 3,
+    "quantity" : 5,
+    "description" : "",
+    "image" : "manor.png"
   },
   {
     "name": "CASTLE",
     "color": "GOLD",
-    "coins": 4
-  },
-  {
-    "name": "CASTLE",
-    "color": "GOLD",
-    "coins": 4
-  },
-  {
-    "name": "CASTLE",
-    "color": "GOLD",
-    "coins": 4
-  },
-  {
-    "name": "CASTLE",
-    "color": "GOLD",
-    "coins": 4
+    "coins": 4,
+    "quantity" : 4,
+    "description" : "",
+    "image" : "castle.png"
   },
   {
     "name": "PALACE",
     "color": "GOLD",
-    "coins": 5
-  },
-  {
-    "name": "PALACE",
-    "color": "GOLD",
-    "coins": 5
-  },
-  {
-    "name": "PALACE",
-    "color": "GOLD",
-    "coins": 5
+    "coins": 5,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "palace.png"
   },
   {
     "name": "TAVERN",
     "color": "GREEN",
-    "coins": 1
-  },
-  {
-    "name": "TAVERN",
-    "color": "GREEN",
-    "coins": 1
-  },
-  {
-    "name": "TAVERN",
-    "color": "GREEN",
-    "coins": 1
-  },
-  {
-    "name": "TAVERN",
-    "color": "GREEN",
-    "coins": 1
-  },
-  {
-    "name": "TAVERN",
-    "color": "GREEN",
-    "coins": 1
+    "coins": 1,
+    "quantity" : 5,
+    "description" : "",
+    "image" : "tavern.png"
   },
   {
     "name": "INN",
     "color": "GREEN",
-    "coins": 2
-  },
-  {
-    "name": "INN",
-    "color": "GREEN",
-    "coins": 2
-  },
-  {
-    "name": "INN",
-    "color": "GREEN",
-    "coins": 2
+    "coins": 2,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "inn.png"
   },
   {
     "name": "MARKET",
     "color": "GREEN",
-    "coins": 2
-  },
-  {
-    "name": "MARKET",
-    "color": "GREEN",
-    "coins": 2
-  },
-  {
-    "name": "MARKET",
-    "color": "GREEN",
-    "coins": 2
-  },
-  {
-    "name": "MARKET",
-    "color": "GREEN",
-    "coins": 2
+    "coins": 2,
+    "quantity" : 4,
+    "description" : "",
+    "image" : "market.png"
   },
   {
     "name": "BOATHOUSE",
     "color": "GREEN",
-    "coins": 3
-  },
-  {
-    "name": "BOATHOUSE",
-    "color": "GREEN",
-    "coins": 3
-  },
-  {
-    "name": "BOATHOUSE",
-    "color": "GREEN",
-    "coins": 3
+    "coins": 3,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "boathouse.png"
   },
   {
     "name": "HARBOR",
     "color": "GREEN",
-    "coins": 4
-  },
-  {
-    "name": "HARBOR",
-    "color": "GREEN",
-    "coins": 4
-  },
-  {
-    "name": "HARBOR",
-    "color": "GREEN",
-    "coins": 4
+    "coins": 4,
+    "quantity" : 3,
+    "description" : "",
+    "image" : "harbor.png"
   },
   {
     "name": "TOWN_HALL",
     "color": "GREEN",
-    "coins": 5
-  },
-  {
-    "name": "TOWN_HALL",
-    "color": "GREEN",
-    "coins": 5
+    "coins": 5,
+    "quantity" : 2,
+    "description" : "",
+    "image" : "town_hall.png"
   },
   {
     "name": "LIBRARY",
     "color": "PURPLE",
-    "coins": 6
+    "coins": 6,
+    "quantity" : 1,
+    "description" : "如果你選擇在回合開始時抽牌，你可保留抽到的2張地區卡",
+    "image" : "library.png"
   },
   {
     "name": "DRAGON_GATE",
     "color": "PURPLE",
-    "coins": 8
+    "coins": 6,
+    "quantity" : 1,
+    "description" : "這是一個名譽的象徵－國家已超過一千年沒見過龍，雖然建築費用為6元，但在遊戲終結時可以8分計算",
+    "image" : "dragon_gate.png"
   },
   {
     "name": "GRAVEYARD",
     "color": "PURPLE",
-    "coins": 5
+    "coins": 5,
+    "quantity" : 1,
+    "description" : "當軍閥破壞一個地區時，你可以支付1枚金幣將被破壞的地區拿到手上。但如果本身是軍閥，則無法使用此項特殊能力",
+    "image" : "graveyard.png"
   },
   {
     "name": "GHOST_TOWN",
     "color": "PURPLE",
-    "coins": 2
+    "coins": 2,
+    "quantity" : 1,
+    "description" : "當計算分數時，鬼城可被視為任何顏色的建築物。不過，若在遊戲最後一回合才建設鬼城，則無法使用此項特殊能力",
+    "image" : "ghost_town.png"
   },
   {
     "name": "SCHOOL_OF_MAGIC",
     "color": "PURPLE",
-    "coins": 6
+    "coins": 6,
+    "quantity" : 1,
+    "description" : "當計算金幣收入時，魔法學院可視為任何顏色的建築物。如果你是國王、主教、商人或軍閥時，金幣收入就會加一",
+    "image" : "school_of_magic.png"
   },
   {
     "name": "LABORATORY",
     "color": "PURPLE",
-    "coins": 5
+    "coins": 5,
+    "quantity" : 1,
+    "description" : "在你的回合當中，你可以從手上棄掉一張地區卡，然後換取一枚金幣。這項特殊能力每回合只能使用一次",
+    "image" : "laboratory.png"
   },
   {
     "name": "SMITHY",
     "color": "PURPLE",
-    "coins": 5
+    "coins": 5,
+    "quantity" : 1,
+    "description" : "在你的回合當中，你可以支付3枚金幣，然後抽2張地區卡。這項特殊能力每回合只能使用一次",
+    "image" : "smithy.png"
   },
   {
     "name": "OBSERVATORY",
     "color": "PURPLE",
-    "coins": 5
+    "coins": 5,
+    "quantity" : 1,
+    "description" : "如果你選擇在回合開始時抽牌，你可保留抽到的3張地區卡，保留1張，然後將其餘2張牌放回置牌庫底下",
+    "image" : "observatory.png"
   },
   {
     "name": "UNIVERSITY",
     "color": "PURPLE",
-    "coins": 8
+    "coins": 6,
+    "quantity" : 1,
+    "description" : "這是一個名譽的象徵－從來沒有人知道它的作用，雖然建築費用為6元，但在遊戲終結時可以8分計算",
+    "image" : "university.png"
   },
   {
     "name": "BASTION",
     "color": "PURPLE",
-    "coins": 3
+    "coins": 3,
+    "quantity" : 1,
+    "description" : "堡壘無法被軍閥破壞",
+    "image" : "bastion.png"
   },
   {
     "name": "GREAT_WALL",
     "color": "PURPLE",
-    "coins": 6
+    "coins": 6,
+    "quantity" : 1,
+    "description" : "軍閥要破壞你的其它地區須多付一枚金幣",
+    "image" : "great_wall.png"
   }
 ]
