@@ -27,21 +27,8 @@ public class GetBuildingCardTest extends CitadelsSpringBootTest {
                 .andExpect(status().isOk())
                 .andReturn();
         String content = mvcResult.getResponse().getContentAsString();
-//        List<BuildingCardSetting> buildingCardSettings = fromJson(content,  new TypeReference<List<BuildingCardSetting>>() {});
         List<BuildingCardSetting> buildingCardSettings = objectMapper.readValue(content, new TypeReference<List<BuildingCardSetting>>() {});
         List<BuildingCardSetting> expectedBuildingCardSetting = buildingCardDAO.findAll();
         assert buildingCardSettings.equals(expectedBuildingCardSetting);
-    }
-
-    private boolean isEqual(List<BuildingCardSetting> buildingCardSettings, List<BuildingCardSetting> expectedBuildingCardSetting) {
-        if (buildingCardSettings.size() != expectedBuildingCardSetting.size()) {
-            return false;
-        }
-        for (BuildingCardSetting buildingCardSetting : buildingCardSettings) {
-            if (!expectedBuildingCardSetting.contains(buildingCardSetting)) {
-                return false;
-            }
-        }
-        return true;
     }
 }
