@@ -15,8 +15,10 @@ import static tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.PlayerVi
 public class GameView {
     private String id;
     private List<PlayerView> playerViews;
+    private List<RoleCardView> roleCardViews;
 
     public static GameView toViewModel(CitadelsGame citadelsGame) {
-        return new GameView(citadelsGame.getId(), toViewModels(citadelsGame.getPlayers()));
+        return new GameView(citadelsGame.getId(), toViewModels(citadelsGame.getPlayers()),
+                                                    RoleCardView.toViewModels(citadelsGame.getRoleCards()));
     }
 }

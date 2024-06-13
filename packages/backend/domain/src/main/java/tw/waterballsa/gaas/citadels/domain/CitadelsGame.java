@@ -13,12 +13,14 @@ public class CitadelsGame {
     private final List<BuildingCard> buildingCards;
     public static final Integer DEFAULT_COINS = 2;
     public static final Integer DEFAULT_CARD_QUANTITY = 2;
+    private final Selection selections;
 
     public CitadelsGame(List<Player> players, List<RoleCard> roleCards, List<BuildingCard> buildingCards) {
         this.id = randomUUID().toString();
         this.players = players;
         this.roleCards = roleCards;
         this.buildingCards = buildingCards;
+        this.selections = new Selection();
     }
 
     public CitadelsGame(String id, List<Player> players, List<RoleCard> roleCards, List<BuildingCard> buildingCards) {
@@ -26,6 +28,7 @@ public class CitadelsGame {
         this.players = players;
         this.roleCards = roleCards;
         this.buildingCards = buildingCards;
+        this.selections = new Selection();
     }
 
     public String getId() {
@@ -42,6 +45,10 @@ public class CitadelsGame {
 
     public List<RoleCard> getRoleCards() {
         return List.copyOf(roleCards);
+    }
+
+    public Selection getSelections(){
+        return selections;
     }
 
     public void randomlyAwardCrownToOnePlayer() {

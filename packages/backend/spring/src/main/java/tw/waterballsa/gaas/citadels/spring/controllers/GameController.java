@@ -6,9 +6,12 @@ import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tw.waterballsa.gaas.citadels.app.usecases.GetGameUseCase;
+import tw.waterballsa.gaas.citadels.app.usecases.GetSelectedRoleCardsUseCase;
 import tw.waterballsa.gaas.citadels.app.usecases.StartGameUseCase;
 import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
+import tw.waterballsa.gaas.citadels.domain.RoleCard;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.GetGameView;
+import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.RoleCardView;
 import tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.StartGameView;
 
 import javax.validation.constraints.NotNull;
@@ -27,8 +30,8 @@ import static tw.waterballsa.gaas.citadels.spring.controllers.viewmodel.StartGam
 public class GameController {
 
     private final StartGameUseCase startGameUseCase;
-
     private final GetGameUseCase getGameUseCase;
+    private final GetSelectedRoleCardsUseCase getNotSelectedRoleCardsUseCase;
 
     @PostMapping("/games")
     public ResponseEntity<StartGameView> startGame(@RequestBody StartGameRequest request) {
@@ -44,6 +47,13 @@ public class GameController {
         return status(OK).body(presenter.getGameView());
     }
 
+    @GetMapping("/games/{gameId}/rolecards")
+    public ResponseEntity<?> getGameNotSelectedRoleCards(@PathVariable String gameId) {
+        GetGameRoleCardsPresenter presenter = new GetGameRoleCardsPresenter();
+        getNotSelectedRoleCardsUseCase.execute(new GetSelectedRoleCardsUseCase.Request(gameId), presenter);
+        return status(OK).body(presenter.getRoleCards());
+    }
+
     class GetCitadelsGamePresenter implements GetGameUseCase.Presenter {
         private CitadelsGame citadelsGame;
 
@@ -54,6 +64,19 @@ public class GameController {
         @Override
         public void setGame(CitadelsGame citadelsGame) {
             this.citadelsGame = citadelsGame;
+        }
+    }
+
+    class GetGameRoleCardsPresenter implements GetSelectedRoleCardsUseCase.Presenter {
+        private List<RoleCard> roleCards;
+
+        @Override
+        public void present(List<RoleCard> roleCards) {
+            this.roleCards = roleCards;
+        }
+
+        public List<RoleCardView> getRoleCards() {
+            return RoleCardView.toViewModels(this.roleCards);
         }
     }
 

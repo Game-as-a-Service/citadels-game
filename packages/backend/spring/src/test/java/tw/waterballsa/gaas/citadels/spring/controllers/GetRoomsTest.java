@@ -47,7 +47,7 @@ public class GetRoomsTest extends CitadelsSpringBootTest {
         // whenUserGetRooms
         MvcResult mvcResult = mockMvc.perform(get(API_PREFIX + "/rooms")
                         .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk()).andReturn();
+                        .andExpect(status().isOk()).andReturn();
 
         String content = mvcResult.getResponse().getContentAsString();
         GetRoomsView getRoomsView = fromJson(content, GetRoomsView.class);
