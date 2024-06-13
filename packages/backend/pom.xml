@@ -22,6 +22,7 @@
         <lombok.version>1.18.24</lombok.version>
         <javax.inject.version>1</javax.inject.version>
         <org.mockito.version>3.11.0</org.mockito.version>
+        <springdoc-openapi-ui.version>1.6.15</springdoc-openapi-ui.version>
     </properties>
 
     <dependencies>
@@ -35,5 +36,11 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
+        </dependency>
+        <!--swagger: http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config-->
     </dependencies>
 </project>

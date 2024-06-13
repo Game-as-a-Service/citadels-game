@@ -5,18 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import tw.waterballsa.gaas.citadels.app.repositories.GameRepository;
-import tw.waterballsa.gaas.citadels.domain.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCardFactory;
 import tw.waterballsa.gaas.citadels.domain.RoleCard;
 import tw.waterballsa.gaas.citadels.domain.CitadelsGame;
 import tw.waterballsa.gaas.citadels.domain.Player;
 
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.*;
 
 import static java.util.stream.Collectors.*;
 
@@ -26,6 +22,7 @@ import static java.util.stream.Collectors.*;
 public class StartGameUseCase {
 
     private final GameRepository gameRepository;
+    private final BuildingCardFactory factory;
 
     public void execute(Request request, Presenter presenter) {
         CitadelsGame citadelsGame = createGame(request);
@@ -35,7 +32,7 @@ public class StartGameUseCase {
     private CitadelsGame createGame(Request request) {
         List<Player> players = getPlayers(request.getPlayers());
         List<RoleCard> roleCards = getRoleCards();
-        List<BuildingCard> buildingCards = getBuildingCards();
+        List<BuildingCard> buildingCards = factory.createBuildingCards().orElseThrow();
         CitadelsGame citadelsGame = new CitadelsGame(players, roleCards, buildingCards);
         citadelsGame.start();
         return citadelsGame;
@@ -79,26 +76,4 @@ public class StartGameUseCase {
         public String name;
         public String imageName;
     }
-
-    private List<BuildingCard> getBuildingCards() {
-        List<BuildingCard> cards = new ArrayList<>();
-        Stream.of(
-                        getBuildingCards(BuildingCard.Color.YELLOW, 12),
-                        getBuildingCards(BuildingCard.Color.BLUE, 11),
-                        getBuildingCards(BuildingCard.Color.GREEN, 11),
-                        getBuildingCards(BuildingCard.Color.RED, 11),
-                        getBuildingCards(BuildingCard.Color.PURPLE, 30)
-                )
-                .flatMap(Collection::stream)
-                .forEach(cards::add);
-
-        return cards;
-    }
-
-    private List<BuildingCard> getBuildingCards(BuildingCard.Color color, int count) {
-        return IntStream.range(0, count)
-                .mapToObj(i -> new BuildingCard("card name", 2, color))
-                .collect(toList());
-    }
-
 }

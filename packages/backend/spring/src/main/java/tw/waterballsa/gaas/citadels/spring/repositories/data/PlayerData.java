@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import tw.waterballsa.gaas.citadels.domain.BuildingCard;
+import tw.waterballsa.gaas.citadels.domain.BuildingCard.BuildingCard;
 import tw.waterballsa.gaas.citadels.domain.RoleCard;
 import tw.waterballsa.gaas.citadels.domain.Player;
 

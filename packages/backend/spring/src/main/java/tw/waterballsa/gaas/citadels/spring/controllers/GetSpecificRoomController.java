@@ -21,7 +21,7 @@ public class GetSpecificRoomController {
     private final GetSpecificRoomUseCase getSpecificRoomUseCase;
 
     @GetMapping("/rooms/{roomId}")
-    public ResponseEntity<?> getSpecificRoom(@PathVariable String roomId) {
+    public ResponseEntity<GetSpecificRoomView> getSpecificRoom(@PathVariable String roomId) {
         GetSpecificRoomPresenter presenter = new GetSpecificRoomPresenter();
         getSpecificRoomUseCase.execute(roomId, presenter);
         return status(HttpStatus.OK).body(presenter.getSpecificRoomView());
