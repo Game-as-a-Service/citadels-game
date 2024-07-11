@@ -51,3 +51,7 @@ export const getSpecificRoom = (payload: String) => {
 export const leaveRoom = (payload: Object, roomId: string) => {
   return axios.post(`/rooms/${roomId}:leave`, payload)
 }
+
+export const getGame = (gameId: string) => {
+  return axios.get(`/event/citadels/games/${gameId}`)
+}

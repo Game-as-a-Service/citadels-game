@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import mainReducer from '../slice/mainSlice'
 import roomReducer from '../slice/roomSlice'
+import gameStatusReducer from '../slice/statusSlice'
 
 export const store = configureStore({
   reducer: {
     main: mainReducer,
-    room: roomReducer
+    room: roomReducer,
+    gameStatus: gameStatusReducer
   }
 })
 
